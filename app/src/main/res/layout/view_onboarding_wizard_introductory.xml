@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/doroga">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/vGo"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="@string/input_data"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:letterSpacing="0.1"
+        android:fontFamily="@font/gilroy_bold"
+        android:background="@drawable/bt_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

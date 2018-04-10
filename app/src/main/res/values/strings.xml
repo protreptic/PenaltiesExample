@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Penalties</string>
+    <string name="app_launcher_screen">Экран запуска приложения…</string>
+    <string name="app_main_screen">Главный экран приложения</string>
+    <string name="input_data">Ввести данные</string>
+    <string name="next">Далее</string>
+    <string name="skip">Пропустить</string>
+    <string name="vehicles">Автомобили</string>
+    <string name="drivers">Водители</string>
+    <string name="wipe_data">Wipe data</string>
+    <string name="app_data_wiped">Данные приложения удалены</string>
+    <string name="search_penalties">Искать штрафы</string>
+    <string name="input_valid_driver_license">Введите номер ВУ</string>
+    <string name="input_valid_vehicle_number">Введите номер ТС</string>
+    <string name="input_valid_vehicle_license">Введите номер СВИДЕТЕЛЬСТВА О РЕГ. ТС</string>
+    <string name="new_vehicle_license">Моё СВИДЕТЕЛЬСТВО О РЕГИСТРАЦИИ</string>
+    <string name="new_driver_license">Моё ВУ</string>
+    <string name="input_driver">Введите номер ВУ</string>
+    <string name="input_vehicle">Введите рег. номер ТС</string>
+    <string name="my_car">Мой автомобиль</string>
+    <string name="back">Вернуться</string>
+    <string name="skip_driver_message">Если вы не укажите номер ВУ, вы не сможетете найти штрафы.</string>
+    <string name="skip_vehicle_message">Если вы не укажите номер ТС, вы не сможетете найти штрафы.</string>
+    <string name="skip_vehicle_license_message">Если вы не укажите номер свидетельства о рег., вы не сможетете найти штрафы.</string>
+</resources>
