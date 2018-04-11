@@ -9,7 +9,7 @@
     <string name="drivers">Водители</string>
     <string name="wipe_data">Wipe data</string>
     <string name="app_data_wiped">Данные приложения удалены</string>
-    <string name="search_penalties">Искать штрафы</string>
+    <string name="search_penalties">Узнать штрафы</string>
     <string name="input_valid_driver_license">Введите номер ВУ</string>
     <string name="input_valid_vehicle_number">Введите номер ТС</string>
     <string name="input_valid_vehicle_license">Введите номер СВИДЕТЕЛЬСТВА О РЕГ. ТС</string>
@@ -22,4 +22,11 @@
     <string name="skip_driver_message">Если вы не укажите номер ВУ, вы не сможетете найти штрафы.</string>
     <string name="skip_vehicle_message">Если вы не укажите номер ТС, вы не сможетете найти штрафы.</string>
     <string name="skip_vehicle_license_message">Если вы не укажите номер свидетельства о рег., вы не сможетете найти штрафы.</string>
+    <string name="onboarding_wizard_introductory_message">Проверьте штрафы в официальных источниках</string>
+    <string name="onboarding_message_1">Получайте push-уведомления о новых штрафах</string>
+    <string name="onboarding_message_2">Оплачивайте штрафы через приложение</string>
+    <string name="onboarding_message_3">Скидка 50%</string>
+    <string name="onboarding_message_4">Получайте квитанцию, как в банке</string>
+    <string name="onboarding_message_5">Гарантия погашения в государственной базе данных</string>
+    <string name="onboarding_message_6">\n\n\n\n\n\n\nСоблюдайте правила дорожного движения.</string>
 </resources>

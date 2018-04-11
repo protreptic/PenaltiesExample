@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import test.p00.R
 import test.p00.presentation.onboarding.model.OnBoardingModel
 import test.p00.util.glide.GlideApp
@@ -22,12 +23,23 @@ class OnBoardingAdapter(private val context: Context,
                 .inflate(R.layout.view_onboarding_page, container, false)
         val model = onBoarding.pages[position]
 
-        view.findViewById<ImageView>(R.id.vPicture).let {
-            GlideApp.with(context)
-                    .load(model.contentUri)
-                    //placeholder(R.drawable.onboarding_placeholder)
-                    .centerCrop()
-                    .into(it) }
+        view.findViewById<TextView>(R.id.vContentText)?.apply {
+            text = model.message
+        }
+
+        view.findViewById<ImageView>(R.id.vContentPicture)?.apply {
+            when (model.contentUri.isNotEmpty()) {
+                true -> {
+                    GlideApp.with(context)
+                            .load(model.contentUri)
+                            .centerInside()
+                            .into(this)
+                }
+                else -> {
+                    visibility = View.GONE
+                }
+            }
+        }
 
         container.addView(view)
 

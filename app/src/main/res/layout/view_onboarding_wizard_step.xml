@@ -13,8 +13,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/doroga" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/vTitle"
@@ -23,7 +22,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/gilroy_regular"
+        android:fontFamily="@font/roboto_medium"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +36,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/gilroy_bold"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:inputType="numberDecimal"
         android:maxLength="10"
@@ -52,8 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bt_bg"
+        android:background="@drawable/custom_next_button"
         android:text="@string/next"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
@@ -63,8 +64,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bt_bg"
+        android:background="@drawable/custom_next_button"
         android:text="@string/skip"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/vNext"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

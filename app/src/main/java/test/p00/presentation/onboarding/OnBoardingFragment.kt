@@ -1,5 +1,6 @@
 package test.p00.presentation.onboarding
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
@@ -33,7 +34,6 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
 
     private val vOnBoarding: ViewPager by bindView(R.id.vOnBoarding)
     private val vIndicator: CirclePageIndicator by bindView(R.id.vIndicator)
-    private val vClose: View by bindView(R.id.vClose)
     private val vForward: View by bindView(R.id.vForward)
     private val vGo: View by bindView(R.id.vGo)
 
@@ -47,7 +47,8 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         vOnBoarding.apply {
             adapter = OnBoardingAdapter(context, onBoarding)
             offscreenPageLimit = onBoarding.pages.size / 2
-            //background = ContextCompat.getDrawable(context, onBoarding.backgroundUri)
+            background = Drawable.createFromStream(
+                    context.assets.open(onBoarding.backgroundUri), null)
 
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
@@ -55,7 +56,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
                 override fun onPageSelected(position: Int) {
-                    if (checkIfpositionLastPage(position)) {
+                    if (checkIfPositionLastPage(position)) {
                         vGo.visibility = View.VISIBLE
                         vForward.visibility = View.GONE
                         vIndicator.visibility = View.GONE
@@ -72,11 +73,10 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
         vForward.setOnClickListener {
             vOnBoarding.setCurrentItem(vOnBoarding.currentItem + 1, true)
         }
-        vClose.setOnClickListener { skipOnBoarding() }
-        vGo.setOnClickListener { if (checkIfLastPage()) { skipOnBoarding() } }
+        vGo.setOnClickListener { if (checkIfLastPage()) { closeOnBoarding() } }
     }
 
-    override fun skipOnBoarding() {
+    override fun closeOnBoarding() {
         fragmentManager!!
                 .beginTransaction()
                 .replace(android.R.id.content,
@@ -85,7 +85,7 @@ class OnBoardingFragment : Fragment(), OnBoardingView {
                 .commit()
     }
 
-    private fun checkIfpositionLastPage(position: Int) =
+    private fun checkIfPositionLastPage(position: Int) =
             position == vOnBoarding.adapter?.count!!.minus(1)
 
     private fun checkIfLastPage() =

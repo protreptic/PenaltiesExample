@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,32 +8,33 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/vOnBoarding"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:overScrollMode="never" />
-
-    <android.support.v7.widget.AppCompatImageButton
-        android:id="@+id/vClose"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_close_circle"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#ff639cdb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/vGo"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:background="@drawable/bt_bg"
-        android:fontFamily="@font/gilroy_bold"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:text="@string/search_penalties"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:letterSpacing="0.1"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,29 +43,25 @@
     <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/vIndicator"
         android:layout_width="match_parent"
-        android:layout_height="12dp"
+        android:layout_height="10dp"
         android:layout_marginBottom="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:paddingLeft="120dp"
         android:paddingRight="120dp"
-        app:fillColor="@color/light_red"
-        app:layout_constraintBottom_toBottomOf="@+id/vOnBoarding"
+        app:fillColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:pageColor="@color/white"
-        app:radius="6dp"
+        app:pageColor="#66ffffff"
+        app:radius="5dp"
         app:strokeColor="@color/warm_grey"
         app:strokeWidth="0dp" />
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/vForward"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_arrow_right_bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="parent"
+        app:srcCompat="@drawable/ic_navigation_arrow_forward" />
 </android.support.constraint.ConstraintLayout>

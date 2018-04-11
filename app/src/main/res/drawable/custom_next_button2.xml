@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <inset android:insetLeft="@dimen/button_inset_horizontal_material" android:insetRight="@dimen/button_inset_horizontal_material" android:insetTop="@dimen/button_inset_vertical_material" android:insetBottom="@dimen/button_inset_vertical_material">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/next_btn_disabled" />
+                <padding android:left="@dimen/button_padding_horizontal_material" android:top="@dimen/button_padding_vertical_material" android:right="@dimen/button_padding_horizontal_material" android:bottom="@dimen/button_padding_vertical_material" />
+            </shape>
+        </inset>
+    </item>
+    <item android:state_enabled="true" android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/next_btn_pressed" />
+            <padding android:left="@dimen/button_padding_horizontal_material" android:top="@dimen/button_padding_vertical_material" android:right="@dimen/button_padding_horizontal_material" android:bottom="@dimen/button_padding_vertical_material" />
+        </shape>
+    </item>
+    <item android:state_focused="true" android:state_enabled="true">
+        <inset android:insetLeft="@dimen/button_inset_horizontal_material" android:insetRight="@dimen/button_inset_horizontal_material" android:insetTop="@dimen/button_inset_vertical_material" android:insetBottom="@dimen/button_inset_vertical_material">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/next_btn_hover" />
+                <padding android:left="@dimen/button_padding_horizontal_material" android:top="@dimen/button_padding_vertical_material" android:right="@dimen/button_padding_horizontal_material" android:bottom="@dimen/button_padding_vertical_material" />
+            </shape>
+        </inset>
+    </item>
+    <item>
+        <inset android:insetLeft="@dimen/button_inset_horizontal_material" android:insetRight="2.0dip" android:insetTop="@dimen/button_inset_vertical_material" android:insetBottom="4.0dip">
+            <layer-list>
+                <item android:right="2.0dip" android:bottom="2.0dip">
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/next_btn_normal" />
+                        <padding android:left="@dimen/button_padding_horizontal_material" android:top="@dimen/button_padding_vertical_material" android:right="@dimen/button_padding_horizontal_material" android:bottom="@dimen/button_padding_vertical_material" />
+                    </shape>
+                </item>
+            </layer-list>
+        </inset>
+    </item>
+</selector>

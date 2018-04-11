@@ -32,7 +32,6 @@ class OnBoardingPresenterImpl(
                 .subscribe({
                     onBoarding -> attachedView.displayOnBoarding(
                         OnBoardingModel(onBoarding.backgroundUri, onBoarding.pages.map {
-                            page -> OnBoardingPageModel(page.contentUri) })) }, { })
-    }
+                            page -> OnBoardingPageModel(page.message, page.contentUri) })) }, { }) }
 
 }

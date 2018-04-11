@@ -6,6 +6,6 @@ import test.p00.presentation.onboarding.model.OnBoardingModel
 interface OnBoardingView : View {
 
     fun displayOnBoarding(onBoarding: OnBoardingModel)
-    fun skipOnBoarding()
+    fun closeOnBoarding()
 
 }

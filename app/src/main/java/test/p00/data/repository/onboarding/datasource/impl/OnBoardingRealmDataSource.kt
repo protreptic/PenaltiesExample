@@ -3,9 +3,11 @@ package test.p00.data.repository.onboarding.datasource.impl
 import io.reactivex.Observable
 import io.reactivex.Observable.*
 import io.realm.Realm
+import test.p00.R
 import test.p00.data.model.onboarding.OnBoarding
 import test.p00.data.model.onboarding.OnBoardingPage
 import test.p00.data.repository.onboarding.datasource.OnBoardingDataSource
+import test.p00.util.ContextProvider
 
 class OnBoardingRealmDataSource : OnBoardingDataSource {
 
@@ -41,38 +43,44 @@ class OnBoardingRealmDataSource : OnBoardingDataSource {
         }
     }
 
+    companion object {
+
+        const val BASE_URI = "file:///android_asset/"
+    }
+
     private fun generateOnBoarding() = OnBoarding().apply {
         numberOfImpressions = 0
-        backgroundUri = "file:///android_asset/1326661278_doroga.jpg"
+        backgroundUri = "onboarding/wt_background.png"
 
         pages.apply {
             add(OnBoardingPage().apply {
                 order = 1
-                contentUri = "file:///android_asset/1326661278_doroga.jpg"
+                message = ContextProvider.context().getString(R.string.onboarding_message_1)
+                contentUri = BASE_URI + "onboarding/wt_1.png"
             })
             add(OnBoardingPage().apply {
                 order = 2
-                contentUri = "http://www.arnapress.kz/i/Posts/98632.jpg"
-            })
-            add(OnBoardingPage().apply {
-                order = 4
-                contentUri = "http://effloresce.ru/wp-content/uploads/2016/06/%D1%82%D1%80%D0%B8-%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B8-%D1%82%D1%80%D0%B8-%D0%BF%D1%83%D1%82%D0%B83.jpg"
-            })
-            add(OnBoardingPage().apply {
-                order = 7
-                contentUri = "https://i.pinimg.com/originals/7f/b7/c8/7fb7c8a87ceb75d9f73de3d79d447d38.jpg"
+                message = ContextProvider.context().getString(R.string.onboarding_message_2)
+                contentUri = BASE_URI + "onboarding/wt_2.png"
             })
             add(OnBoardingPage().apply {
                 order = 3
-                contentUri = "https://dorig.net.ua/media/9/e/c/194/9ec2619aceb17f4546e5845bcf624c72.jpg"
+                message = ContextProvider.context().getString(R.string.onboarding_message_3)
+                contentUri = BASE_URI + "onboarding/wt_3.png"
             })
             add(OnBoardingPage().apply {
-                order = 6
-                contentUri = "https://www.computerworld.ru/FileStorage/DOCUMENTS_ILLUSTRATIONS/13209466/i_800.jpg"
+                order = 4
+                message = ContextProvider.context().getString(R.string.onboarding_message_4)
+                contentUri = BASE_URI + "onboarding/wt_4.png"
             })
             add(OnBoardingPage().apply {
                 order = 5
-                contentUri = "http://img-fotki.yandex.ru/get/9930/106089749.21/0_e5530_e083285e_orig.jpg"
+                message = ContextProvider.context().getString(R.string.onboarding_message_5)
+                contentUri = BASE_URI + "onboarding/wt_5.png"
+            })
+            add(OnBoardingPage().apply {
+                order = 6
+                message = ContextProvider.context().getString(R.string.onboarding_message_6)
             })
         }
     }

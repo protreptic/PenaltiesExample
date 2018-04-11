@@ -22,5 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".util.ContextProvider"
+            android:exported="false"
+            android:authorities="test.p00.CONTEXT_PROVIDER" />
     </application>
 </manifest>

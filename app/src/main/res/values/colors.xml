@@ -16,4 +16,35 @@
     <color name="warm_grey">#9b9b9b</color>
 
     <color name="ripple">#dddddd</color>
+
+    <color name="next_btn_normal">#ffff9800</color>
+    <color name="next_btn_hover">#fffb8c00</color>
+    <color name="next_btn_pressed">#fff57c00</color>
+    <color name="next_btn_disabled">#1c000000</color>
+    <color name="light_blue">#ff9fa8da</color>
+    <color name="gradient_start">#50000000</color>
+    <color name="gradient_light_start">#30000000</color>
+    <color name="transparent_black_percent_54">#8b000000</color>
+    <color name="transparent_black_percent_87">#db000000</color>
+    <color name="confirm_background">#fff4f4f4</color>
+
+    <color name="Black_transparent_black_percent_10">#1a000000</color>
+    <color name="Black_transparent_black_percent_15">#26000000</color>
+    <color name="Black_transparent_black_percent_20">#33000000</color>
+    <color name="Black_transparent_black_percent_25">#40000000</color>
+    <color name="Black_transparent_black_percent_30">#4d000000</color>
+    <color name="Black_transparent_black_percent_35">#59000000</color>
+    <color name="Black_transparent_black_percent_40">#66000000</color>
+    <color name="Black_transparent_black_percent_45">#73000000</color>
+    <color name="Black_transparent_black_percent_5">#0d000000</color>
+    <color name="Black_transparent_black_percent_50">#80000000</color>
+    <color name="Black_transparent_black_percent_55">#8c000000</color>
+    <color name="Black_transparent_black_percent_60">#99000000</color>
+    <color name="Black_transparent_black_percent_65">#a6000000</color>
+    <color name="Black_transparent_black_percent_70">#b3000000</color>
+    <color name="Black_transparent_black_percent_75">#bf000000</color>
+    <color name="Black_transparent_black_percent_80">#cc000000</color>
+    <color name="Black_transparent_black_percent_85">#d9000000</color>
+    <color name="Black_transparent_black_percent_90">#e6000000</color>
+    <color name="Black_transparent_black_percent_95">#f2000000</color>
 </resources>
