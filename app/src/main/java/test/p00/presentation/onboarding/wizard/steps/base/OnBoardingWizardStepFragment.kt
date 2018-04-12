@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.disposables.CompositeDisposable
 import kotterknife.bindView
 import test.p00.R
@@ -37,8 +38,24 @@ abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepVi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        disposables.add(
+            RxTextView
+                .afterTextChangeEvents(vNumber)
+                .map { raw -> raw.editable().toString() }
+                .subscribe({ number ->
+                    when (number.isEmpty()) {
+                        true -> {
+                            vForward.isEnabled = false
+                            vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.darker_gray))
+                        }
+                        else -> validateInput(number)
+                    }
+                }, { }))
+
         vSkip.setOnClickListener { skip() }
     }
+
+    protected abstract fun validateInput(input: String)
 
     override fun showValidationError(isValid: Boolean) {
         when (isValid) {

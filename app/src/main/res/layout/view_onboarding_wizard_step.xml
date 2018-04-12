@@ -1,75 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="80.0dip"
+        android:background="@color/primary">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16.0dip"
+            android:layout_marginRight="16.0dip"
+            android:scaleType="fitCenter" />
+    </RelativeLayout>
 
     <android.support.v7.widget.AppCompatTextView
+        style="@style/TitleFont"
         android:id="@+id/vTitle"
+        android:padding="16dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:text="title" />
+        tools:text="Укажите регистрационный номер ТС" />
 
     <android.support.v7.widget.AppCompatEditText
+        android:textSize="34sp"
         android:id="@+id/editText2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:maxLength="10"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vTitle" />
+        android:inputType="textCapCharacters"
+        style="@style/Widget.FinesTheme.Number" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/vNext"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_next_button"
-        android:text="@string/next"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginTop="8.0dip"
+        android:layout_marginRight="16.0dip">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/vSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_next_button"
-        android:text="@string/skip"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/vNext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-</android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/vNext"
+            android:background="@drawable/custom_next_button"
+            android:layout_width="130.0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:layout_alignParentRight="true"
+            style="@style/MaterialButton" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/vSkip"
+            android:layout_width="130.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8.0dip"
+            android:text="@string/skip"
+            android:layout_toLeftOf="@id/vNext"
+            style="@style/MaterialButton.Borderless.LightBlue" />
+    </RelativeLayout>
+</LinearLayout>

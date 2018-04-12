@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#ff4daf50</color>
 
     <color name="white">#ffffff</color>
     <color name="white_50">#80d3d3d3</color>
@@ -27,7 +27,8 @@
     <color name="transparent_black_percent_54">#8b000000</color>
     <color name="transparent_black_percent_87">#db000000</color>
     <color name="confirm_background">#fff4f4f4</color>
-
+    <color name="primary">#ff003d7f</color>
+    <color name="icons">#ffffffff</color>
     <color name="Black_transparent_black_percent_10">#1a000000</color>
     <color name="Black_transparent_black_percent_15">#26000000</color>
     <color name="Black_transparent_black_percent_20">#33000000</color>

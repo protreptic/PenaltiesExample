@@ -4,4 +4,55 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="TitleFont" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/icons</item>
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="Widget.FinesTheme.EditText" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_text</item>
+    </style>
+
+    <style name="Widget.FinesTheme.Number" parent="@style/Widget.FinesTheme.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">12</item>
+        <item name="android:capitalize">characters</item>
+        <item name="android:inputType">textFilter|textCapCharacters|textNoSuggestions</item>
+    </style>
+
+    <style name="TextAppearance" />
+
+    <style name="MaterialButton">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialButton</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/custom_borderless_button</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:minWidth">88.0dip</item>
+        <item name="android:minHeight">48.0dip</item>
+    </style>
+
+    <style name="TextAppearance.MaterialButton" parent="@style/TextAppearance">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <!--<item name="android:textColor">@color/selector_button_text_color</item>-->
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="MaterialButton.Borderless" parent="@android:style/Widget.DeviceDefault.Button.Borderless">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialButton</item>
+        <item name="android:textColor">@color/next_btn_normal</item>
+        <item name="android:minWidth">88.0dip</item>
+        <item name="android:minHeight">48.0dip</item>
+    </style>
+
+    <style name="MaterialButton.Borderless.Blue" parent="@style/MaterialButton.Borderless">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="MaterialButton.Borderless.LightBlue" parent="@style/MaterialButton.Borderless">
+        <item name="android:textColor">@color/light_blue</item>
+    </style>
 </resources>

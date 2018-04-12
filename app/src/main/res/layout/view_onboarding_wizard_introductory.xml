@@ -45,7 +45,6 @@
         android:textSize="20sp"
         android:textColor="@color/white"
         android:textAllCaps="true"
-        android:letterSpacing="0.1"
         android:fontFamily="@font/roboto_medium"
         android:background="@drawable/bt_bg"
         app:layout_constraintBottom_toBottomOf="parent"

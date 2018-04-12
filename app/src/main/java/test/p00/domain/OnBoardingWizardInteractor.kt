@@ -1,11 +1,11 @@
 package test.p00.domain
 
-import android.text.TextUtils
 import io.reactivex.Observable
 import test.p00.data.model.user.DriverLicense
 import test.p00.data.model.user.Vehicle
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
+import java.util.regex.Pattern.*
 
 class OnBoardingWizardInteractor(
         private val userRepository: UserRepository =
@@ -51,7 +51,7 @@ class OnBoardingWizardInteractor(
 
     fun tryAddVehicleLicense(rawNumber: String): Observable<Boolean> =
             Observable.just(rawNumber)
-                    .flatMap { validateVehicle(it) }
+                    .flatMap { validateVehicleLicense(it) }
                     .flatMap { valid ->
                         if (valid) {
                             userRepository
@@ -67,16 +67,17 @@ class OnBoardingWizardInteractor(
                             Observable.just(false)
                         } }
 
+    private val D1 = "[АВЕКМНОРСТУХABEKMHOPCTYX]"
+    private val C1 = "[0-9]"
+
+    private val PATTERN_DRIVER_LICENSE_NUMBER = "$C1{2}$D1{2}$C1{6}" //ЦЦ ББ ЦЦЦЦЦЦ
+    private val PATTERN_VEHICLE_NUMBER = "$D1$C1{3}$D1{2}$C1{2,3}" //Б ЦЦЦ ББ ЦЦ(Ц)
+    private val PATTERN_VEHICLE_LICENSE_NUMBER = "$C1{2}$D1{2}$C1{6}" //ЦЦ ББ ЦЦЦЦЦЦ
+
     fun validateDriver(number: String): Observable<Boolean> =
         Observable.just(number)
                   .flatMap {
-                      /*
-                       * Считаем что пользователь ввел валидный номер,
-                       * если он не пустой и ровно 10 цифр.
-                       */
-                      if (number.isNotEmpty() &&
-                              TextUtils.isDigitsOnly(number) &&
-                                    number.length == 10) {
+                      if (matches(PATTERN_DRIVER_LICENSE_NUMBER, number.toUpperCase())) {
                             Observable.just(true)
                       } else {
                           Observable.just(false)
@@ -85,13 +86,7 @@ class OnBoardingWizardInteractor(
     fun validateVehicle(number: String): Observable<Boolean> =
             Observable.just(number)
                     .flatMap {
-                        /*
-                         * Считаем что пользователь ввел валидный номер,
-                         * если он не пустой и ровно 10 цифр.
-                         */
-                        if (number.isNotEmpty() &&
-                                TextUtils.isDigitsOnly(number) &&
-                                number.length == 10) {
+                        if (matches(PATTERN_VEHICLE_NUMBER, number.toUpperCase())) {
                             Observable.just(true)
                         } else {
                             Observable.just(false)
@@ -100,13 +95,7 @@ class OnBoardingWizardInteractor(
     fun validateVehicleLicense(number: String): Observable<Boolean> =
             Observable.just(number)
                     .flatMap {
-                        /*
-                         * Считаем что пользователь ввел валидный номер,
-                         * если он не пустой и ровно 10 цифр.
-                         */
-                        if (number.isNotEmpty() &&
-                                TextUtils.isDigitsOnly(number) &&
-                                number.length == 10) {
+                        if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, number.toUpperCase())) {
                             Observable.just(true)
                         } else {
                             Observable.just(false)

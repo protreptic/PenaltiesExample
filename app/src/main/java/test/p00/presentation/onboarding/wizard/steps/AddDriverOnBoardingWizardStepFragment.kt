@@ -4,12 +4,14 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import test.p00.R
 import test.p00.presentation.launcher.LauncherFragment
 import test.p00.presentation.onboarding.wizard.steps.base.OnBoardingWizardStepFragment
+import test.p00.util.glide.GlideApp
 
 class AddDriverOnBoardingWizardStepFragment : OnBoardingWizardStepFragment() {
 
@@ -26,27 +28,31 @@ class AddDriverOnBoardingWizardStepFragment : OnBoardingWizardStepFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vTitle.setHint(R.string.input_valid_driver_license)
+        vBanner.apply {
+            GlideApp.with(context)
+                    .load("file:///android_asset/onboarding/wizard/driver_lic.png")
+                    .centerInside()
+                    .into(this)
+        }
 
-        disposables.add(
-            RxTextView
-                .afterTextChangeEvents(vNumber)
-                .map { raw -> raw.editable().toString() }
-                .subscribe({ number ->
-                    when (number.isEmpty()) {
-                        true -> {
-                            vForward.isEnabled = false
-                            vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.darker_gray))
-                        }
-                        else -> presenter.validateDriver(number)
-                    }
-                }, { }))
+        vTitle.setText(R.string.input_valid_driver_license)
+
+        vNumber.apply {
+            setHint(R.string.input_valid_driver_license_hint)
+
+            filters = listOf(InputFilter.AllCaps(),
+                             InputFilter.LengthFilter(10)).toTypedArray()
+        }
 
         vForward.setOnClickListener {
             presenter.addDriver(getString(R.string.new_driver_license),
                 vNumber.text.toString()) }
 
         presenter.attachView(this)
+    }
+
+    override fun validateInput(input: String) {
+        presenter.validateDriver(input)
     }
 
     override fun forward() {
@@ -57,7 +63,7 @@ class AddDriverOnBoardingWizardStepFragment : OnBoardingWizardStepFragment() {
         AlertDialog.Builder(activity)
                 .setMessage(getString(R.string.skip_driver_message))
                 .setPositiveButton(getString(R.string.skip), { _, _ -> skipInternal() })
-                .setNegativeButton(getString(R.string.back), { dialog, _ -> dialog.dismiss() })
+                .setNegativeButton(getString(R.string.input_number), { dialog, _ -> dialog.dismiss() })
                 .create()
                 .show()
     }

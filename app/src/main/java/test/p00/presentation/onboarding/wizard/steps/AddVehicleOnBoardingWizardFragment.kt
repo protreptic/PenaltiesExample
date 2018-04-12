@@ -4,11 +4,13 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getColor
+import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import test.p00.R
 import test.p00.presentation.onboarding.wizard.steps.base.OnBoardingWizardStepFragment
+import test.p00.util.glide.GlideApp
 
 class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
 
@@ -25,53 +27,61 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vTitle.setHint(R.string.input_valid_vehicle_number)
+        vBanner.apply {
+            GlideApp.with(context)
+                    .load("file:///android_asset/onboarding/wizard/auto_num.png")
+                    .centerInside()
+                    .into(this)
+        }
 
-        disposables.add(
-            RxTextView
-                .afterTextChangeEvents(vNumber)
-                .map { raw -> raw.editable().toString() }
-                .subscribe({ number ->
-                    when (number.isEmpty()) {
-                        true -> {
-                            vForward.isEnabled = false
-                            vNumber.setTextColor(getColor(context!!, android.R.color.darker_gray))
-                        }
-                        else -> presenter.validateVehicle(number)
-                    }
-                }, { }))
+        vTitle.setText(R.string.input_valid_vehicle_number)
+
+        vNumber.apply {
+            setHint(R.string.input_valid_vehicle_number_hint)
+
+            filters = listOf(InputFilter.AllCaps(),
+                             InputFilter.LengthFilter(9)).toTypedArray()
+        }
 
         vForward.setOnClickListener {
             presenter.addVehicle(getString(R.string.my_car),
-                vNumber.text.toString()) }
+                vNumber.text.toString())
+        }
 
         presenter.attachView(this)
+    }
+
+    override fun validateInput(input: String) {
+        presenter.validateVehicle(input)
     }
 
     override fun forward() {
         fragmentManager!!
             .beginTransaction()
+            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
             .replace(R.id.wizard_content,
                 AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
                 AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
-            .commit() }
+            .commit()
+    }
 
     override fun skip() {
         AlertDialog.Builder(activity)
             .setMessage(getString(R.string.skip_vehicle_message))
             .setPositiveButton(getString(R.string.skip), { _, _ -> skipInternal() })
-            .setNegativeButton(getString(R.string.back), { dialog, _ -> dialog.dismiss() })
+            .setNegativeButton(getString(R.string.input_number), { dialog, _ -> dialog.dismiss() })
             .create()
             .show()
     }
 
     private fun skipInternal() {
         fragmentManager!!
-        .beginTransaction()
-        .replace(R.id.wizard_content,
-            AddDriverOnBoardingWizardStepFragment.newInstance(),
-            AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
-        .commit()
+            .beginTransaction()
+            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
+            .replace(R.id.wizard_content,
+                AddDriverOnBoardingWizardStepFragment.newInstance(),
+                AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
+            .commit()
     }
 
     override fun showError() {
