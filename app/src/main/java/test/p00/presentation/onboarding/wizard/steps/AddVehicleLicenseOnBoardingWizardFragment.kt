@@ -56,8 +56,10 @@ class AddVehicleLicenseOnBoardingWizardFragment : OnBoardingWizardStepFragment()
     override fun forward() {
         fragmentManager!!
                 .beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace(R.id.wizard_content,
+                .setCustomAnimations(
+                        R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_right, R.anim.slide_out_left)
+                .add(R.id.wizard_content,
                     AddDriverOnBoardingWizardStepFragment.newInstance(),
                     AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
                 .addToBackStack(null)
@@ -76,8 +78,10 @@ class AddVehicleLicenseOnBoardingWizardFragment : OnBoardingWizardStepFragment()
     private fun skipInternal() {
         fragmentManager!!
                 .beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace(R.id.wizard_content,
+                .setCustomAnimations(
+                        R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_right, R.anim.slide_out_left)
+                .add(R.id.wizard_content,
                     AddDriverOnBoardingWizardStepFragment.newInstance(),
                     AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
                 .addToBackStack(null)

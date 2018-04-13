@@ -3,11 +3,9 @@ package test.p00.presentation.onboarding.wizard.steps
 import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat.getColor
 import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
-import com.jakewharton.rxbinding2.widget.RxTextView
 import test.p00.R
 import test.p00.presentation.onboarding.wizard.steps.base.OnBoardingWizardStepFragment
 import test.p00.util.glide.GlideApp
@@ -58,10 +56,13 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
     override fun forward() {
         fragmentManager!!
             .beginTransaction()
-            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-            .replace(R.id.wizard_content,
+            .setCustomAnimations(
+                    R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_right, R.anim.slide_out_left)
+            .add(R.id.wizard_content,
                 AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
                 AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -77,10 +78,13 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
     private fun skipInternal() {
         fragmentManager!!
             .beginTransaction()
-            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-            .replace(R.id.wizard_content,
+            .setCustomAnimations(
+                    R.anim.slide_in_right, R.anim.slide_out_left,
+                    R.anim.slide_in_right, R.anim.slide_out_left)
+            .add(R.id.wizard_content,
                 AddDriverOnBoardingWizardStepFragment.newInstance(),
                 AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
+            .addToBackStack(null)
             .commit()
     }
 

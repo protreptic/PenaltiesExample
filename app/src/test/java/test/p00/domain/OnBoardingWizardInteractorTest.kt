@@ -2,7 +2,6 @@ package test.p00.domain
 
 import io.reactivex.Observable.just
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -13,20 +12,24 @@ import test.p00.data.repository.user.UserRepository
 
 class OnBoardingWizardInteractorTest {
 
-    private val VEHICLE_NUMBER_VALID =
-            listOf("с065мк78", "c065mk78", "c065mk750")
-    private val VEHICLE_NUMBER_INVALID =
-            listOf("я065mk750", "я065mkk750", "я06mk750")
+    companion object {
 
-    private val VEHICLE_LICENSE_NUMBER_VALID =
-            listOf("23мн734534")
-    private val VEHICLE_LICENSE_NUMBER_INVALID =
-            listOf("23мн73453n")
+        private val VEHICLE_NUMBER_VALID =
+                listOf("с065мк78", "c065mk78", "c065mk750")
+        private val VEHICLE_NUMBER_INVALID =
+                listOf("я065mk750", "я065mkk750", "я06mk750")
 
-    private val DRIVER_LICENSE_NUMBER_VALID =
-            listOf("23мн734534")
-    private val DRIVER_LICENSE_NUMBER_INVALID =
-            listOf("23мн73453n")
+        private val VEHICLE_LICENSE_NUMBER_VALID =
+                listOf("23мн734534")
+        private val VEHICLE_LICENSE_NUMBER_INVALID =
+                listOf("23мн73453n")
+
+        private val DRIVER_LICENSE_NUMBER_VALID =
+                listOf("23мн734534")
+        private val DRIVER_LICENSE_NUMBER_INVALID =
+                listOf("23мн73453n")
+
+    }
 
     private val userRepository = mock(UserRepository::class.java)
     private val sut = OnBoardingWizardInteractor(userRepository)
@@ -39,9 +42,12 @@ class OnBoardingWizardInteractorTest {
     @Test
     fun validateDriver() {
         DRIVER_LICENSE_NUMBER_VALID.forEach { item ->
-            sut.validateDriver(item).test().assertValue(true) }
+            sut.validateDriver(item).test()
+                    .assertValue(true) }
+
         DRIVER_LICENSE_NUMBER_INVALID.forEach { item ->
-            sut.validateDriver(item).test().assertValue(false) }
+            sut.validateDriver(item).test()
+                    .assertValue(false) }
     }
 
     @Test
@@ -145,14 +151,12 @@ class OnBoardingWizardInteractorTest {
     @Test
     fun validateVehicleLicense() {
         VEHICLE_LICENSE_NUMBER_VALID.forEach { item ->
-            sut.validateVehicleLicense(item).test().assertValue(true) }
+            sut.validateVehicleLicense(item).test()
+                    .assertValue(true) }
+
         VEHICLE_LICENSE_NUMBER_INVALID.forEach { item ->
-            sut.validateVehicleLicense(item).test().assertValue(false) }
-    }
-
-    @After
-    fun tearDown() {
-
+            sut.validateVehicleLicense(item).test()
+                    .assertValue(false) }
     }
 
 }

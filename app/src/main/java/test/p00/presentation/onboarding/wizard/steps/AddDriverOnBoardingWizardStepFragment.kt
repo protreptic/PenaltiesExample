@@ -71,7 +71,7 @@ class AddDriverOnBoardingWizardStepFragment : OnBoardingWizardStepFragment() {
     private fun skipInternal() {
         fragmentManager!!
             .beginTransaction()
-            .replace(R.id.wizard_content,
+            .replace(android.R.id.content,
                 LauncherFragment.newInstance(),
                 LauncherFragment.FRAGMENT_TAG)
             .commit()
