@@ -70,14 +70,18 @@ class OnBoardingWizardInteractor(
     private val D1 = "[АВЕКМНОРСТУХABEKMHOPCTYX]"
     private val C1 = "[0-9]"
 
-    private val PATTERN_DRIVER_LICENSE_NUMBER = "$C1{2}$D1{2}$C1{6}" //ЦЦ ББ ЦЦЦЦЦЦ
-    private val PATTERN_VEHICLE_NUMBER = "$D1$C1{3}$D1{2}$C1{2,3}" //Б ЦЦЦ ББ ЦЦ(Ц)
-    private val PATTERN_VEHICLE_LICENSE_NUMBER = "$C1{2}$D1{2}$C1{6}" //ЦЦ ББ ЦЦЦЦЦЦ
+    private val PATTERN_DRIVER_LICENSE_NUMBER = "$C1{2}($D1|$C1){2}$C1{6}"  //ЦЦ ББ ЦЦЦЦЦЦ
+    private val PATTERN_VEHICLE_NUMBER_AUTO = "$D1$C1{3}$D1{2}$C1{2,3}"     //Б ЦЦЦ ББ ЦЦ(Ц)
+    private val PATTERN_VEHICLE_NUMBER_MOTO = "$C1{4}$D1{2}$C1{2,3}"        //ЦЦЦЦ ББ ЦЦ(Ц)
+    private val PATTERN_VEHICLE_LICENSE_NUMBER = "$C1{2}$D1{2}$C1{6}"       //ЦЦ ББ ЦЦЦЦЦЦ
+
+    private fun removeBlanksAndUpperCase(string: String) =
+            string.trim().toUpperCase().replace(" ", "")
 
     fun validateDriver(number: String): Observable<Boolean> =
         Observable.just(number)
                   .flatMap {
-                      if (matches(PATTERN_DRIVER_LICENSE_NUMBER, number.toUpperCase())) {
+                      if (matches(PATTERN_DRIVER_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
                             Observable.just(true)
                       } else {
                           Observable.just(false)
@@ -86,7 +90,8 @@ class OnBoardingWizardInteractor(
     fun validateVehicle(number: String): Observable<Boolean> =
             Observable.just(number)
                     .flatMap {
-                        if (matches(PATTERN_VEHICLE_NUMBER, number.toUpperCase())) {
+                        if (matches(PATTERN_VEHICLE_NUMBER_AUTO, removeBlanksAndUpperCase(number)) ||
+                                matches(PATTERN_VEHICLE_NUMBER_MOTO, removeBlanksAndUpperCase(number))) {
                             Observable.just(true)
                         } else {
                             Observable.just(false)
@@ -95,7 +100,7 @@ class OnBoardingWizardInteractor(
     fun validateVehicleLicense(number: String): Observable<Boolean> =
             Observable.just(number)
                     .flatMap {
-                        if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, number.toUpperCase())) {
+                        if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
                             Observable.just(true)
                         } else {
                             Observable.just(false)

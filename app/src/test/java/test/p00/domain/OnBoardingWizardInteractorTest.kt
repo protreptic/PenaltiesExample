@@ -15,7 +15,7 @@ class OnBoardingWizardInteractorTest {
     companion object {
 
         private val VEHICLE_NUMBER_VALID =
-                listOf("с065мк78", "c065mk78", "c065mk750")
+                listOf("с065мк78", " c065mk78", "c065mk750", " 8776 АЕ 64", "6429 ре 647")
         private val VEHICLE_NUMBER_INVALID =
                 listOf("я065mk750", "я065mkk750", "я06mk750")
 
@@ -25,7 +25,7 @@ class OnBoardingWizardInteractorTest {
                 listOf("23мн73453n")
 
         private val DRIVER_LICENSE_NUMBER_VALID =
-                listOf("23мн734534")
+                listOf("23мн734534", "2356734534", "23 мн 734534")
         private val DRIVER_LICENSE_NUMBER_INVALID =
                 listOf("23мн73453n")
 
