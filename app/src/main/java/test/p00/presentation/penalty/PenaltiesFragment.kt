@@ -7,20 +7,19 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.makeText
 import io.reactivex.Completable
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
+import test.p00.activity.base.AbsFragment
 import test.p00.presentation.penalty.adapter.DriverAdapter
 import test.p00.presentation.penalty.adapter.VehicleAdapter
 import test.p00.presentation.penalty.model.DriverModel
 import test.p00.presentation.penalty.model.VehicleModel
 import test.p00.util.reactivex.CompletableTransformers
 
-class PenaltiesFragment : Fragment(), PenaltiesView {
+class PenaltiesFragment : AbsFragment(), PenaltiesView {
 
     companion object {
 

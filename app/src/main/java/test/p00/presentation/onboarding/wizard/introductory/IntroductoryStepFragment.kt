@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
+import test.p00.activity.base.AbsFragment
 import test.p00.presentation.onboarding.wizard.steps.AddVehicleOnBoardingWizardFragment
 
-class IntroductoryStepFragment : Fragment(), IntroductoryStepVew {
+class IntroductoryStepFragment : AbsFragment(), IntroductoryStepVew {
 
     companion object {
 

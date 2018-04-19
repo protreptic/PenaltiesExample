@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import test.p00.R
+import test.p00.activity.base.AbsFragment
 import test.p00.presentation.onboarding.wizard.introductory.IntroductoryStepFragment
 
-class OnBoardingWizardFragment : Fragment(), OnBoardingWizardView {
+class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
 
     companion object {
 

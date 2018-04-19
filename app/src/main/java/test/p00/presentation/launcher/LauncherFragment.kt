@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import test.p00.R
+import test.p00.activity.base.AbsFragment
 import test.p00.presentation.onboarding.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardFragment
 import test.p00.presentation.penalty.PenaltiesFragment
 
-class LauncherFragment : Fragment(), LauncherView {
+class LauncherFragment : AbsFragment(), LauncherView {
 
     companion object {
 
