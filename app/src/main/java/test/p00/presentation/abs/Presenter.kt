@@ -1,4 +1,4 @@
-package test.p00.presentation.base
+package test.p00.presentation.abs
 
 interface Presenter<in T: View> {
 
