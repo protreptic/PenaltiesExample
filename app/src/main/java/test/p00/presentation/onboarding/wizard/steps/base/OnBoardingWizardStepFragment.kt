@@ -62,8 +62,6 @@ abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepVi
             true -> {
                 vForward.isEnabled = true
                 vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.holo_green_dark))
-
-                dismissKeyboard(activity)
             }
             else -> {
                 vForward.isEnabled = false
