@@ -1,7 +1,7 @@
 package test.p00.activity
 
 import android.os.Bundle
-import test.p00.activity.base.AbsActivity
+import test.p00.activity.abs.AbsActivity
 import test.p00.presentation.launcher.LauncherFragment
 
 class MainActivity : AbsActivity() {
