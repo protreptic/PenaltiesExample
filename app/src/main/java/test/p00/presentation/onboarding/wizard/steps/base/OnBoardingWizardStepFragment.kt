@@ -65,7 +65,7 @@ abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepVi
             }
             else -> {
                 vForward.isEnabled = false
-                vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.holo_red_dark))
+                vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.tertiary_text_dark))
             }
         }
     }
