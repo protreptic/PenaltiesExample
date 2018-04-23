@@ -2,6 +2,7 @@ package test.p00.presentation.launcher.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
+import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
 import test.p00.util.reactivex.ObservableTransformers
@@ -9,6 +10,7 @@ import test.p00.util.reactivex.Schedulers
 
 class OnBoardingWizardStepPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
+        private val router: OnBoardingWizardRouter,
         private val wizardInteractor: OnBoardingWizardInteractor = OnBoardingWizardInteractor()) : OnBoardingWizardStepPresenter {
 
     private lateinit var attachedView: OnBoardingWizardStepView
@@ -25,7 +27,7 @@ class OnBoardingWizardStepPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
-                        true -> attachedView.forward()
+                        true -> router.toAddVehicleLicenseStep()
                         else -> attachedView.showError()
                     } }, { attachedView.showError() }))
     }
@@ -35,8 +37,12 @@ class OnBoardingWizardStepPresenterImpl(
             wizardInteractor
                 .validateVehicle(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
-                .subscribe({ attachedView.showValidationError(it) },
+                .subscribe({ attachedView.showValidationResult(it) },
                            { attachedView.showError() }))
+    }
+
+    override fun skipAddVehicle() {
+        router.toAddDriverStep()
     }
 
     override fun addVehicleLicense(number: String) {
@@ -46,7 +52,7 @@ class OnBoardingWizardStepPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
-                        true -> attachedView.forward()
+                        true -> router.toAddDriverStep()
                         else -> attachedView.showError()
                     } }, { attachedView.showError() }))
     }
@@ -56,8 +62,12 @@ class OnBoardingWizardStepPresenterImpl(
             wizardInteractor
                 .validateVehicleLicense(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
-                .subscribe({ attachedView.showValidationError(it) },
+                .subscribe({ attachedView.showValidationResult(it) },
                            { attachedView.showError() }))
+    }
+
+    override fun skipAddVehicleLicense() {
+        router.toAddDriverStep()
     }
 
     override fun addDriver(name: String, number: String) {
@@ -67,7 +77,7 @@ class OnBoardingWizardStepPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
-                        true -> attachedView.forward()
+                        true -> router.toHome()
                         else -> attachedView.showError()
                     } }, { attachedView.showError() }))
     }
@@ -77,8 +87,12 @@ class OnBoardingWizardStepPresenterImpl(
             wizardInteractor
                 .validateDriver(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
-                .subscribe({ attachedView.showValidationError(it) },
+                .subscribe({ attachedView.showValidationResult(it) },
                            { attachedView.showError() }))
+    }
+
+    override fun skipAddDriver() {
+        router.toHome()
     }
 
     override fun detachView() {

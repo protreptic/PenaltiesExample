@@ -1,7 +1,6 @@
 package test.p00.presentation.launcher.wizard.steps.abs
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +12,17 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.disposables.CompositeDisposable
 import kotterknife.bindView
 import test.p00.R
+import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.launcher.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
-import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardStepPresenterImpl
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
+import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardStepPresenterImpl
 import test.p00.presentation.util.dismissKeyboard
 
-abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepView {
+abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {
 
     protected val presenter: OnBoardingWizardStepPresenter by lazy {
-        OnBoardingWizardStepPresenterImpl()
+        OnBoardingWizardStepPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -33,7 +34,7 @@ abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepVi
     protected val vForward: View by bindView(R.id.vNext)
     private val vSkip: View by bindView(R.id.vSkip)
 
-    protected val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,12 +53,14 @@ abstract class OnBoardingWizardStepFragment : Fragment(), OnBoardingWizardStepVi
                     }
                 }, { }))
 
-        vSkip.setOnClickListener { skip() }
+        vNumber.requestFocus()
+
+        vSkip.setOnClickListener { showConformationDialog() }
     }
 
     protected abstract fun validateInput(input: String)
 
-    override fun showValidationError(isValid: Boolean) {
+    override fun showValidationResult(isValid: Boolean) {
         when (isValid) {
             true -> {
                 vForward.isEnabled = true

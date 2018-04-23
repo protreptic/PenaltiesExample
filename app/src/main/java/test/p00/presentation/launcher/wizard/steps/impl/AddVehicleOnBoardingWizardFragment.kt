@@ -29,8 +29,7 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
             GlideApp.with(context)
                     .load("file:///android_asset/onboarding/wizard/auto_num.png")
                     .centerInside()
-                    .into(this)
-        }
+                    .into(this) }
 
         vTitle.setText(R.string.input_valid_vehicle_number)
 
@@ -38,13 +37,11 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
             setHint(R.string.input_valid_vehicle_number_hint)
 
             filters = listOf(InputFilter.AllCaps(),
-                             InputFilter.LengthFilter(9)).toTypedArray()
-        }
+                             InputFilter.LengthFilter(9)).toTypedArray() }
 
         vForward.setOnClickListener {
             presenter.addVehicle(getString(R.string.my_car),
-                vNumber.text.toString())
-        }
+                vNumber.text.toString()) }
 
         presenter.attachView(this)
     }
@@ -53,39 +50,13 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
         presenter.validateVehicle(input)
     }
 
-    override fun forward() {
-        fragmentManager!!
-            .beginTransaction()
-            .setCustomAnimations(
-                    R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_right, R.anim.slide_out_left)
-            .add(R.id.wizard_content,
-                    AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
-                    AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    override fun skip() {
+    override fun showConformationDialog() {
         AlertDialog.Builder(activity)
             .setMessage(getString(R.string.skip_vehicle_message))
-            .setPositiveButton(getString(R.string.skip), { _, _ -> skipInternal() })
+            .setPositiveButton(getString(R.string.skip), { _, _ -> presenter.skipAddVehicle() })
             .setNegativeButton(getString(R.string.input_number), { dialog, _ -> dialog.dismiss() })
             .create()
             .show()
-    }
-
-    private fun skipInternal() {
-        fragmentManager!!
-            .beginTransaction()
-            .setCustomAnimations(
-                    R.anim.slide_in_right, R.anim.slide_out_left,
-                    R.anim.slide_in_right, R.anim.slide_out_left)
-            .add(R.id.wizard_content,
-                    AddDriverOnBoardingWizardStepFragment.newInstance(),
-                    AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
-            .addToBackStack(null)
-            .commit()
     }
 
     override fun showError() {

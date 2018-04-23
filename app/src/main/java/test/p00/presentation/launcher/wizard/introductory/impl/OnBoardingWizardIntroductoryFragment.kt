@@ -10,24 +10,24 @@ import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.launcher.wizard.introductory.IntroductoryStepPresenter
-import test.p00.presentation.launcher.wizard.introductory.IntroductoryStepVew
-import test.p00.presentation.launcher.wizard.steps.impl.AddVehicleOnBoardingWizardFragment
+import test.p00.presentation.launcher.wizard.impl.OnBoardingWizardRouterImpl
+import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryPresenter
+import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryView
 
-class IntroductoryStepFragment : AbsFragment(), IntroductoryStepVew {
+class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntroductoryView {
 
     companion object {
 
-        const val FRAGMENT_TAG = "tag_IntroductoryStepFragment"
+        const val FRAGMENT_TAG = "tag_OnBoardingWizardIntroductoryFragment"
 
-        fun newInstance(): Fragment = IntroductoryStepFragment().apply {
+        fun newInstance(): Fragment = OnBoardingWizardIntroductoryFragment().apply {
             arguments = Bundle.EMPTY
         }
 
     }
 
-    private val presenter: IntroductoryStepPresenter by lazy {
-        IntroductoryStepPresenterImpl()
+    private val presenter: OnBoardingWizardIntroductoryPresenter by lazy {
+        OnBoardingWizardIntroductoryPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -46,20 +46,10 @@ class IntroductoryStepFragment : AbsFragment(), IntroductoryStepVew {
         vContentText.text = getString(R.string.onboarding_wizard_introductory_message)
         vContentPicture.background =
                 createFromStream(context!!.assets.open("onboarding/wizard/wt_introductory.png"), null)
-
-        vGo.setOnClickListener { displayFirstStep() }
+        vGo.setOnClickListener { presenter.displayBeginning() }
 
         presenter.attachView(this)
     }
-
-    override fun displayFirstStep() {
-        fragmentManager!!
-                .beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace(R.id.wizard_content,
-                        AddVehicleOnBoardingWizardFragment.newInstance(),
-                        AddVehicleOnBoardingWizardFragment.FRAGMENT_TAG)
-                .commit() }
 
     override fun onDestroyView() {
         super.onDestroyView()

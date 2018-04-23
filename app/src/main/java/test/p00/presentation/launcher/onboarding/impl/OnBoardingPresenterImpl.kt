@@ -39,7 +39,7 @@ class OnBoardingPresenterImpl(
                             page -> OnBoardingPageModel(page.message, page.contentUri) })) }, { }) }
 
     override fun closeOnBoarding() {
-        router.closeOnBoarding()
+        router.toHome()
     }
 
 }

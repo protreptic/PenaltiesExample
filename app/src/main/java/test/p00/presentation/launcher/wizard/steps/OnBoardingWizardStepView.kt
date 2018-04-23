@@ -4,9 +4,8 @@ import test.p00.presentation.abs.View
 
 interface OnBoardingWizardStepView : View {
 
-    fun forward()
-    fun skip()
-    fun showValidationError(isValid: Boolean)
+    fun showConformationDialog()
+    fun showValidationResult(isValid: Boolean)
     fun showError()
 
 }

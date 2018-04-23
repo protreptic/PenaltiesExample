@@ -9,7 +9,6 @@ import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.launcher.wizard.OnBoardingWizardPresenter
 import test.p00.presentation.launcher.wizard.OnBoardingWizardView
-import test.p00.presentation.launcher.wizard.introductory.impl.IntroductoryStepFragment
 
 class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
 
@@ -24,7 +23,7 @@ class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
     }
 
     private val presenter: OnBoardingWizardPresenter by lazy {
-        OnBoardingWizardPresenterImpl()
+        OnBoardingWizardPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -35,14 +34,6 @@ class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
 
         presenter.attachView(this)
     }
-
-    override fun displayIntroductoryStep() {
-        fragmentManager!!
-                .beginTransaction()
-                .replace(R.id.wizard_content,
-                        IntroductoryStepFragment.newInstance(),
-                        IntroductoryStepFragment.FRAGMENT_TAG)
-                .commit() }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -7,12 +7,15 @@ import test.p00.presentation.launcher.onboarding.OnBoardingRouter
 /**
  * Created by Peter Bukhal on 4/23/18.
  */
-class OnBoardingRouterImpl(private val fragmentManager: FragmentManager?) : OnBoardingRouter {
+class OnBoardingRouterImpl(
+        private val fragmentManager: FragmentManager?) : OnBoardingRouter {
 
-    override fun closeOnBoarding() {
-        fragmentManager?.beginTransaction()?.replace(android.R.id.content,
+    override fun toHome() {
+        fragmentManager
+                ?.beginTransaction()
+                ?.replace(android.R.id.content,
                         LauncherFragment.newInstance(),
-                        LauncherFragment.FRAGMENT_TAG)?.commit()
-    }
+                        LauncherFragment.FRAGMENT_TAG)
+                ?.commit() }
 
 }

@@ -5,6 +5,6 @@ package test.p00.presentation.launcher.onboarding
  */
 interface OnBoardingRouter {
 
-    fun closeOnBoarding()
+    fun toHome()
 
 }
