@@ -1,4 +1,4 @@
-package test.p00.domain
+package test.p00.domain.onboarding.wizard
 
 import io.reactivex.Observable.just
 import org.hamcrest.CoreMatchers.`is`
@@ -9,11 +9,12 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations.initMocks
 import test.p00.data.model.user.User
 import test.p00.data.repository.user.UserRepository
-import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
 
 class OnBoardingWizardInteractorTest {
 
     companion object {
+
+        private const val TEST_USER_NAME = "testName"
 
         private val VEHICLE_NUMBER_VALID =
                 listOf("с065мк78", " c065mk78", "c065mk750", " 8776 АЕ 64", "6429 ре 647")
@@ -79,7 +80,7 @@ class OnBoardingWizardInteractorTest {
     @Test
     fun checkIfDriverUnsuccessfullyAdded() {
         val testUser = User()
-        val testDriverName = "testName"
+        val testDriverName = TEST_USER_NAME
         val testDriverLicenseNumber = DRIVER_LICENSE_NUMBER_INVALID[0]
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
@@ -107,7 +108,7 @@ class OnBoardingWizardInteractorTest {
     @Test
     fun checkIfVehicleSuccessfullyAdded() {
         val testUser = User()
-        val testVehicleName = "testName"
+        val testVehicleName = TEST_USER_NAME
         val testVehicleNumber = VEHICLE_NUMBER_VALID[0]
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
@@ -132,7 +133,7 @@ class OnBoardingWizardInteractorTest {
     @Test
     fun checkIfVehicleUnsuccessfullyAdded() {
         val testUser = User()
-        val testVehicleName = "testName"
+        val testVehicleName = TEST_USER_NAME
         val testVehicleNumber = VEHICLE_NUMBER_INVALID[0]
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
