@@ -11,7 +11,6 @@ import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
-import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.model.OnBoardingModel
@@ -29,7 +28,7 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
     }
 
     private val presenter: OnBoardingPresenter by lazy {
-        OnBoardingPresenterImpl()
+        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -76,16 +75,7 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
         vForward.setOnClickListener {
             vOnBoarding.setCurrentItem(vOnBoarding.currentItem + 1, true)
         }
-        vGo.setOnClickListener { if (checkIfLastPage()) { closeOnBoarding() } }
-    }
-
-    override fun closeOnBoarding() {
-        fragmentManager!!
-                .beginTransaction()
-                .replace(android.R.id.content,
-                        LauncherFragment.newInstance(),
-                        LauncherFragment.FRAGMENT_TAG)
-                .commit()
+        vGo.setOnClickListener { if (checkIfLastPage()) { presenter.closeOnBoarding() } }
     }
 
     private fun checkIfPositionLastPage(position: Int) =
