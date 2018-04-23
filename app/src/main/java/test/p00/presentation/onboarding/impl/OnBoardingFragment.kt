@@ -1,4 +1,4 @@
-package test.p00.presentation.onboarding
+package test.p00.presentation.onboarding.impl
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -12,6 +12,8 @@ import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
 import test.p00.presentation.launcher.impl.LauncherFragment
+import test.p00.presentation.onboarding.OnBoardingPresenter
+import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.model.OnBoardingModel
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {

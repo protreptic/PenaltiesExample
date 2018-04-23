@@ -1,8 +1,10 @@
-package test.p00.presentation.onboarding
+package test.p00.presentation.onboarding.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.onboarding.OnBoardingRepository
 import test.p00.data.repository.onboarding.OnBoardingRepositoryFactory
+import test.p00.presentation.onboarding.OnBoardingPresenter
+import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.model.OnBoardingPageModel
 import test.p00.presentation.onboarding.model.OnBoardingModel
 import test.p00.util.reactivex.Schedulers

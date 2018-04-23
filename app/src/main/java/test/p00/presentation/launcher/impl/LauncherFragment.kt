@@ -9,7 +9,7 @@ import test.p00.R
 import test.p00.activity.abs.AbsFragment
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherView
-import test.p00.presentation.onboarding.OnBoardingFragment
+import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardFragment
 import test.p00.presentation.penalty.PenaltiesFragment
 
