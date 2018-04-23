@@ -1,7 +1,7 @@
 package test.p00.presentation.onboarding.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.domain.OnBoardingWizardInteractor
+import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
 import test.p00.util.reactivex.ObservableTransformers

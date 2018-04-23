@@ -1,4 +1,4 @@
-package test.p00.domain
+package test.p00.domain.onboarding.wizard
 
 import io.reactivex.Observable
 import test.p00.data.model.user.DriverLicense

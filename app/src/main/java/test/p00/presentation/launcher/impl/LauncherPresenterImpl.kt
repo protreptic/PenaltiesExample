@@ -2,7 +2,7 @@ package test.p00.presentation.launcher.impl
 
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.domain.LauncherInteractor
+import test.p00.domain.launcher.LauncherInteractor
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.launcher.LauncherView

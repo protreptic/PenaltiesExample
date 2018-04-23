@@ -1,4 +1,4 @@
-package test.p00.domain
+package test.p00.domain.launcher
 
 import io.reactivex.Completable
 import io.reactivex.Observable
