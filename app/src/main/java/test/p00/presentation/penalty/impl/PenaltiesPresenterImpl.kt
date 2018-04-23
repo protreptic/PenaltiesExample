@@ -1,8 +1,10 @@
-package test.p00.presentation.penalty
+package test.p00.presentation.penalty.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
+import test.p00.presentation.penalty.PenaltiesPresenter
+import test.p00.presentation.penalty.PenaltiesView
 import test.p00.presentation.penalty.model.DriverModel
 import test.p00.presentation.penalty.model.VehicleModel
 import test.p00.util.reactivex.ObservableTransformers

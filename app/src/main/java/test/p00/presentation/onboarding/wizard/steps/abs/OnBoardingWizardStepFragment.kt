@@ -14,7 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
-import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenterImpl
+import test.p00.presentation.onboarding.wizard.steps.impl.OnBoardingWizardStepPresenterImpl
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
 import test.p00.presentation.util.dismissKeyboard
 

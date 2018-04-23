@@ -3,8 +3,8 @@ package test.p00.presentation.launcher.impl
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.onboarding.impl.OnBoardingFragment
-import test.p00.presentation.onboarding.wizard.OnBoardingWizardFragment
-import test.p00.presentation.penalty.PenaltiesFragment
+import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardFragment
+import test.p00.presentation.penalty.impl.PenaltiesFragment
 
 /**
  * Created by Peter Bukhal on 4/23/18.

@@ -1,4 +1,4 @@
-package test.p00.presentation.onboarding.wizard.steps
+package test.p00.presentation.onboarding.wizard.steps.impl
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -60,8 +60,8 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
                     R.anim.slide_in_right, R.anim.slide_out_left,
                     R.anim.slide_in_right, R.anim.slide_out_left)
             .add(R.id.wizard_content,
-                AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
-                AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
+                    AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
+                    AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
             .addToBackStack(null)
             .commit()
     }
@@ -82,8 +82,8 @@ class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
                     R.anim.slide_in_right, R.anim.slide_out_left,
                     R.anim.slide_in_right, R.anim.slide_out_left)
             .add(R.id.wizard_content,
-                AddDriverOnBoardingWizardStepFragment.newInstance(),
-                AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
+                    AddDriverOnBoardingWizardStepFragment.newInstance(),
+                    AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
             .addToBackStack(null)
             .commit()
     }

@@ -1,4 +1,4 @@
-package test.p00.presentation.penalty
+package test.p00.presentation.penalty.impl
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,8 +14,10 @@ import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
-import test.p00.presentation.penalty.adapter.DriverAdapter
-import test.p00.presentation.penalty.adapter.VehicleAdapter
+import test.p00.presentation.penalty.PenaltiesPresenter
+import test.p00.presentation.penalty.PenaltiesView
+import test.p00.presentation.penalty.impl.adapter.DriverAdapter
+import test.p00.presentation.penalty.impl.adapter.VehicleAdapter
 import test.p00.presentation.penalty.model.DriverModel
 import test.p00.presentation.penalty.model.VehicleModel
 import test.p00.util.reactivex.CompletableTransformers

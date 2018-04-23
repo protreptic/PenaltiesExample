@@ -1,4 +1,4 @@
-package test.p00.presentation.penalty.adapter
+package test.p00.presentation.penalty.impl.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from

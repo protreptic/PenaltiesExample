@@ -1,4 +1,4 @@
-package test.p00.presentation.onboarding.wizard.introductory
+package test.p00.presentation.onboarding.wizard.introductory.impl
 
 import android.graphics.drawable.Drawable.createFromStream
 import android.os.Bundle
@@ -10,7 +10,9 @@ import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
-import test.p00.presentation.onboarding.wizard.steps.AddVehicleOnBoardingWizardFragment
+import test.p00.presentation.onboarding.wizard.introductory.IntroductoryStepPresenter
+import test.p00.presentation.onboarding.wizard.introductory.IntroductoryStepVew
+import test.p00.presentation.onboarding.wizard.steps.impl.AddVehicleOnBoardingWizardFragment
 
 class IntroductoryStepFragment : AbsFragment(), IntroductoryStepVew {
 

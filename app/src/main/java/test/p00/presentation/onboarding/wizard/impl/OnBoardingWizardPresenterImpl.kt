@@ -1,4 +1,7 @@
-package test.p00.presentation.onboarding.wizard
+package test.p00.presentation.onboarding.wizard.impl
+
+import test.p00.presentation.onboarding.wizard.OnBoardingWizardPresenter
+import test.p00.presentation.onboarding.wizard.OnBoardingWizardView
 
 class OnBoardingWizardPresenterImpl : OnBoardingWizardPresenter {
 

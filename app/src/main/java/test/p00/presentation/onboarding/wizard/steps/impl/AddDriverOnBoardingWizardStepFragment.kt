@@ -1,4 +1,4 @@
-package test.p00.presentation.onboarding.wizard.steps
+package test.p00.presentation.onboarding.wizard.steps.impl
 
 import android.app.AlertDialog
 import android.os.Bundle
