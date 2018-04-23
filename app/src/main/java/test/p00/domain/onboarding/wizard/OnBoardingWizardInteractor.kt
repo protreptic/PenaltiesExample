@@ -94,29 +94,17 @@ class OnBoardingWizardInteractor(
     private val PATTERN_DRIVER_LICENSE_NUMBER = "$B2{2}($A1|$B2){2}$B2{6}" //ЦЦ ББ ЦЦЦЦЦЦ
     private val PATTERN_VEHICLE_LICENSE_NUMBER = "$B2{2}($A1|$B2){2}$B2{6}" //ЦЦ ББ ЦЦЦЦЦЦ
 
-    private fun removeBlanksAndUpperCase(string: String) =
+    private fun prepareInput(string: String) =
             string.trim().toUpperCase().replace(" ", "")
 
     fun validateDriver(number: String): Observable<Boolean> =
-        just(number)
-              .flatMap {
-                  if (matches(PATTERN_DRIVER_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
-                        just(true)
-                  } else just(false) }
+        just(matches(PATTERN_DRIVER_LICENSE_NUMBER, prepareInput(number)))
 
     fun validateVehicle(number: String): Observable<Boolean> =
-            just(number)
-                .flatMap {
-                    if (matches(PATTERN_VEHICLE_NUMBER_AUTO, removeBlanksAndUpperCase(number)) ||
-                            matches(PATTERN_VEHICLE_NUMBER_MOTO, removeBlanksAndUpperCase(number))) {
-                        just(true)
-                    } else just(false) }
+        just(matches(PATTERN_VEHICLE_NUMBER_AUTO, prepareInput(number)) ||
+             matches(PATTERN_VEHICLE_NUMBER_MOTO, prepareInput(number)))
 
     fun validateVehicleLicense(number: String): Observable<Boolean> =
-            just(number)
-                .flatMap {
-                    if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
-                        just(true)
-                    } else just(false) }
+        just(matches(PATTERN_VEHICLE_LICENSE_NUMBER, prepareInput(number)))
 
 }
