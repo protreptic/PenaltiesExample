@@ -7,7 +7,7 @@ import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
 import test.p00.R
-import test.p00.presentation.onboarding.wizard.steps.base.OnBoardingWizardStepFragment
+import test.p00.presentation.onboarding.wizard.steps.abs.OnBoardingWizardStepFragment
 import test.p00.util.glide.GlideApp
 
 class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
