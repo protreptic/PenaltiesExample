@@ -3,13 +3,11 @@ package test.p00.presentation.onboarding.wizard.steps
 import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
-import com.jakewharton.rxbinding2.widget.RxTextView
 import test.p00.R
-import test.p00.presentation.launcher.LauncherFragment
+import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.onboarding.wizard.steps.base.OnBoardingWizardStepFragment
 import test.p00.util.glide.GlideApp
 

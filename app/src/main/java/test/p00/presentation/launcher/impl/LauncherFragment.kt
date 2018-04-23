@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher
+package test.p00.presentation.launcher.impl
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
+import test.p00.presentation.launcher.LauncherPresenter
+import test.p00.presentation.launcher.LauncherView
 import test.p00.presentation.onboarding.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardFragment
 import test.p00.presentation.penalty.PenaltiesFragment

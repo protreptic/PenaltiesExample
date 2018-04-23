@@ -11,7 +11,7 @@ import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
-import test.p00.presentation.launcher.LauncherFragment
+import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.onboarding.model.OnBoardingModel
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {

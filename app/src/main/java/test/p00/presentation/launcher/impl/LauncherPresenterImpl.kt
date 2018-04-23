@@ -1,8 +1,10 @@
-package test.p00.presentation.launcher
+package test.p00.presentation.launcher.impl
 
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.LauncherInteractor
+import test.p00.presentation.launcher.LauncherPresenter
+import test.p00.presentation.launcher.LauncherView
 import test.p00.util.reactivex.CompletableTransformers
 import test.p00.util.reactivex.Schedulers
 import java.util.concurrent.TimeUnit.MILLISECONDS
