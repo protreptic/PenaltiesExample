@@ -7,7 +7,7 @@
     <string name="skip">Пропустить</string>
     <string name="vehicles">Автомобили</string>
     <string name="drivers">Водители</string>
-    <string name="wipe_data">Wipe data</string>
+    <string name="wipe_data">Сбросить данные приложения и перезапустить его</string>
     <string name="app_data_wiped">Данные приложения удалены</string>
     <string name="search_penalties">Узнать штрафы</string>
     <string name="input_valid_driver_license">Введите номер водительского удостоверения</string>

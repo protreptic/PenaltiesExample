@@ -12,7 +12,7 @@ class MainActivity : AbsActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .add(android.R.id.content,
+                    .replace(android.R.id.content,
                             LauncherFragment.newInstance(),
                             LauncherFragment.FRAGMENT_TAG)
                     .commit()

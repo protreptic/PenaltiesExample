@@ -1,5 +1,6 @@
 package test.p00.presentation.penalty.impl
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
+import test.p00.activity.MainActivity
 import test.p00.activity.abs.AbsFragment
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.presentation.penalty.PenaltiesPresenter
@@ -67,7 +69,14 @@ class PenaltiesFragment : AbsFragment(), PenaltiesView {
                     /*
                      * Очищаем SharedPreferences хранилище
                      */
-                    SharedPreferencesSettingsDataSource().wipe() }
+                    SharedPreferencesSettingsDataSource().wipe()
+
+                    /*
+                     * Повторно запускаем приложение
+                     */
+                    startActivity(Intent(activity, MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    })}
                 .subscribe { presenter.displayUser() }
         }
 
