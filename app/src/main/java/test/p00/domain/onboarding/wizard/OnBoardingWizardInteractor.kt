@@ -20,6 +20,10 @@ class OnBoardingWizardInteractor(
                         .fetch()
                         .flatMap { user -> userRepository.retain(
                                     user.apply {
+                                        /*
+                                         * Добавляем только последний введенный
+                                         * пользователем номер.
+                                         */
                                         drivers.clear()
                                         drivers.add(DriverLicense().apply {
                                             name = rawName
@@ -38,6 +42,10 @@ class OnBoardingWizardInteractor(
                         .fetch()
                         .flatMap { user -> userRepository.retain(
                                     user.apply {
+                                        /*
+                                         * Добавляем только последний введенный
+                                         * пользователем номер.
+                                         */
                                         vehicles.clear()
                                         vehicles.add(Vehicle().apply {
                                             name = rawName
