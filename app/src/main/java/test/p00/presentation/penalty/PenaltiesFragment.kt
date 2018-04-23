@@ -42,6 +42,9 @@ class PenaltiesFragment : AbsFragment(), PenaltiesView {
     private val vDrivers: RecyclerView by bindView(R.id.vDrivers)
     private val vVehicles: RecyclerView by bindView(R.id.vVehicles)
 
+    private val driverAdapter = DriverAdapter()
+    private val vehicleAdapter = VehicleAdapter()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,6 +53,9 @@ class PenaltiesFragment : AbsFragment(), PenaltiesView {
                 .complete()
                 .compose(CompletableTransformers.schedulers())
                 .doOnSubscribe {
+                    /*
+                     * Очищаем Realm хранилище
+                     */
                     Realm.deleteRealm(
                         RealmConfiguration.Builder()
                             .deleteRealmIfMigrationNeeded()
@@ -59,20 +65,20 @@ class PenaltiesFragment : AbsFragment(), PenaltiesView {
 
         vDrivers.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = DriverAdapter()
+            adapter = driverAdapter
         }
 
         vVehicles.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = VehicleAdapter()
+            adapter = vehicleAdapter
         }
 
         presenter.attachView(this)
     }
 
     override fun showUser(vehicles: List<VehicleModel>, drivers: List<DriverModel>) {
-        (vVehicles.adapter as VehicleAdapter).setData(vehicles)
-        (vDrivers.adapter as DriverAdapter).setData(drivers)
+        vehicleAdapter.setData(vehicles)
+        driverAdapter.setData(drivers)
     }
 
     override fun onDestroyView() {
