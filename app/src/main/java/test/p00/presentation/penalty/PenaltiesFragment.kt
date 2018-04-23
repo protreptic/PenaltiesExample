@@ -13,6 +13,7 @@ import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
 import test.p00.activity.abs.AbsFragment
+import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.presentation.penalty.adapter.DriverAdapter
 import test.p00.presentation.penalty.adapter.VehicleAdapter
 import test.p00.presentation.penalty.model.DriverModel
@@ -59,7 +60,12 @@ class PenaltiesFragment : AbsFragment(), PenaltiesView {
                     Realm.deleteRealm(
                         RealmConfiguration.Builder()
                             .deleteRealmIfMigrationNeeded()
-                            .build()) }
+                            .build())
+
+                    /*
+                     * Очищаем SharedPreferences хранилище
+                     */
+                    SharedPreferencesSettingsDataSource().wipe() }
                 .subscribe { presenter.displayUser() }
         }
 

@@ -1,9 +1,9 @@
 package test.p00.data.repository.settings.datasource
 
-import test.p00.data.repository.settings.datasource.impl.SettingsRealmDataSource
+import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 
 object SettingsDataSourceFactory {
 
-    fun create(): SettingsDataSource = SettingsRealmDataSource()
+    fun create(): SettingsDataSource = SharedPreferencesSettingsDataSource()
 
 }

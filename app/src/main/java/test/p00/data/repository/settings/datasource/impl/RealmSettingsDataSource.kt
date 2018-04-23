@@ -5,7 +5,7 @@ import io.realm.Realm
 import test.p00.data.model.settings.Settings
 import test.p00.data.repository.settings.datasource.SettingsDataSource
 
-class SettingsRealmDataSource : SettingsDataSource {
+class RealmSettingsDataSource : SettingsDataSource {
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override fun fetch(): Observable<Settings> {
