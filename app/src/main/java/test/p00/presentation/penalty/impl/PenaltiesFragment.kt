@@ -13,8 +13,8 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
-import test.p00.activity.MainActivity
-import test.p00.activity.abs.AbsFragment
+import test.p00.presentation.activity.MainActivity
+import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.presentation.penalty.PenaltiesPresenter
 import test.p00.presentation.penalty.PenaltiesView

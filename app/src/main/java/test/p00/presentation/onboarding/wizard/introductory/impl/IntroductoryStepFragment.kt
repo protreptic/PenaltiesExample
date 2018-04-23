@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.activity.abs.AbsFragment
+import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.onboarding.wizard.introductory.IntroductoryStepPresenter
 import test.p00.presentation.onboarding.wizard.introductory.IntroductoryStepVew
 import test.p00.presentation.onboarding.wizard.steps.impl.AddVehicleOnBoardingWizardFragment

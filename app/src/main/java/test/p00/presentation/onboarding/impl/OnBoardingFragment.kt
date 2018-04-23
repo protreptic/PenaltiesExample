@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
-import test.p00.activity.abs.AbsFragment
+import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.impl.adapter.OnBoardingAdapter
