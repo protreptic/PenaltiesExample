@@ -1,6 +1,6 @@
 package test.p00.presentation.launcher.impl
 
-import io.reactivex.Observable
+import io.reactivex.Observable.*
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.launcher.LauncherInteractor
 import test.p00.presentation.launcher.LauncherPresenter
@@ -26,47 +26,43 @@ class LauncherPresenterImpl(
     override fun attachView(view: LauncherView) {
         attachedView = view
 
-        launchApp()
+        launchApplication()
     }
 
-    override fun launchApp() {
+    override fun launchApplication() {
         disposables.add(
-            Observable
-                .timer(APP_LAUNCH_DELAY, MILLISECONDS, scheduler.ui())
+            timer(APP_LAUNCH_DELAY, MILLISECONDS, scheduler.ui())
                 .flatMap { launcher.shouldShowOnBoardingWizard() }
                 .flatMap { shouldShow ->
                     if (shouldShow) {
-                        runOnBoardingWizard()
-
-                        Observable.never()
+                        displayOnBoardingWizard()
+                        never()
                     } else {
                         launcher.shouldShowOnBoarding()
                     }
                 }
                 .flatMap { shouldShow ->
-                    if (shouldShow) {
-                        runOnBoarding()
-
-                        Observable.never()
-                    } else {
-                        Observable.just(true)
-                    }
-                }
-                .subscribe({ router.runMain() }, { }))
+                    when (shouldShow) {
+                        true -> {
+                            displayOnBoarding()
+                            never()
+                        }
+                        else -> just(true) } }
+                .subscribe({ router.toHome() }, { }))
     }
 
-    override fun runOnBoardingWizard() {
+    override fun displayOnBoardingWizard() {
         disposables.add(
             launcher.markOnBoardingWizardAsShown()
                     .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ router.runOnBoardingWizard() }, { }))
+                    .subscribe({ router.toOnBoardingWizard() }, { }))
     }
 
-    override fun runOnBoarding() {
+    override fun displayOnBoarding() {
         disposables.add(
             launcher.markOnBoardingAsShown()
                     .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ router.runOnBoarding() }, { }))
+                    .subscribe({ router.toOnBoarding() }, { }))
     }
 
     override fun detachView() {

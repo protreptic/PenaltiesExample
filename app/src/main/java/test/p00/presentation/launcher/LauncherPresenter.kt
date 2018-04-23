@@ -4,8 +4,9 @@ import test.p00.presentation.abs.Presenter
 
 interface LauncherPresenter : Presenter<LauncherView> {
 
-    fun launchApp()
-    fun runOnBoardingWizard()
-    fun runOnBoarding()
+    fun launchApplication()
+
+    fun displayOnBoardingWizard()
+    fun displayOnBoarding()
 
 }

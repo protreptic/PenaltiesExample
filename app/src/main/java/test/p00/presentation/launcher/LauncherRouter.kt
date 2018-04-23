@@ -5,8 +5,8 @@ package test.p00.presentation.launcher
  */
 interface LauncherRouter {
 
-    fun runMain()
-    fun runOnBoardingWizard()
-    fun runOnBoarding()
+    fun toHome()
+    fun toOnBoardingWizard()
+    fun toOnBoarding()
 
 }
