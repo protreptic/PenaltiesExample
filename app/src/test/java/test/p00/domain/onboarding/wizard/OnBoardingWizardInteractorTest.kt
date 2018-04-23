@@ -29,7 +29,7 @@ class OnBoardingWizardInteractorTest {
         private val DRIVER_LICENSE_NUMBER_VALID =
                 listOf("23мн734534", "2356734534", "23 мн 734534")
         private val DRIVER_LICENSE_NUMBER_INVALID =
-                listOf("23мн73453n")
+                listOf("23мн73453n", "03mn73453n")
 
     }
 
@@ -56,7 +56,7 @@ class OnBoardingWizardInteractorTest {
     fun checkIfDriverSuccessfullyAdded() {
         val testUser = User()
         val testDriverName = "testName"
-        val testDriverLicenseNumber = DRIVER_LICENSE_NUMBER_VALID[0]
+        val testDriverLicenseNumber = DRIVER_LICENSE_NUMBER_VALID.first()
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
@@ -78,10 +78,32 @@ class OnBoardingWizardInteractorTest {
     }
 
     @Test
+    fun checkIfDriverAddedOnlyOnce() {
+        val testUser = User()
+        val testDriverName = "testName"
+
+        val calls = DRIVER_LICENSE_NUMBER_VALID.size
+
+        `when`(userRepository.fetch()).thenReturn(just(testUser))
+        `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
+
+        for (idx in 0 until calls) {
+            sut.tryAddDriver(testDriverName, DRIVER_LICENSE_NUMBER_VALID[idx])
+                    .test()
+                    .assertValue(true)
+        }
+
+        assertThat(testUser.drivers.size, `is`(1))
+        assertThat(testUser.drivers.first()?.name, `is`(testDriverName))
+        assertThat(testUser.drivers.first()?.registrationNumber, `is`(DRIVER_LICENSE_NUMBER_VALID.last()))
+        assertThat(testUser.vehicles.size, `is`(0))
+    }
+
+    @Test
     fun checkIfDriverUnsuccessfullyAdded() {
         val testUser = User()
         val testDriverName = TEST_USER_NAME
-        val testDriverLicenseNumber = DRIVER_LICENSE_NUMBER_INVALID[0]
+        val testDriverLicenseNumber = DRIVER_LICENSE_NUMBER_INVALID.first()
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
@@ -134,7 +156,7 @@ class OnBoardingWizardInteractorTest {
     fun checkIfVehicleUnsuccessfullyAdded() {
         val testUser = User()
         val testVehicleName = TEST_USER_NAME
-        val testVehicleNumber = VEHICLE_NUMBER_INVALID[0]
+        val testVehicleNumber = VEHICLE_NUMBER_INVALID.first()
 
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))

@@ -14,55 +14,55 @@ class OnBoardingWizardInteractor(
 
     fun tryAddDriver(rawName: String, rawNumber: String): Observable<Boolean> =
             just(rawNumber)
-                    .flatMap { validateDriver(it) }
-                    .flatMap { valid ->
-                        if (valid) {
-                            userRepository
-                                    .fetch()
-                                    .flatMap { user -> userRepository.retain(
-                                            user.apply {
-                                                drivers.clear()
-                                                drivers.add(DriverLicense().apply {
-                                                    name = rawName
-                                                    registrationNumber = rawNumber
-                                                })
-                                            }) }
-                                    .flatMap { just(true) }
-                        } else just(false) }
+                .flatMap { validateDriver(it) }
+                .flatMap { valid -> when (valid) {
+                    true -> userRepository
+                        .fetch()
+                        .flatMap { user -> userRepository.retain(
+                                    user.apply {
+                                        drivers.clear()
+                                        drivers.add(DriverLicense().apply {
+                                            name = rawName
+                                            registrationNumber = rawNumber
+                                        })
+                                    }) }
+                        .flatMap { just(true) }
+                    else -> just(false)
+                } }
 
     fun tryAddVehicle(rawName: String, rawNumber: String): Observable<Boolean> =
             just(rawNumber)
-                    .flatMap { validateVehicle(it) }
-                    .flatMap { valid ->
-                        if (valid) {
-                            userRepository
-                                    .fetch()
-                                    .flatMap { user -> userRepository.retain(
-                                               user.apply {
-                                                   vehicles.clear()
-                                                   vehicles.add(Vehicle().apply {
-                                                       name = rawName
-                                                       number = rawNumber
-                                                   })
-                                               }) }
-                                    .flatMap { just(true) }
-                        } else just(false) }
+                .flatMap { validateVehicle(it) }
+                .flatMap { valid -> when (valid) {
+                    true -> userRepository
+                        .fetch()
+                        .flatMap { user -> userRepository.retain(
+                                    user.apply {
+                                        vehicles.clear()
+                                        vehicles.add(Vehicle().apply {
+                                            name = rawName
+                                            number = rawNumber
+                                        })
+                                    }) }
+                        .flatMap { just(true) }
+                    else -> just(false)
+                } }
 
     fun tryAddVehicleLicense(rawNumber: String): Observable<Boolean> =
             just(rawNumber)
-                    .flatMap { validateVehicleLicense(it) }
-                    .flatMap { valid ->
-                        if (valid) {
-                            userRepository
-                                    .fetch()
-                                    .flatMap { user -> userRepository.retain(
-                                            user.apply {
-                                                if (vehicles.isNotEmpty()) {
-                                                    vehicles[0]?.registrationNumber = rawNumber
-                                                }
-                                            }) }
-                                    .flatMap { just(true) }
-                        } else just(false) }
+                .flatMap { validateVehicleLicense(it) }
+                .flatMap { valid -> when (valid) {
+                    true -> userRepository
+                        .fetch()
+                        .flatMap { user -> userRepository.retain(
+                                    user.apply {
+                                        if (vehicles.isNotEmpty()) {
+                                            vehicles[0]?.registrationNumber = rawNumber
+                                        }
+                                    }) }
+                        .flatMap { just(true) }
+                    else -> just(true)
+                } }
 
     private val A1 = "[АВЕКМНОРСТУХABEKMHOPCTYX]"
     private val B2 = "[0-9]"
@@ -99,24 +99,24 @@ class OnBoardingWizardInteractor(
 
     fun validateDriver(number: String): Observable<Boolean> =
         just(number)
-                  .flatMap {
-                      if (matches(PATTERN_DRIVER_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
-                            just(true)
-                      } else just(false) }
+              .flatMap {
+                  if (matches(PATTERN_DRIVER_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
+                        just(true)
+                  } else just(false) }
 
     fun validateVehicle(number: String): Observable<Boolean> =
             just(number)
-                    .flatMap {
-                        if (matches(PATTERN_VEHICLE_NUMBER_AUTO, removeBlanksAndUpperCase(number)) ||
-                                matches(PATTERN_VEHICLE_NUMBER_MOTO, removeBlanksAndUpperCase(number))) {
-                            just(true)
-                        } else just(false) }
+                .flatMap {
+                    if (matches(PATTERN_VEHICLE_NUMBER_AUTO, removeBlanksAndUpperCase(number)) ||
+                            matches(PATTERN_VEHICLE_NUMBER_MOTO, removeBlanksAndUpperCase(number))) {
+                        just(true)
+                    } else just(false) }
 
     fun validateVehicleLicense(number: String): Observable<Boolean> =
             just(number)
-                    .flatMap {
-                        if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
-                            just(true)
-                        } else just(false) }
+                .flatMap {
+                    if (matches(PATTERN_VEHICLE_LICENSE_NUMBER, removeBlanksAndUpperCase(number))) {
+                        just(true)
+                    } else just(false) }
 
 }
