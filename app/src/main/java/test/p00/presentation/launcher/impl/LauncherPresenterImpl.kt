@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.LauncherInteractor
 import test.p00.presentation.launcher.LauncherPresenter
+import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.launcher.LauncherView
 import test.p00.util.reactivex.CompletableTransformers
 import test.p00.util.reactivex.Schedulers
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
 
 class LauncherPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
+        private val router: LauncherRouter,
         private val launcher: LauncherInteractor = LauncherInteractor()) : LauncherPresenter {
 
     companion object {
@@ -50,21 +52,21 @@ class LauncherPresenterImpl(
                         Observable.just(true)
                     }
                 }
-                .subscribe({ attachedView.runMain() }, { }))
+                .subscribe({ router.runMain() }, { }))
     }
 
     override fun runOnBoardingWizard() {
         disposables.add(
             launcher.markOnBoardingWizardAsShown()
                     .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ attachedView.runOnBoardingWizard() }, { }))
+                    .subscribe({ router.runOnBoardingWizard() }, { }))
     }
 
     override fun runOnBoarding() {
         disposables.add(
             launcher.markOnBoardingAsShown()
                     .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ attachedView.runOnBoarding() }, { }))
+                    .subscribe({ router.runOnBoarding() }, { }))
     }
 
     override fun detachView() {

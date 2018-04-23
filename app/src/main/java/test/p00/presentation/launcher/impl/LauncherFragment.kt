@@ -9,9 +9,6 @@ import test.p00.R
 import test.p00.activity.abs.AbsFragment
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherView
-import test.p00.presentation.onboarding.impl.OnBoardingFragment
-import test.p00.presentation.onboarding.wizard.OnBoardingWizardFragment
-import test.p00.presentation.penalty.PenaltiesFragment
 
 class LauncherFragment : AbsFragment(), LauncherView {
 
@@ -26,7 +23,7 @@ class LauncherFragment : AbsFragment(), LauncherView {
     }
 
     private val presenter: LauncherPresenter by lazy {
-        LauncherPresenterImpl()
+        LauncherPresenterImpl(router = LauncherRouterImpl(fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -37,30 +34,6 @@ class LauncherFragment : AbsFragment(), LauncherView {
 
         presenter.attachView(this)
     }
-
-    override fun runMain() {
-        fragmentManager!!
-                .beginTransaction()
-                .replace(android.R.id.content,
-                        PenaltiesFragment.newInstance(),
-                        PenaltiesFragment.FRAGMENT_TAG)
-                .commit() }
-
-    override fun runOnBoardingWizard() {
-        fragmentManager!!
-                .beginTransaction()
-                .replace(android.R.id.content,
-                        OnBoardingWizardFragment.newInstance(),
-                        OnBoardingWizardFragment.FRAGMENT_TAG)
-                .commit() }
-
-    override fun runOnBoarding() {
-        fragmentManager!!
-                .beginTransaction()
-                .replace(android.R.id.content,
-                        OnBoardingFragment.newInstance(),
-                        OnBoardingFragment.FRAGMENT_TAG)
-                .commit() }
 
     override fun onDestroyView() {
         super.onDestroyView()
