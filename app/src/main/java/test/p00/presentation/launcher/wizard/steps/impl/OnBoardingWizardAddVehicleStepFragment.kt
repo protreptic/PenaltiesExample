@@ -7,16 +7,15 @@ import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
 import test.p00.R
-import test.p00.presentation.launcher.wizard.steps.abs.OnBoardingWizardStepFragment
 import test.p00.util.glide.GlideApp
 
-class AddVehicleOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
+class OnBoardingWizardAddVehicleStepFragment : OnBoardingWizardStepFragment() {
 
     companion object {
 
         const val FRAGMENT_TAG = "tag_AddVehicleStepFragment"
 
-        fun newInstance(): Fragment = AddVehicleOnBoardingWizardFragment().apply {
+        fun newInstance(): Fragment = OnBoardingWizardAddVehicleStepFragment().apply {
             arguments = Bundle.EMPTY
         }
 

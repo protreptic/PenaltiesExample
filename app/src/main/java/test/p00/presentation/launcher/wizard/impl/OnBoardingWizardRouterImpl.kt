@@ -5,9 +5,9 @@ import test.p00.R
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.introductory.impl.OnBoardingWizardIntroductoryFragment
-import test.p00.presentation.launcher.wizard.steps.impl.AddDriverOnBoardingWizardStepFragment
-import test.p00.presentation.launcher.wizard.steps.impl.AddVehicleLicenseOnBoardingWizardFragment
-import test.p00.presentation.launcher.wizard.steps.impl.AddVehicleOnBoardingWizardFragment
+import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddDriverStepFragment
+import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddVehicleLicenseStepFragment
+import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddVehicleStepFragment
 
 /**
  * Created by Peter Bukhal on 4/23/18.
@@ -38,8 +38,8 @@ class OnBoardingWizardRouterImpl(
                 ?.beginTransaction()
                 ?.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
                 ?.replace(R.id.wizard_content,
-                        AddVehicleOnBoardingWizardFragment.newInstance(),
-                        AddVehicleOnBoardingWizardFragment.FRAGMENT_TAG)
+                        OnBoardingWizardAddVehicleStepFragment.newInstance(),
+                        OnBoardingWizardAddVehicleStepFragment.FRAGMENT_TAG)
                 ?.commit() }
 
     override fun toAddVehicleLicenseStep() {
@@ -49,8 +49,8 @@ class OnBoardingWizardRouterImpl(
                         R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_right, R.anim.slide_out_left)
                 ?.add(R.id.wizard_content,
-                        AddVehicleLicenseOnBoardingWizardFragment.newInstance(),
-                        AddVehicleLicenseOnBoardingWizardFragment.FRAGMENT_TAG)
+                        OnBoardingWizardAddVehicleLicenseStepFragment.newInstance(),
+                        OnBoardingWizardAddVehicleLicenseStepFragment.FRAGMENT_TAG)
                 ?.addToBackStack(null)
                 ?.commit()
     }
@@ -62,8 +62,8 @@ class OnBoardingWizardRouterImpl(
                         R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_right, R.anim.slide_out_left)
                 ?.add(R.id.wizard_content,
-                        AddDriverOnBoardingWizardStepFragment.newInstance(),
-                        AddDriverOnBoardingWizardStepFragment.FRAGMENT_TAG)
+                        OnBoardingWizardAddDriverStepFragment.newInstance(),
+                        OnBoardingWizardAddDriverStepFragment.FRAGMENT_TAG)
                 ?.addToBackStack(null)
                 ?.commit()
     }

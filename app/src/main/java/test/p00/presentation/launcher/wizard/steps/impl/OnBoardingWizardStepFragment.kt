@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.wizard.steps.abs
+package test.p00.presentation.launcher.wizard.steps.impl
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -16,7 +16,6 @@ import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.launcher.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
-import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardStepPresenterImpl
 import test.p00.presentation.util.dismissKeyboard
 
 abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {

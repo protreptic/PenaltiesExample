@@ -7,16 +7,15 @@ import android.text.InputFilter
 import android.view.View
 import android.widget.Toast
 import test.p00.R
-import test.p00.presentation.launcher.wizard.steps.abs.OnBoardingWizardStepFragment
 import test.p00.util.glide.GlideApp
 
-class AddVehicleLicenseOnBoardingWizardFragment : OnBoardingWizardStepFragment() {
+class OnBoardingWizardAddDriverStepFragment : OnBoardingWizardStepFragment() {
 
     companion object {
 
-        const val FRAGMENT_TAG = "tag_AddVehicleLicenseStepFragment"
+        const val FRAGMENT_TAG = "tag_AddDriverStepFragment"
 
-        fun newInstance(): Fragment = AddVehicleLicenseOnBoardingWizardFragment().apply {
+        fun newInstance(): Fragment = OnBoardingWizardAddDriverStepFragment().apply {
             arguments = Bundle.EMPTY
         }
 
@@ -27,39 +26,40 @@ class AddVehicleLicenseOnBoardingWizardFragment : OnBoardingWizardStepFragment()
 
         vBanner.apply {
             GlideApp.with(context)
-                    .load("file:///android_asset/onboarding/wizard/auto_pass.png")
+                    .load("file:///android_asset/onboarding/wizard/driver_lic.png")
                     .centerInside()
                     .into(this) }
 
-        vTitle.setText(R.string.input_valid_vehicle_license)
+        vTitle.setText(R.string.input_valid_driver_license)
 
         vNumber.apply {
-            setHint(R.string.input_valid_vehicle_license_hint)
+            setHint(R.string.input_valid_driver_license_hint)
 
             filters = listOf(InputFilter.AllCaps(),
                              InputFilter.LengthFilter(10)).toTypedArray() }
 
         vForward.setOnClickListener {
-            presenter.addVehicleLicense(vNumber.text.toString()) }
+            presenter.addDriver(getString(R.string.new_driver_license),
+                vNumber.text.toString()) }
 
         presenter.attachView(this)
     }
 
     override fun validateInput(input: String) {
-        presenter.validateVehicleLicense(input)
+        presenter.validateDriver(input)
     }
 
     override fun showConformationDialog() {
         AlertDialog.Builder(activity)
-                .setMessage(getString(R.string.skip_vehicle_license_message))
-                .setPositiveButton(getString(R.string.skip), { _, _ -> presenter.skipAddVehicleLicense() })
+                .setMessage(getString(R.string.skip_driver_message))
+                .setPositiveButton(getString(R.string.skip), { _, _ -> presenter.skipAddDriver() })
                 .setNegativeButton(getString(R.string.input_number), { dialog, _ -> dialog.dismiss() })
                 .create()
                 .show()
     }
 
     override fun showError() {
-        Toast.makeText(context, getString(R.string.input_valid_vehicle_license), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, getString(R.string.input_valid_driver_license), Toast.LENGTH_LONG).show()
     }
 
 }
