@@ -14,12 +14,6 @@ class LauncherInteractor(
             repository.fetch()
                       .flatMap { settings -> just(!settings.wasOnBoardingWizardShown) }
 
-    fun markOnBoardingWizardAsShown(): Completable =
-        repository.fetch()
-                  .map { settings -> repository.retain(
-                         settings.apply { wasOnBoardingWizardShown = true }) }
-                  .ignoreElements()
-
     fun shouldShowOnBoarding(): Observable<Boolean> =
         repository.fetch()
                   .flatMap { settings -> just(!settings.wasOnBoardingShown) }

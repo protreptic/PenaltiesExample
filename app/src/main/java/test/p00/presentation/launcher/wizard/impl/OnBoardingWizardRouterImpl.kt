@@ -1,6 +1,7 @@
 package test.p00.presentation.launcher.wizard.impl
 
 import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import test.p00.R
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
@@ -16,6 +17,15 @@ class OnBoardingWizardRouterImpl(
         private val fragmentManager: FragmentManager?) : OnBoardingWizardRouter {
 
     override fun toHome() {
+        /*
+         * Убираем из стека все фрагменты мастера
+         * добавленные на предыдущих шагах.
+         */
+        fragmentManager
+                ?.popBackStackImmediate(
+                        OnBoardingWizardFragment.FRAGMENT_TAG,
+                        POP_BACK_STACK_INCLUSIVE)
+
         fragmentManager
                 ?.beginTransaction()
                 ?.replace(android.R.id.content,
@@ -52,8 +62,7 @@ class OnBoardingWizardRouterImpl(
                         OnBoardingWizardAddVehicleLicenseStepFragment.newInstance(),
                         OnBoardingWizardAddVehicleLicenseStepFragment.FRAGMENT_TAG)
                 ?.addToBackStack(null)
-                ?.commit()
-    }
+                ?.commit() }
 
     override fun toAddDriverStep() {
         fragmentManager
@@ -65,7 +74,6 @@ class OnBoardingWizardRouterImpl(
                         OnBoardingWizardAddDriverStepFragment.newInstance(),
                         OnBoardingWizardAddDriverStepFragment.FRAGMENT_TAG)
                 ?.addToBackStack(null)
-                ?.commit()
-    }
+                ?.commit() }
 
 }
