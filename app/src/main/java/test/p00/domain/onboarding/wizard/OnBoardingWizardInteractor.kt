@@ -97,6 +97,17 @@ class OnBoardingWizardInteractor(
          */
         private const val PATTERN_VEHICLE_NUMBER_MOTO = "$C2{4}$C1{2}$C2{2,3}" //ЦЦЦЦ ББ ЦЦ(Ц)
 
+        /**
+         * Регистрационные знаки транспортных средств, используемых для легковых такси,
+         * транспортных средств, оборудованных для перевозок более восьми человек
+         * (кроме случаев, если указанные перевозки осуществляются по заказам либо для
+         * обеспечения собственных нужд юридического лица или индивидуального предпринимателя)[3].
+         * Введены 1 марта 2002 года. Устанавливаются на автобусах, такси и на транспортных
+         * средствах, осуществляющих перевозку пассажиров как на муниципальных автобусах,
+         * так и на коммерческой основе («маршрутках») Формат: 2 буквы — 3 цифры.
+         */
+        private const val PATTERN_VEHICLE_NUMBER_COMMERCIAL = "$C1{2}$C2{3}$C2{2,3}" //ББ ЦЦЦ  ЦЦ(Ц)
+
         private const val PATTERN_DRIVER_LICENSE_NUMBER = "$C2{2}($C1|$C2){2}$C2{6}" //ЦЦ ББ ЦЦЦЦЦЦ
         private const val PATTERN_VEHICLE_LICENSE_NUMBER = "$C2{2}($C1|$C2){2}$C2{6}" //ЦЦ ББ ЦЦЦЦЦЦ
 
@@ -105,14 +116,15 @@ class OnBoardingWizardInteractor(
     private fun prepareInput(string: String) =
             string.trim().toUpperCase().replace(" ", "")
 
-    fun validateDriver(number: String): Observable<Boolean> =
-        just(matches(PATTERN_DRIVER_LICENSE_NUMBER, prepareInput(number)))
-
     fun validateVehicle(number: String): Observable<Boolean> =
         just(matches(PATTERN_VEHICLE_NUMBER_AUTO, prepareInput(number)) ||
-             matches(PATTERN_VEHICLE_NUMBER_MOTO, prepareInput(number)))
+             matches(PATTERN_VEHICLE_NUMBER_MOTO, prepareInput(number)) ||
+             matches(PATTERN_VEHICLE_NUMBER_COMMERCIAL, prepareInput(number)))
 
     fun validateVehicleLicense(number: String): Observable<Boolean> =
         just(matches(PATTERN_VEHICLE_LICENSE_NUMBER, prepareInput(number)))
+
+    fun validateDriver(number: String): Observable<Boolean> =
+        just(matches(PATTERN_DRIVER_LICENSE_NUMBER, prepareInput(number)))
 
 }

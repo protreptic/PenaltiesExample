@@ -17,9 +17,9 @@ class OnBoardingWizardInteractorTest {
         private const val TEST_USER_NAME = "testName"
 
         private val VEHICLE_NUMBER_VALID =
-                listOf("с065мк78", " c065mk78", "c065mk750", " 8776 АЕ 64", "6429 ре 647")
+                listOf("с065мк78", " c065mk78", "c065mk750", " 8776 АЕ 64", "6429 ре 647", "ва456 777", "xc123 77")
         private val VEHICLE_NUMBER_INVALID =
-                listOf("я065mk750", "я065mkk750", "я06mk750")
+                listOf("я065mk750", "я065mkk750", "я06mk750", "123", "апвdf1123", "", " ")
 
         private val VEHICLE_LICENSE_NUMBER_VALID =
                 listOf("23мн734534")
