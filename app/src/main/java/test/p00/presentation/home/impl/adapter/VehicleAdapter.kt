@@ -1,4 +1,4 @@
-package test.p00.presentation.penalty.impl.adapter
+package test.p00.presentation.home.impl.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.penalty.impl.adapter.VehicleAdapter.VehicleViewHolder
-import test.p00.presentation.penalty.model.VehicleModel
+import test.p00.presentation.home.impl.adapter.VehicleAdapter.VehicleViewHolder
+import test.p00.presentation.home.model.VehicleModel
 
 class VehicleAdapter(private var data: List<VehicleModel> = listOf()) : RecyclerView.Adapter<VehicleViewHolder>() {
 

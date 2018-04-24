@@ -1,4 +1,4 @@
-package test.p00.presentation.penalty.impl.adapter
+package test.p00.presentation.home.impl.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.penalty.model.DriverModel
+import test.p00.presentation.home.model.DriverModel
 
 class DriverAdapter(private var data: List<DriverModel> = listOf()) : RecyclerView.Adapter<DriverAdapter.DriverViewHolder>() {
 

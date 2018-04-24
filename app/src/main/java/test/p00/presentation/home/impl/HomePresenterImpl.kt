@@ -1,22 +1,22 @@
-package test.p00.presentation.penalty.impl
+package test.p00.presentation.home.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
-import test.p00.presentation.penalty.PenaltiesPresenter
-import test.p00.presentation.penalty.PenaltiesView
-import test.p00.presentation.penalty.model.DriverModel
-import test.p00.presentation.penalty.model.VehicleModel
+import test.p00.presentation.home.HomePresenter
+import test.p00.presentation.home.HomeView
+import test.p00.presentation.home.model.DriverModel
+import test.p00.presentation.home.model.VehicleModel
 import test.p00.util.reactivex.ObservableTransformers
 
-class PenaltiesPresenterImpl(
+class HomePresenterImpl(
         private val userRepository: UserRepository =
-                                    UserRepositoryFactory.create()) : PenaltiesPresenter {
+                                    UserRepositoryFactory.create()) : HomePresenter {
 
-    private lateinit var attachedView: PenaltiesView
+    private lateinit var attachedView: HomeView
     private val disposables = CompositeDisposable()
 
-    override fun attachView(view: PenaltiesView) {
+    override fun attachView(view: HomeView) {
         attachedView = view
 
         displayUser()

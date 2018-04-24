@@ -1,4 +1,4 @@
-package test.p00.presentation.penalty.impl
+package test.p00.presentation.home.impl
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,32 +16,32 @@ import test.p00.R
 import test.p00.presentation.activity.MainActivity
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
-import test.p00.presentation.penalty.PenaltiesPresenter
-import test.p00.presentation.penalty.PenaltiesView
-import test.p00.presentation.penalty.impl.adapter.DriverAdapter
-import test.p00.presentation.penalty.impl.adapter.VehicleAdapter
-import test.p00.presentation.penalty.model.DriverModel
-import test.p00.presentation.penalty.model.VehicleModel
+import test.p00.presentation.home.HomePresenter
+import test.p00.presentation.home.HomeView
+import test.p00.presentation.home.impl.adapter.DriverAdapter
+import test.p00.presentation.home.impl.adapter.VehicleAdapter
+import test.p00.presentation.home.model.DriverModel
+import test.p00.presentation.home.model.VehicleModel
 import test.p00.util.reactivex.CompletableTransformers
 
-class PenaltiesFragment : AbsFragment(), PenaltiesView {
+class HomeFragment : AbsFragment(), HomeView {
 
     companion object {
 
-        const val FRAGMENT_TAG = "tag_PenaltiesFragment"
+        const val FRAGMENT_TAG = "FRAGMENT_TAG_HOME"
 
-        fun newInstance(): Fragment = PenaltiesFragment().apply {
+        fun newInstance(): Fragment = HomeFragment().apply {
             arguments = Bundle.EMPTY
         }
 
     }
 
-    private val presenter: PenaltiesPresenter by lazy {
-        PenaltiesPresenterImpl()
+    private val presenter: HomePresenter by lazy {
+        HomePresenterImpl()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.view_penalties, container, false)
+            = inflater.inflate(R.layout.view_home, container, false)
 
     private val vWipe: View by bindView(R.id.wipe)
     private val vDrivers: RecyclerView by bindView(R.id.vDrivers)
