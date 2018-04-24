@@ -34,13 +34,12 @@ class LauncherPresenterImpl(
             timer(APP_LAUNCH_DELAY, MILLISECONDS, scheduler.ui())
                 .flatMap { launcher.shouldShowOnBoardingWizard() }
                 .flatMap { shouldShow ->
-                    if (shouldShow) {
-                        displayOnBoardingWizard()
-                        never()
-                    } else {
-                        launcher.shouldShowOnBoarding()
-                    }
-                }
+                    when (shouldShow) {
+                        true -> {
+                            displayOnBoardingWizard()
+                            never()
+                        }
+                        else -> launcher.shouldShowOnBoarding() } }
                 .flatMap { shouldShow ->
                     when (shouldShow) {
                         true -> {
@@ -52,10 +51,7 @@ class LauncherPresenterImpl(
     }
 
     override fun displayOnBoardingWizard() {
-        disposables.add(
-            launcher.markOnBoardingWizardAsShown()
-                    .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ router.toOnBoardingWizard() }, { }))
+        router.toOnBoardingWizard()
     }
 
     override fun displayOnBoarding() {

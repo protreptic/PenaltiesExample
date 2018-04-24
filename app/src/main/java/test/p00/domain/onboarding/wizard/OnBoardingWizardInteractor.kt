@@ -1,16 +1,21 @@
 package test.p00.domain.onboarding.wizard
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Observable.*
 import test.p00.data.model.user.DriverLicense
 import test.p00.data.model.user.Vehicle
+import test.p00.data.repository.settings.SettingsRepository
+import test.p00.data.repository.settings.SettingsRepositoryFactory
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
 import java.util.regex.Pattern.*
 
 class OnBoardingWizardInteractor(
         private val userRepository: UserRepository =
-                                    UserRepositoryFactory.create()) {
+                                    UserRepositoryFactory.create(),
+        private val settingsRepository: SettingsRepository =
+                                SettingsRepositoryFactory.create()) {
 
     fun tryAddDriver(rawName: String, number: String): Observable<Boolean> =
                 validateDriver(number)
@@ -68,6 +73,12 @@ class OnBoardingWizardInteractor(
                             .flatMap { just(true) }
                         else -> just(true) } }
 
+    fun markOnBoardingWizardAsShown(): Completable =
+            settingsRepository.fetch()
+                    .map { settings -> settingsRepository.retain(
+                            settings.apply { wasOnBoardingWizardShown = true }) }
+                    .ignoreElements()
+
     companion object {
 
         private const val C1 = "[АВЕКМНОРСТУХABEKMHOPCTYX]"
@@ -82,10 +93,6 @@ class OnBoardingWizardInteractor(
          * Формат знаков — 3 буквы, 3 цифры. Буквы означают серию номерного знака, а цифры — номер.
          * В правой части номерного знака помещается код региона регистрации и
          * флага России с надписью RUS (см. ниже таблицу кодов регионов).
-         *
-         * До 1 июля 2008 года регистрационный знак, выданный грузовому автомобилю или автобусу,
-         * должен был быть продублирован на задней поверхности ТС крупным шрифтом.
-         * С 1 июля 2008 года данное требование отменено[2][нет в источнике].
          */
         private const val PATTERN_VEHICLE_NUMBER_AUTO = "$C1$C2{3}$C1{2}$C2{2,3}" //Б ЦЦЦ ББ ЦЦ(Ц)
 

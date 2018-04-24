@@ -5,6 +5,7 @@ import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
+import test.p00.util.reactivex.CompletableTransformers
 import test.p00.util.reactivex.ObservableTransformers
 import test.p00.util.reactivex.Schedulers
 
@@ -77,7 +78,7 @@ class OnBoardingWizardStepPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
-                        true -> router.toHome()
+                        true -> skipAddDriver()
                         else -> attachedView.showError()
                     } }, { attachedView.showError() }))
     }
@@ -92,7 +93,11 @@ class OnBoardingWizardStepPresenterImpl(
     }
 
     override fun skipAddDriver() {
-        router.toHome()
+        disposables.add(
+            wizardInteractor
+                .markOnBoardingWizardAsShown()
+                .compose(CompletableTransformers.schedulers(scheduler))
+                .subscribe({ router.toHome() }, { }))
     }
 
     override fun detachView() {
