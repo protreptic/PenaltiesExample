@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.wizard.impl
+package test.p00.presentation.wizard.impl
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.launcher.wizard.OnBoardingWizardPresenter
-import test.p00.presentation.launcher.wizard.OnBoardingWizardView
+import test.p00.presentation.wizard.OnBoardingWizardPresenter
+import test.p00.presentation.wizard.OnBoardingWizardView
 
 class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
 

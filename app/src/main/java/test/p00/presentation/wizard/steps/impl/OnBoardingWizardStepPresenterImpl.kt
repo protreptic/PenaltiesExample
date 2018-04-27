@@ -1,10 +1,10 @@
-package test.p00.presentation.launcher.wizard.steps.impl
+package test.p00.presentation.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.launcher.wizard.OnBoardingWizardInteractor
-import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
-import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
-import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
+import test.p00.presentation.wizard.OnBoardingWizardRouter
+import test.p00.presentation.wizard.steps.OnBoardingWizardStepPresenter
+import test.p00.presentation.wizard.steps.OnBoardingWizardStepView
 import test.p00.util.reactivex.ObservableTransformers
 import test.p00.util.reactivex.Schedulers
 

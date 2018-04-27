@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.wizard.introductory.impl
+package test.p00.presentation.wizard.introductory.impl
 
 import android.graphics.drawable.Drawable.createFromStream
 import android.os.Bundle
@@ -10,9 +10,9 @@ import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.launcher.wizard.impl.OnBoardingWizardRouterImpl
-import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryPresenter
-import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryView
+import test.p00.presentation.wizard.impl.OnBoardingWizardRouterImpl
+import test.p00.presentation.wizard.introductory.OnBoardingWizardIntroductoryPresenter
+import test.p00.presentation.wizard.introductory.OnBoardingWizardIntroductoryView
 
 class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntroductoryView {
 

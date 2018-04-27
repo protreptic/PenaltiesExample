@@ -1,9 +1,9 @@
-package test.p00.presentation.launcher.wizard.introductory.impl
+package test.p00.presentation.wizard.introductory.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
-import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryPresenter
-import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryView
+import test.p00.presentation.wizard.OnBoardingWizardRouter
+import test.p00.presentation.wizard.introductory.OnBoardingWizardIntroductoryPresenter
+import test.p00.presentation.wizard.introductory.OnBoardingWizardIntroductoryView
 
 /**
  * Created by Peter Bukhal on 4/23/18.

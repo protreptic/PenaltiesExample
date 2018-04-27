@@ -1,15 +1,15 @@
-package test.p00.presentation.launcher.wizard.impl
+package test.p00.presentation.wizard.impl
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import test.p00.R
 import test.p00.presentation.abs.Router
 import test.p00.presentation.launcher.impl.LauncherFragment
-import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
-import test.p00.presentation.launcher.wizard.introductory.impl.OnBoardingWizardIntroductoryFragment
-import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddDriverStepFragment
-import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddVehicleLicenseStepFragment
-import test.p00.presentation.launcher.wizard.steps.impl.OnBoardingWizardAddVehicleStepFragment
+import test.p00.presentation.wizard.OnBoardingWizardRouter
+import test.p00.presentation.wizard.introductory.impl.OnBoardingWizardIntroductoryFragment
+import test.p00.presentation.wizard.steps.impl.OnBoardingWizardAddDriverStepFragment
+import test.p00.presentation.wizard.steps.impl.OnBoardingWizardAddVehicleLicenseStepFragment
+import test.p00.presentation.wizard.steps.impl.OnBoardingWizardAddVehicleStepFragment
 
 /**
  * Created by Peter Bukhal on 4/23/18.

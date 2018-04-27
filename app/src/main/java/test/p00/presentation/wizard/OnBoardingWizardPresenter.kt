@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.wizard
+package test.p00.presentation.wizard
 
 import test.p00.presentation.abs.Presenter
 

@@ -1,9 +1,9 @@
-package test.p00.presentation.launcher.wizard.impl
+package test.p00.presentation.wizard.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.presentation.launcher.wizard.OnBoardingWizardPresenter
-import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
-import test.p00.presentation.launcher.wizard.OnBoardingWizardView
+import test.p00.presentation.wizard.OnBoardingWizardPresenter
+import test.p00.presentation.wizard.OnBoardingWizardRouter
+import test.p00.presentation.wizard.OnBoardingWizardView
 
 class OnBoardingWizardPresenterImpl(
         private val router: OnBoardingWizardRouter) : OnBoardingWizardPresenter {

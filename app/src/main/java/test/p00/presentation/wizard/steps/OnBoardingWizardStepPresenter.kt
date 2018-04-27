@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.wizard.steps
+package test.p00.presentation.wizard.steps
 
 import test.p00.presentation.abs.Presenter
 
