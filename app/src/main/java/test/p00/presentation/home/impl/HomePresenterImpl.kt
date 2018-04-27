@@ -6,6 +6,8 @@ import test.p00.data.repository.user.UserRepositoryFactory
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.model.DriverModel
+import test.p00.presentation.home.model.UserModel
+import test.p00.presentation.home.model.UserModel.*
 import test.p00.presentation.home.model.VehicleModel
 import test.p00.util.reactivex.ObservableTransformers
 
@@ -24,16 +26,9 @@ class HomePresenterImpl(
 
     override fun displayUser() {
         userRepository
-                .fetch()
-                .compose(ObservableTransformers.schedulers())
-                .subscribe({ user ->
-                    attachedView.showUser(
-                            user.vehicles.map { vehicle ->
-                                VehicleModel(vehicle.id, vehicle.name,
-                                             vehicle.number, vehicle.registrationNumber) },
-                            user.drivers.map { driver ->
-                                DriverModel(driver.id, driver.name,
-                                            driver.registrationNumber) }) }, {})
+            .fetch()
+            .compose(ObservableTransformers.schedulers())
+            .subscribe({ user -> attachedView.showUser(Mapper.map(user)) }, { })
     }
 
     override fun detachView() {

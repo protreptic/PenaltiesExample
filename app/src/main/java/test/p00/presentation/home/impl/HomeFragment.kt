@@ -13,15 +13,14 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
+import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.presentation.activity.MainActivity
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.impl.adapter.DriverAdapter
 import test.p00.presentation.home.impl.adapter.VehicleAdapter
-import test.p00.presentation.home.model.DriverModel
-import test.p00.presentation.home.model.VehicleModel
+import test.p00.presentation.home.model.UserModel
 import test.p00.util.reactivex.CompletableTransformers
 
 class HomeFragment : AbsFragment(), HomeView {
@@ -93,9 +92,9 @@ class HomeFragment : AbsFragment(), HomeView {
         presenter.attachView(this)
     }
 
-    override fun showUser(vehicles: List<VehicleModel>, drivers: List<DriverModel>) {
-        vehicleAdapter.setData(vehicles)
-        driverAdapter.setData(drivers)
+    override fun showUser(user: UserModel) {
+        vehicleAdapter.setData(user.vehicles)
+        driverAdapter.setData(user.drivers)
     }
 
     override fun onDestroyView() {
