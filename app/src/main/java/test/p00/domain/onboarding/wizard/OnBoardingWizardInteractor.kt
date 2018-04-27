@@ -3,7 +3,7 @@ package test.p00.domain.onboarding.wizard
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Observable.*
-import test.p00.data.model.user.DriverLicense
+import test.p00.data.model.user.Driver
 import test.p00.data.model.user.Vehicle
 import test.p00.data.repository.settings.SettingsRepository
 import test.p00.data.repository.settings.SettingsRepositoryFactory
@@ -29,7 +29,7 @@ class OnBoardingWizardInteractor(
                                          * пользователем номер.
                                          */
                                         drivers.clear()
-                                        drivers.add(DriverLicense().apply {
+                                        drivers.add(Driver().apply {
                                             name = rawName
                                             registrationNumber = number
                                         })

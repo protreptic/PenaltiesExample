@@ -17,6 +17,6 @@ open class User : RealmObject() {
     @PrimaryKey
     var id: Int = 0
     var vehicles: RealmList<Vehicle> = RealmList()
-    var drivers: RealmList<DriverLicense> = RealmList()
+    var drivers: RealmList<Driver> = RealmList()
 
 }

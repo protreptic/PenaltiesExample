@@ -3,7 +3,7 @@ package test.p00.data.model.user
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-open class DriverLicense : RealmObject() {
+open class Driver : RealmObject() {
 
     companion object {
 
