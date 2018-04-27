@@ -6,7 +6,7 @@ import io.realm.Realm
 import test.p00.data.model.user.User
 import test.p00.data.repository.user.datasource.UserDataSource
 
-class UserRealmDataSource : UserDataSource {
+class RealmUserDataSource : UserDataSource {
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override fun fetch(): Observable<User> {

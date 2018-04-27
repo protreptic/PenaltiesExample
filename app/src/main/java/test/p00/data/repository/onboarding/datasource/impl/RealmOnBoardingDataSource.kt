@@ -9,7 +9,7 @@ import test.p00.data.model.onboarding.OnBoardingPage
 import test.p00.data.repository.onboarding.datasource.OnBoardingDataSource
 import test.p00.util.ContextProvider
 
-class OnBoardingRealmDataSource : OnBoardingDataSource {
+class RealmOnBoardingDataSource : OnBoardingDataSource {
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override fun fetch(): Observable<OnBoarding> {
