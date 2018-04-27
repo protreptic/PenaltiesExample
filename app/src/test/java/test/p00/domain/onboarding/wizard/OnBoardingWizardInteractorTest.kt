@@ -62,7 +62,7 @@ class OnBoardingWizardInteractorTest {
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
 
-        sut.tryAddDriver(testDriverName, testDriverLicenseNumber)
+        sut.addDriver(testDriverName, testDriverLicenseNumber)
                 .test()
                 .assertValue(true)
 
@@ -89,7 +89,7 @@ class OnBoardingWizardInteractorTest {
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
 
         for (idx in 0 until calls) {
-            sut.tryAddDriver(testDriverName, DRIVER_LICENSE_NUMBER_VALID[idx])
+            sut.addDriver(testDriverName, DRIVER_LICENSE_NUMBER_VALID[idx])
                     .test()
                     .assertValue(true)
         }
@@ -109,7 +109,7 @@ class OnBoardingWizardInteractorTest {
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
 
-        sut.tryAddDriver(testDriverName, testDriverLicenseNumber).test()
+        sut.addDriver(testDriverName, testDriverLicenseNumber).test()
                 .assertValue(false)
 
         assertThat(testUser.drivers.size, `is`(0))
@@ -137,7 +137,7 @@ class OnBoardingWizardInteractorTest {
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
 
-        sut.tryAddVehicle(testVehicleName, testVehicleNumber)
+        sut.addVehicle(testVehicleName, testVehicleNumber)
                 .test()
                 .assertValue(true)
 
@@ -162,7 +162,7 @@ class OnBoardingWizardInteractorTest {
         `when`(userRepository.fetch()).thenReturn(just(testUser))
         `when`(userRepository.retain(testUser)).thenReturn(just(testUser))
 
-        sut.tryAddVehicle(testVehicleName, testVehicleNumber).test()
+        sut.addVehicle(testVehicleName, testVehicleNumber).test()
                 .assertValue(false)
 
         assertThat(testUser.drivers.size, `is`(0))

@@ -9,15 +9,16 @@ import test.p00.data.repository.settings.SettingsRepository
 import test.p00.data.repository.settings.SettingsRepositoryFactory
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
+import test.p00.domain.abs.Interactor
 import java.util.regex.Pattern.*
 
 class OnBoardingWizardInteractor(
         private val userRepository: UserRepository =
                                     UserRepositoryFactory.create(),
         private val settingsRepository: SettingsRepository =
-                                        SettingsRepositoryFactory.create()) {
+                                        SettingsRepositoryFactory.create()) : Interactor {
 
-    fun tryAddDriver(rawName: String, number: String): Observable<Boolean> =
+    fun addDriver(rawName: String, number: String): Observable<Boolean> =
                 validateDriver(number)
                 .flatMap { valid -> when (valid) {
                     true -> userRepository
@@ -37,7 +38,7 @@ class OnBoardingWizardInteractor(
                         .flatMap { just(true) }
                     else -> just(false) } }
 
-    fun tryAddVehicle(rawName: String, rawNumber: String): Observable<Boolean> =
+    fun addVehicle(rawName: String, rawNumber: String): Observable<Boolean> =
                 validateVehicle(rawNumber)
                 .flatMap { valid ->
                     when (valid) {
@@ -58,7 +59,7 @@ class OnBoardingWizardInteractor(
                             .flatMap { just(true) }
                         else -> just(false) } }
 
-    fun tryAddVehicleLicense(rawNumber: String): Observable<Boolean> =
+    fun addVehicleLicense(rawNumber: String): Observable<Boolean> =
                 validateVehicleLicense(rawNumber)
                 .flatMap { valid ->
                     when (valid) {

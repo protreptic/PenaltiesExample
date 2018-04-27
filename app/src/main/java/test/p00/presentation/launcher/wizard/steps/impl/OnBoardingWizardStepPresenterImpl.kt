@@ -20,7 +20,7 @@ class OnBoardingWizardStepPresenterImpl(
     override fun addVehicle(name: String, number: String) {
         disposables.add(
             interactor
-                .tryAddVehicle(name, number)
+                .addVehicle(name, number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
@@ -45,7 +45,7 @@ class OnBoardingWizardStepPresenterImpl(
     override fun addVehicleLicense(number: String) {
         disposables.add(
             interactor
-                .tryAddVehicleLicense(number)
+                .addVehicleLicense(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
@@ -70,7 +70,7 @@ class OnBoardingWizardStepPresenterImpl(
     override fun addDriver(name: String, number: String) {
         disposables.add(
             interactor
-                .tryAddDriver(name, number)
+                .addDriver(name, number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     when (it) {
