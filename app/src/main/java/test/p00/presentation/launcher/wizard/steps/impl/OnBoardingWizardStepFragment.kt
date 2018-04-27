@@ -1,7 +1,7 @@
 package test.p00.presentation.launcher.wizard.steps.impl
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.getColor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +21,8 @@ import test.p00.presentation.util.dismissKeyboard
 abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {
 
     protected val presenter: OnBoardingWizardStepPresenter by lazy {
-        OnBoardingWizardStepPresenterImpl(router = OnBoardingWizardRouterImpl(this, fragmentManager))
-    }
+        OnBoardingWizardStepPresenterImpl(
+                router = OnBoardingWizardRouterImpl(this, fragmentManager)) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.view_onboarding_wizard_step, container, false)
@@ -46,7 +46,7 @@ abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardSte
                     when (number.isEmpty()) {
                         true -> {
                             vForward.isEnabled = false
-                            vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.darker_gray))
+                            vNumber.setTextColor(getColor(context!!, android.R.color.darker_gray))
                         }
                         else -> validateInput(number)
                     }
@@ -63,11 +63,11 @@ abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardSte
         when (isValid) {
             true -> {
                 vForward.isEnabled = true
-                vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.holo_green_dark))
+                vNumber.setTextColor(getColor(context!!, android.R.color.holo_green_dark))
             }
             else -> {
                 vForward.isEnabled = false
-                vNumber.setTextColor(ContextCompat.getColor(context!!, android.R.color.tertiary_text_dark))
+                vNumber.setTextColor(getColor(context!!, android.R.color.tertiary_text_dark))
             }
         }
     }
