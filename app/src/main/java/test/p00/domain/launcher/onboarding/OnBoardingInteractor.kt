@@ -17,8 +17,9 @@ class OnBoardingInteractor(
                                         SettingsRepositoryFactory.create()) {
 
     fun displayOnBoarding(): Observable<OnBoarding> =
-            settingsRepository.fetch()
-                    .flatMap { settingsRepository.retain(it.apply { wasOnBoardingShown = true }) }
+            settingsRepository
+                    .fetch()
+                    .map { settingsRepository.retain(it.apply { wasOnBoardingShown = true }) }
                     .flatMap { onBoardingRepository.fetch() }
 
 }

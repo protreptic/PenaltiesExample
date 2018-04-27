@@ -1,8 +1,8 @@
 package test.p00.domain.launcher.wizard
 
-import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Observable.*
+import io.reactivex.Observable.just
+import test.p00.data.model.settings.Settings
 import test.p00.data.model.user.Driver
 import test.p00.data.model.user.Vehicle
 import test.p00.data.repository.settings.SettingsRepository
@@ -10,7 +10,7 @@ import test.p00.data.repository.settings.SettingsRepositoryFactory
 import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
 import test.p00.domain.abs.Interactor
-import java.util.regex.Pattern.*
+import java.util.regex.Pattern.matches
 
 class OnBoardingWizardInteractor(
         private val userRepository: UserRepository =
@@ -35,7 +35,7 @@ class OnBoardingWizardInteractor(
                                             registrationNumber = number
                                         })
                                     }) }
-                        .flatMap { just(true) }
+                        .map { true }
                     else -> just(false) } }
 
     fun addVehicle(rawName: String, rawNumber: String): Observable<Boolean> =
@@ -74,11 +74,11 @@ class OnBoardingWizardInteractor(
                             .flatMap { just(true) }
                         else -> just(true) } }
 
-    fun markOnBoardingWizardAsShown(): Completable =
-            settingsRepository.fetch()
-                    .map { settings -> settingsRepository.retain(
-                            settings.apply { wasOnBoardingWizardShown = true }) }
-                    .ignoreElements()
+    fun markOnBoardingWizardAsShown(): Observable<Settings> =
+            settingsRepository
+                    .fetch()
+                    .flatMap { settingsRepository.retain(
+                            it.apply { wasOnBoardingWizardShown = true }) }
 
     companion object {
 
