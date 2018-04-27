@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.InputFilter
 import android.view.View
-import android.widget.Toast
 import test.p00.R
 import test.p00.util.glide.GlideApp
 
@@ -55,10 +54,6 @@ class OnBoardingWizardAddVehicleLicenseStepFragment : OnBoardingWizardStepFragme
                 .setNegativeButton(getString(R.string.input_number), { dialog, _ -> dialog.dismiss() })
                 .create()
                 .show()
-    }
-
-    override fun showError() {
-        Toast.makeText(context, getString(R.string.input_valid_vehicle_license), Toast.LENGTH_LONG).show()
     }
 
 }

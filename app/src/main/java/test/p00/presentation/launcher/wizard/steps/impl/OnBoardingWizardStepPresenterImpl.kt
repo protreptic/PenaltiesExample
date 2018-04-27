@@ -5,7 +5,6 @@ import test.p00.domain.launcher.wizard.OnBoardingWizardInteractor
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
-import test.p00.util.reactivex.CompletableTransformers
 import test.p00.util.reactivex.ObservableTransformers
 import test.p00.util.reactivex.Schedulers
 
@@ -92,7 +91,7 @@ class OnBoardingWizardStepPresenterImpl(
         disposables.add(
             interactor
                 .markOnBoardingWizardAsShown()
-                .compose(CompletableTransformers.schedulers(scheduler))
+                .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ router.toHome() }, { }))
     }
 

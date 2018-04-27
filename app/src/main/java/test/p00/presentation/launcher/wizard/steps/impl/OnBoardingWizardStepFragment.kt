@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.disposables.CompositeDisposable
 import kotterknife.bindView
@@ -70,6 +71,10 @@ abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardSte
                 vNumber.setTextColor(getColor(context!!, android.R.color.tertiary_text_dark))
             }
         }
+    }
+
+    override fun showError() {
+        Toast.makeText(context, getString(R.string.something_gone_wrong), Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {
