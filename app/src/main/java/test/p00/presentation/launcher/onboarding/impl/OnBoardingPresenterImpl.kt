@@ -6,10 +6,9 @@ import test.p00.data.repository.onboarding.OnBoardingRepositoryFactory
 import test.p00.presentation.launcher.onboarding.OnBoardingPresenter
 import test.p00.presentation.launcher.onboarding.OnBoardingRouter
 import test.p00.presentation.launcher.onboarding.OnBoardingView
-import test.p00.presentation.launcher.onboarding.model.OnBoardingPageModel
 import test.p00.presentation.launcher.onboarding.model.OnBoardingModel
-import test.p00.util.reactivex.Schedulers
 import test.p00.util.reactivex.ObservableTransformers
+import test.p00.util.reactivex.Schedulers
 
 class OnBoardingPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
@@ -35,8 +34,7 @@ class OnBoardingPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
                     onBoarding -> attachedView.displayOnBoarding(
-                        OnBoardingModel(onBoarding.backgroundUri, onBoarding.pages.map {
-                            page -> OnBoardingPageModel(page.message, page.contentUri) })) }, { }) }
+                        OnBoardingModel.Mapper.map(onBoarding)) }, { }) }
 
     override fun closeOnBoarding() {
         router.toHome()
