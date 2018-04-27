@@ -5,7 +5,7 @@ import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
-import test.p00.presentation.home.model.UserModel.Mapper
+import test.p00.presentation.model.user.UserModel.Mapper
 import test.p00.util.reactivex.ObservableTransformers
 
 class HomePresenterImpl(
@@ -22,11 +22,11 @@ class HomePresenterImpl(
     }
 
     override fun displayUser() {
-        userRepository
-            .fetch()
-            .map { user -> Mapper.map(user) }
-            .compose(ObservableTransformers.schedulers())
-            .subscribe({ user -> attachedView.showUser(user) }, { })
-    }
+        disposables.add(
+            userRepository
+                .fetch()
+                .map { user -> Mapper.map(user) }
+                .compose(ObservableTransformers.schedulers())
+                .subscribe({ user -> attachedView.showUser(user) }, { })) }
 
 }

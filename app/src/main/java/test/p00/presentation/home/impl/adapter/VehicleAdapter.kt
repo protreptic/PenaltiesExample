@@ -8,7 +8,7 @@ import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.home.impl.adapter.VehicleAdapter.VehicleViewHolder
-import test.p00.presentation.home.model.VehicleModel
+import test.p00.presentation.model.user.VehicleModel
 
 class VehicleAdapter(private var data: List<VehicleModel> = listOf()) : RecyclerView.Adapter<VehicleViewHolder>() {
 

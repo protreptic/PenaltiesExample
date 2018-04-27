@@ -1,4 +1,4 @@
-package test.p00.presentation.home.model
+package test.p00.presentation.model.user
 
 import test.p00.data.model.user.User
 
@@ -11,8 +11,8 @@ data class UserModel(val id: Int, val vehicles: List<VehicleModel>, val drivers:
 
         fun map(user: User) =
                 UserModel(user.id,
-                          user.vehicles.map { VehicleModel.Mapper.map(it) },
-                          user.drivers.map { DriverModel.Mapper.map(it) })
+                        user.vehicles.map { VehicleModel.Mapper.map(it) },
+                        user.drivers.map { DriverModel.Mapper.map(it) })
 
     }
 

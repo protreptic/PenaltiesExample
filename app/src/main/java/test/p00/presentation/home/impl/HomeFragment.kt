@@ -20,7 +20,7 @@ import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.impl.adapter.DriverAdapter
 import test.p00.presentation.home.impl.adapter.VehicleAdapter
-import test.p00.presentation.home.model.UserModel
+import test.p00.presentation.model.user.UserModel
 import test.p00.util.reactivex.CompletableTransformers
 
 class HomeFragment : AbsFragment(), HomeView {

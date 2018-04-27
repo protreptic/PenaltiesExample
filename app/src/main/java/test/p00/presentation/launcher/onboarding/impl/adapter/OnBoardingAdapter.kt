@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import test.p00.R
-import test.p00.presentation.launcher.onboarding.model.OnBoardingModel
+import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.util.glide.GlideApp
 
 class OnBoardingAdapter(private val context: Context,

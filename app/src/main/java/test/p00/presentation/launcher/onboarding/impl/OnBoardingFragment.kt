@@ -14,7 +14,7 @@ import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.launcher.onboarding.OnBoardingPresenter
 import test.p00.presentation.launcher.onboarding.OnBoardingView
 import test.p00.presentation.launcher.onboarding.impl.adapter.OnBoardingAdapter
-import test.p00.presentation.launcher.onboarding.model.OnBoardingModel
+import test.p00.presentation.model.onboarding.OnBoardingModel
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {
 

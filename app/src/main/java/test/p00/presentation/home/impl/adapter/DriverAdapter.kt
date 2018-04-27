@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.home.model.DriverModel
+import test.p00.presentation.model.user.DriverModel
 
 class DriverAdapter(private var data: List<DriverModel> = listOf()) : RecyclerView.Adapter<DriverAdapter.DriverViewHolder>() {
 

@@ -1,9 +1,7 @@
 package test.p00.presentation.home
 
 import test.p00.presentation.abs.View
-import test.p00.presentation.home.model.DriverModel
-import test.p00.presentation.home.model.UserModel
-import test.p00.presentation.home.model.VehicleModel
+import test.p00.presentation.model.user.UserModel
 
 interface HomeView : View {
 

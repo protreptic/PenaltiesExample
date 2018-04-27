@@ -1,4 +1,4 @@
-package test.p00.presentation.home.model
+package test.p00.presentation.model.user
 
 import test.p00.data.model.user.Driver
 
@@ -8,8 +8,8 @@ data class DriverModel(val id: Int = 0, val name: String = "", val number: Strin
 
         fun map(driver: Driver) =
                 DriverModel(driver.id,
-                            driver.name,
-                            driver.registrationNumber)
+                        driver.name,
+                        driver.registrationNumber)
     }
 
 }

@@ -5,7 +5,7 @@ import test.p00.domain.launcher.onboarding.OnBoardingInteractor
 import test.p00.presentation.launcher.onboarding.OnBoardingPresenter
 import test.p00.presentation.launcher.onboarding.OnBoardingRouter
 import test.p00.presentation.launcher.onboarding.OnBoardingView
-import test.p00.presentation.launcher.onboarding.model.OnBoardingModel
+import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.util.reactivex.ObservableTransformers
 import test.p00.util.reactivex.Schedulers
 
