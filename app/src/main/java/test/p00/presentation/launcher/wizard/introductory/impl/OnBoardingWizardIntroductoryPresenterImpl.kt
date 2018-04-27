@@ -1,5 +1,6 @@
 package test.p00.presentation.launcher.wizard.introductory.impl
 
+import io.reactivex.disposables.CompositeDisposable
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryPresenter
 import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntroductoryView
@@ -10,18 +11,11 @@ import test.p00.presentation.launcher.wizard.introductory.OnBoardingWizardIntrod
 class OnBoardingWizardIntroductoryPresenterImpl(
         private val router: OnBoardingWizardRouter) : OnBoardingWizardIntroductoryPresenter {
 
-    private lateinit var attachedView: OnBoardingWizardIntroductoryView
-
-    override fun attachView(view: OnBoardingWizardIntroductoryView) {
-        attachedView = view
-    }
+    override lateinit var attachedView: OnBoardingWizardIntroductoryView
+    override val disposables = CompositeDisposable()
 
     override fun displayBeginning() {
         router.toBeginning()
-    }
-
-    override fun detachView() {
-
     }
 
 }

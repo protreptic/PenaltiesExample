@@ -6,7 +6,6 @@ import test.p00.domain.launcher.LauncherInteractor
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.launcher.LauncherView
-import test.p00.util.reactivex.CompletableTransformers
 import test.p00.util.reactivex.Schedulers
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
@@ -20,11 +19,11 @@ class LauncherPresenterImpl(
         const val APP_LAUNCH_DELAY = 500L
     }
 
-    private lateinit var attachedView: LauncherView
-    private val disposables = CompositeDisposable()
+    override lateinit var attachedView: LauncherView
+    override val disposables = CompositeDisposable()
 
     override fun attachView(view: LauncherView) {
-        attachedView = view
+        super.attachView(view)
 
         launchApplication()
     }
@@ -54,10 +53,6 @@ class LauncherPresenterImpl(
 
     override fun displayOnBoarding() {
         router.toOnBoarding()
-    }
-
-    override fun detachView() {
-        disposables.dispose()
     }
 
 }

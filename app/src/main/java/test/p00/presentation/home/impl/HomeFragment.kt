@@ -35,9 +35,7 @@ class HomeFragment : AbsFragment(), HomeView {
 
     }
 
-    private val presenter: HomePresenter by lazy {
-        HomePresenterImpl()
-    }
+    private val presenter: HomePresenter by lazy { HomePresenterImpl() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.view_home, container, false)

@@ -14,11 +14,11 @@ class OnBoardingPresenterImpl(
         private val router: OnBoardingRouter,
         private val interactor: OnBoardingInteractor = OnBoardingInteractor()) : OnBoardingPresenter {
 
-    private lateinit var attachedView: OnBoardingView
-    private val disposables = CompositeDisposable()
+    override lateinit var attachedView: OnBoardingView
+    override val disposables = CompositeDisposable()
 
     override fun attachView(view: OnBoardingView) {
-        attachedView = view
+        super.attachView(view)
 
         displayOnBoarding()
     }
@@ -33,10 +33,6 @@ class OnBoardingPresenterImpl(
 
     override fun closeOnBoarding() {
         router.toHome()
-    }
-
-    override fun detachView() {
-        disposables.dispose()
     }
 
 }

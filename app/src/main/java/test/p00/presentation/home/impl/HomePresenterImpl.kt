@@ -12,11 +12,11 @@ class HomePresenterImpl(
         private val userRepository: UserRepository =
                                     UserRepositoryFactory.create()) : HomePresenter {
 
-    private lateinit var attachedView: HomeView
-    private val disposables = CompositeDisposable()
+    override lateinit var attachedView: HomeView
+    override val disposables = CompositeDisposable()
 
     override fun attachView(view: HomeView) {
-        attachedView = view
+        super.attachView(view)
 
         displayUser()
     }
@@ -24,12 +24,9 @@ class HomePresenterImpl(
     override fun displayUser() {
         userRepository
             .fetch()
+            .map { user -> Mapper.map(user) }
             .compose(ObservableTransformers.schedulers())
-            .subscribe({ user -> attachedView.showUser(Mapper.map(user)) }, { })
-    }
-
-    override fun detachView() {
-        disposables.dispose()
+            .subscribe({ user -> attachedView.showUser(user) }, { })
     }
 
 }

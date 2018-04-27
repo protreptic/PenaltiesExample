@@ -14,12 +14,8 @@ class OnBoardingWizardStepPresenterImpl(
         private val router: OnBoardingWizardRouter,
         private val interactor: OnBoardingWizardInteractor = OnBoardingWizardInteractor()) : OnBoardingWizardStepPresenter {
 
-    private lateinit var attachedView: OnBoardingWizardStepView
-    private val disposables = CompositeDisposable()
-
-    override fun attachView(view: OnBoardingWizardStepView) {
-        attachedView = view
-    }
+    override lateinit var attachedView: OnBoardingWizardStepView
+    override val disposables = CompositeDisposable()
 
     override fun addVehicle(name: String, number: String) {
         disposables.add(
@@ -98,10 +94,6 @@ class OnBoardingWizardStepPresenterImpl(
                 .markOnBoardingWizardAsShown()
                 .compose(CompletableTransformers.schedulers(scheduler))
                 .subscribe({ router.toHome() }, { }))
-    }
-
-    override fun detachView() {
-        disposables.dispose()
     }
 
 }

@@ -1,8 +1,20 @@
 package test.p00.presentation.abs
 
-interface Presenter<in T: View> {
+import android.support.annotation.CallSuper
+import io.reactivex.disposables.CompositeDisposable
 
-    fun attachView(view: T)
-    fun detachView()
+interface Presenter<T: View> {
+
+    var attachedView: T
+    val disposables: CompositeDisposable
+
+    @CallSuper
+    fun attachView(view: T) {
+        attachedView = view
+    }
+
+    fun detachView() {
+        disposables.dispose()
+    }
 
 }
