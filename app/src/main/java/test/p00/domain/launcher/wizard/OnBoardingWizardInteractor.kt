@@ -1,4 +1,4 @@
-package test.p00.domain.onboarding.wizard
+package test.p00.domain.launcher.wizard
 
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -15,7 +15,7 @@ class OnBoardingWizardInteractor(
         private val userRepository: UserRepository =
                                     UserRepositoryFactory.create(),
         private val settingsRepository: SettingsRepository =
-                                SettingsRepositoryFactory.create()) {
+                                        SettingsRepositoryFactory.create()) {
 
     fun tryAddDriver(rawName: String, number: String): Observable<Boolean> =
                 validateDriver(number)

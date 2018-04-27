@@ -9,6 +9,7 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations.initMocks
 import test.p00.data.model.user.User
 import test.p00.data.repository.user.UserRepository
+import test.p00.domain.launcher.wizard.OnBoardingWizardInteractor
 
 class OnBoardingWizardInteractorTest {
 

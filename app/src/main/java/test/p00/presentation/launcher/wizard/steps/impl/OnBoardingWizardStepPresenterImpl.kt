@@ -1,7 +1,7 @@
 package test.p00.presentation.launcher.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
+import test.p00.domain.launcher.wizard.OnBoardingWizardInteractor
 import test.p00.presentation.launcher.wizard.OnBoardingWizardRouter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.launcher.wizard.steps.OnBoardingWizardStepView
@@ -12,7 +12,7 @@ import test.p00.util.reactivex.Schedulers
 class OnBoardingWizardStepPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: OnBoardingWizardRouter,
-        private val wizardInteractor: OnBoardingWizardInteractor = OnBoardingWizardInteractor()) : OnBoardingWizardStepPresenter {
+        private val interactor: OnBoardingWizardInteractor = OnBoardingWizardInteractor()) : OnBoardingWizardStepPresenter {
 
     private lateinit var attachedView: OnBoardingWizardStepView
     private val disposables = CompositeDisposable()
@@ -23,7 +23,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun addVehicle(name: String, number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .tryAddVehicle(name, number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
@@ -35,7 +35,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun validateVehicle(number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .validateVehicle(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ attachedView.showValidationResult(it) },
@@ -48,7 +48,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun addVehicleLicense(number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .tryAddVehicleLicense(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
@@ -60,7 +60,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun validateVehicleLicense(number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .validateVehicleLicense(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ attachedView.showValidationResult(it) },
@@ -73,7 +73,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun addDriver(name: String, number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .tryAddDriver(name, number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({
@@ -85,7 +85,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun validateDriver(number: String) {
         disposables.add(
-            wizardInteractor
+            interactor
                 .validateDriver(number)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ attachedView.showValidationResult(it) },
@@ -94,7 +94,7 @@ class OnBoardingWizardStepPresenterImpl(
 
     override fun skipAddDriver() {
         disposables.add(
-            wizardInteractor
+            interactor
                 .markOnBoardingWizardAsShown()
                 .compose(CompletableTransformers.schedulers(scheduler))
                 .subscribe({ router.toHome() }, { }))

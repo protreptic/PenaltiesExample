@@ -5,10 +5,7 @@ import test.p00.data.repository.user.UserRepository
 import test.p00.data.repository.user.UserRepositoryFactory
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
-import test.p00.presentation.home.model.DriverModel
-import test.p00.presentation.home.model.UserModel
-import test.p00.presentation.home.model.UserModel.*
-import test.p00.presentation.home.model.VehicleModel
+import test.p00.presentation.home.model.UserModel.Mapper
 import test.p00.util.reactivex.ObservableTransformers
 
 class HomePresenterImpl(

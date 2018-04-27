@@ -53,10 +53,7 @@ class LauncherPresenterImpl(
     }
 
     override fun displayOnBoarding() {
-        disposables.add(
-            launcher.markOnBoardingAsShown()
-                    .compose(CompletableTransformers.schedulers(scheduler))
-                    .subscribe({ router.toOnBoarding() }, { }))
+        router.toOnBoarding()
     }
 
     override fun detachView() {
