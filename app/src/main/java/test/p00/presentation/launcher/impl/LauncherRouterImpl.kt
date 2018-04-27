@@ -3,7 +3,7 @@ package test.p00.presentation.launcher.impl
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.abs.Router
 import test.p00.presentation.launcher.LauncherRouter
-import test.p00.presentation.launcher.onboarding.impl.OnBoardingFragment
+import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.launcher.wizard.impl.OnBoardingWizardFragment
 import test.p00.presentation.home.impl.HomeFragment
 

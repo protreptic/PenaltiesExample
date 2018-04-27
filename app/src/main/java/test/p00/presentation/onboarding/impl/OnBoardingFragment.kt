@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.onboarding.impl
+package test.p00.presentation.onboarding.impl
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -11,9 +11,9 @@ import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.launcher.onboarding.OnBoardingPresenter
-import test.p00.presentation.launcher.onboarding.OnBoardingView
-import test.p00.presentation.launcher.onboarding.impl.adapter.OnBoardingAdapter
+import test.p00.presentation.onboarding.OnBoardingPresenter
+import test.p00.presentation.onboarding.OnBoardingView
+import test.p00.presentation.onboarding.impl.adapter.OnBoardingAdapter
 import test.p00.presentation.model.onboarding.OnBoardingModel
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {

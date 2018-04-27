@@ -1,4 +1,4 @@
-package test.p00.presentation.launcher.onboarding.impl.adapter
+package test.p00.presentation.onboarding.impl.adapter
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
