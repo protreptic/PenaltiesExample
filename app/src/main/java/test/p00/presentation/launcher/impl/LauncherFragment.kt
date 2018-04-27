@@ -23,7 +23,7 @@ class LauncherFragment : AbsFragment(), LauncherView {
     }
 
     private val presenter: LauncherPresenter by lazy {
-        LauncherPresenterImpl(router = LauncherRouterImpl(fragmentManager))
+        LauncherPresenterImpl(router = LauncherRouterImpl(this, fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View

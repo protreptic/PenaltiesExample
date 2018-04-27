@@ -17,7 +17,7 @@ class LauncherPresenterImpl(
 
     companion object {
 
-        const val APP_LAUNCH_DELAY = 1000L
+        const val APP_LAUNCH_DELAY = 500L
     }
 
     private lateinit var attachedView: LauncherView
@@ -37,15 +37,13 @@ class LauncherPresenterImpl(
                     when (shouldShow) {
                         true -> {
                             displayOnBoardingWizard()
-                            never()
-                        }
+                            never() }
                         else -> launcher.shouldShowOnBoarding() } }
                 .flatMap { shouldShow ->
                     when (shouldShow) {
                         true -> {
                             displayOnBoarding()
-                            never()
-                        }
+                            never() }
                         else -> just(true) } }
                 .subscribe({ router.toHome() }, { }))
     }

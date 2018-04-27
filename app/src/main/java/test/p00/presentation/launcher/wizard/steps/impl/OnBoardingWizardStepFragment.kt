@@ -21,7 +21,7 @@ import test.p00.presentation.util.dismissKeyboard
 abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {
 
     protected val presenter: OnBoardingWizardStepPresenter by lazy {
-        OnBoardingWizardStepPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager))
+        OnBoardingWizardStepPresenterImpl(router = OnBoardingWizardRouterImpl(this, fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View

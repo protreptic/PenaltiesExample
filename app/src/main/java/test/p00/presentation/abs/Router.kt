@@ -5,6 +5,12 @@ package test.p00.presentation.abs
  */
 interface Router {
 
+    interface Delegate {
+
+        fun checkIfRoutingAvailable(): Boolean
+
+    }
+
     fun toHome()
 
 }

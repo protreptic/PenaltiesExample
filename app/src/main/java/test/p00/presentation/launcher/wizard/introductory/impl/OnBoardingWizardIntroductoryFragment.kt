@@ -27,7 +27,7 @@ class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntr
     }
 
     private val presenter: OnBoardingWizardIntroductoryPresenter by lazy {
-        OnBoardingWizardIntroductoryPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager))
+        OnBoardingWizardIntroductoryPresenterImpl(router = OnBoardingWizardRouterImpl(this, fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View

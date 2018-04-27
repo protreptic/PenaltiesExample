@@ -29,7 +29,7 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
     }
 
     private val presenter: OnBoardingPresenter by lazy {
-        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(fragmentManager))
+        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(this, fragmentManager))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
