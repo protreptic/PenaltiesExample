@@ -62,10 +62,7 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$android_espresso_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$android_espresso_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$android_espresso_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-accessibility:$android_espresso_version"
-    androidTestImplementation "com.android.support.test.espresso:espresso-web:$android_espresso_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-idling-resource:$android_espresso_version"
-    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$android_espresso_version"
 
     kapt "com.github.bumptech.glide:compiler:4.5.0"
 }
