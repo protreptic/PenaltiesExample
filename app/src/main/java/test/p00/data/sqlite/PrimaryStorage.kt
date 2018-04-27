@@ -16,11 +16,6 @@ class PrimaryStorage(context: Context = context()) : SQLiteOpenHelper(context, N
         const val NAME = "db_primary"
         const val VERSION = 1
 
-        private val storage by lazy { PrimaryStorage() }
-
-        fun createReadable() = storage.readableDatabase
-        fun createWriteable() = storage.writableDatabase
-
     }
 
     override fun onCreate(db: SQLiteDatabase) {
