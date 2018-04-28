@@ -2,9 +2,7 @@ package test.p00.presentation.launcher.impl
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.launcher.LauncherPresenter
@@ -23,11 +21,10 @@ class LauncherFragment : AbsFragment(), LauncherView {
     }
 
     private val presenter: LauncherPresenter by lazy {
-        LauncherPresenterImpl(router = LauncherRouterImpl(this, fragmentManager))
+        LauncherPresenterImpl(router = LauncherRouterImpl(fragmentManager, this))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.view_launcher, container, false)
+    override val targetLayout: Int = R.layout.view_launcher
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

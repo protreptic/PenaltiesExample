@@ -4,17 +4,15 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.impl.adapter.OnBoardingAdapter
-import test.p00.presentation.model.onboarding.OnBoardingModel
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {
 
@@ -29,11 +27,10 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
     }
 
     private val presenter: OnBoardingPresenter by lazy {
-        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(this, fragmentManager))
+        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(fragmentManager, this))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.view_onboarding, container, false)
+    override val targetLayout: Int = R.layout.view_onboarding
 
     private val vOnBoarding: ViewPager by bindView(R.id.vOnBoarding)
     private val vIndicator: CirclePageIndicator by bindView(R.id.vIndicator)

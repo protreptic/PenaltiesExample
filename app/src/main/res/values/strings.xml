@@ -34,4 +34,5 @@
     <string name="input_valid_vehicle_license_hint">35 ХН 783537</string>
     <string name="input_valid_driver_license_hint">11 AA 435545</string>
     <string name="something_gone_wrong">Что то пошло не так…</string>
+    <string name="run_chat">Открыть чат</string>
 </resources>

@@ -14,13 +14,21 @@
 
         <activity
             android:name="test.p00.presentation.activity.MainActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" android:host="fruit-chat.herokuapp.com" />
             </intent-filter>
         </activity>
 

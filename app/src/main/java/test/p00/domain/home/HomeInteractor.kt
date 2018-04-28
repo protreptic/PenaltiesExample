@@ -13,6 +13,6 @@ class HomeInteractor(
         private val userRepository: UserRepository =
                                     UserRepositoryFactory.create()) : Interactor {
 
-    fun displayUser(): Observable<User> = userRepository.fetch()
+    fun fetchUser(): Observable<User> = userRepository.fetch()
 
 }

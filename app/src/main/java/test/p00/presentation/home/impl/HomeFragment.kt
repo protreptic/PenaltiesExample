@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
@@ -18,8 +17,8 @@ import test.p00.presentation.activity.MainActivity
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
-import test.p00.presentation.home.impl.adapter.DriverAdapter
-import test.p00.presentation.home.impl.adapter.VehicleAdapter
+import test.p00.presentation.home.impl.adapter.DriversAdapter
+import test.p00.presentation.home.impl.adapter.VehiclesAdapter
 import test.p00.presentation.model.user.UserModel
 import test.p00.util.reactivex.CompletableTransformers
 
@@ -35,17 +34,17 @@ class HomeFragment : AbsFragment(), HomeView {
 
     }
 
-    private val presenter: HomePresenter by lazy { HomePresenterImpl() }
+    private val presenter: HomePresenter by lazy { HomePresenterImpl(route = HomeRouterImpl(fragmentManager, this)) }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-            = inflater.inflate(R.layout.view_home, container, false)
+    override val targetLayout: Int = R.layout.view_home
 
     private val vWipe: View by bindView(R.id.wipe)
+    private val vChat: View by bindView(R.id.chat)
     private val vDrivers: RecyclerView by bindView(R.id.vDrivers)
     private val vVehicles: RecyclerView by bindView(R.id.vVehicles)
 
-    private val driverAdapter = DriverAdapter()
-    private val vehicleAdapter = VehicleAdapter()
+    private val driversAdapter = DriversAdapter()
+    private val vehiclesAdapter = VehiclesAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,20 +78,31 @@ class HomeFragment : AbsFragment(), HomeView {
 
         vDrivers.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = driverAdapter
+            adapter = driversAdapter
         }
 
         vVehicles.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = vehicleAdapter
+            adapter = vehiclesAdapter
+        }
+
+        vChat.setOnClickListener {
+            presenter.displayConversations()
         }
 
         presenter.attachView(this)
     }
 
     override fun showUser(user: UserModel) {
-        vehicleAdapter.setData(user.vehicles)
-        driverAdapter.setData(user.drivers)
+        disposables.addAll(
+            vehiclesAdapter
+                .changeData(user.vehicles)
+                .subscribeOn(Schedulers.computation())
+                .subscribe(),
+            driversAdapter
+                .changeData(user.drivers)
+                .subscribeOn(Schedulers.computation())
+                .subscribe())
     }
 
     override fun onDestroyView() {

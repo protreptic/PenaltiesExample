@@ -2,16 +2,21 @@ package test.p00.presentation.home.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.home.HomeInteractor
+import test.p00.domain.home.HomeInteractorFactory
 import test.p00.presentation.home.HomePresenter
+import test.p00.presentation.home.HomeRouter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.model.user.UserModel.Mapper
 import test.p00.util.reactivex.ObservableTransformers
+import test.p00.util.reactivex.Schedulers
 
 class HomePresenterImpl(
-        private val homeInteractor: HomeInteractor = HomeInteractor()) : HomePresenter {
+        private val schedulers: Schedulers = Schedulers.create(),
+        private val route: HomeRouter,
+        private val homeInteractor: HomeInteractor = HomeInteractorFactory.create()) : HomePresenter {
 
-    override lateinit var attachedView: HomeView
-    override val disposables = CompositeDisposable()
+    override var attachedView: HomeView? = null
+    override var disposables = CompositeDisposable()
 
     override fun attachView(view: HomeView) {
         super.attachView(view)
@@ -22,9 +27,14 @@ class HomePresenterImpl(
     override fun displayUser() {
         disposables.add(
             homeInteractor
-                .displayUser()
+                .fetchUser()
                 .map { user -> Mapper.map(user) }
-                .compose(ObservableTransformers.schedulers())
-                .subscribe({ user -> attachedView.showUser(user) }, { })) }
+                .compose(ObservableTransformers.schedulers(schedulers))
+                .subscribe({ user -> attachedView?.showUser(user) }, { }))
+    }
+
+    override fun displayConversations() {
+        route.toConversations()
+    }
 
 }
