@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlin_version = '1.2.40'
+        kotlin_version = '1.2.41'
         android_support_version = '27.1.1'
         android_espresso_version = '3.0.1'
         okhttp_version = '3.9.1'
