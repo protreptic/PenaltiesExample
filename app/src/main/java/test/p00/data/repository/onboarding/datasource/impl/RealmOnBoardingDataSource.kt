@@ -55,32 +55,32 @@ class RealmOnBoardingDataSource : OnBoardingDataSource {
         pages.apply {
             add(OnBoardingPage().apply {
                 order = 1
-                message = ContextProvider.context().getString(R.string.onboarding_message_1)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_1)
                 contentUri = BASE_URI + "onboarding/wt_1.png"
             })
             add(OnBoardingPage().apply {
                 order = 2
-                message = ContextProvider.context().getString(R.string.onboarding_message_2)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_2)
                 contentUri = BASE_URI + "onboarding/wt_2.png"
             })
             add(OnBoardingPage().apply {
                 order = 3
-                message = ContextProvider.context().getString(R.string.onboarding_message_3)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_3)
                 contentUri = BASE_URI + "onboarding/wt_3.png"
             })
             add(OnBoardingPage().apply {
                 order = 4
-                message = ContextProvider.context().getString(R.string.onboarding_message_4)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_4)
                 contentUri = BASE_URI + "onboarding/wt_4.png"
             })
             add(OnBoardingPage().apply {
                 order = 5
-                message = ContextProvider.context().getString(R.string.onboarding_message_5)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_5)
                 contentUri = BASE_URI + "onboarding/wt_5.png"
             })
             add(OnBoardingPage().apply {
                 order = 6
-                message = ContextProvider.context().getString(R.string.onboarding_message_6)
+                message = ContextProvider.provide().getString(R.string.onboarding_message_6)
             })
         }
     }

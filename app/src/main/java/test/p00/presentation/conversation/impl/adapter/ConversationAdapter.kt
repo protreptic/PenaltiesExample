@@ -1,15 +1,12 @@
 package test.p00.presentation.conversation.impl.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
+import android.view.LayoutInflater.from
 import android.view.ViewGroup
-import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.Observable
-import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.conversation.impl.adapter.ConversationAdapter.ConversationViewHolder
+import test.p00.presentation.conversation.impl.adapter.holder.*
 import test.p00.presentation.model.conversation.MessageModel
 import java.util.*
 
@@ -18,13 +15,14 @@ import java.util.*
  */
 class ConversationAdapter(
         private var data: LinkedList<MessageModel> = LinkedList(),
-        private var delegate: Delegate? = null) : RecyclerView.Adapter<ConversationViewHolder>() {
+        private var delegate: Delegate? = null) : RecyclerView.Adapter<ConversationMessageViewHolder>() {
 
     interface Delegate {
 
         /**
          * Событие наступает когда
-         * пользователь прочитал сообщение.
+         * пользователь прочитал сообщение
+         * (отобразилось на экране).
          */
         fun onMessageRead(message: MessageModel)
 
@@ -37,7 +35,7 @@ class ConversationAdapter(
 
     fun addMessage(message: MessageModel): Completable =
             Observable.just(message)
-                      .map {
+                      .doOnNext {
                           when (data.contains(message)) {
                               true -> {
                                   val index = data.indexOf(message)
@@ -53,13 +51,51 @@ class ConversationAdapter(
                               }}}
                       .ignoreElements()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ConversationViewHolder(LayoutInflater.from(parent.context)
-                      .inflate(R.layout.view_conversation_message_text, parent, false))
-
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: ConversationViewHolder, position: Int) {
+    override fun getItemViewType(position: Int) = 1
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            when (viewType) {
+                1 -> {
+                    ConversationMessageTextViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_text, parent, false))
+                }
+                2 -> {
+                    ConversationMessageDocumentViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_document, parent, false))
+                }
+                3 -> {
+                    ConversationMessageImageViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_image, parent, false))
+                }
+                4 -> {
+                    ConversationMessageAudioViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_audio, parent, false))
+                }
+                5 -> {
+                    ConversationMessageVideoViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_video, parent, false))
+                }
+                6 -> {
+                    ConversationMessageVoiceViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_voice, parent, false))
+                }
+                7 -> {
+                    ConversationMessageLocationViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_location, parent, false))
+                }
+                8 -> {
+                    ConversationMessageWebViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message_web, parent, false))
+                }
+                else -> {
+                    ConversationMessageViewHolder(from(parent.context)
+                            .inflate(R.layout.view_conversation_message, parent, false))
+                }
+            }
+
+    override fun onBindViewHolder(holder: ConversationMessageViewHolder, position: Int) {
         val message = data[position]
 
         holder.bindMessage(message).also {
@@ -67,16 +103,6 @@ class ConversationAdapter(
                 delegate?.onMessageRead(message)
             }
         }
-    }
-
-    class ConversationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val vText: TextView by bindView(R.id.text123)
-
-        fun bindMessage(model: MessageModel) {
-            vText.text = model.text
-        }
-
     }
 
 }

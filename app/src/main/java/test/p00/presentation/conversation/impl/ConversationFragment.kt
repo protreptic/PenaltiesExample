@@ -10,13 +10,14 @@ import android.widget.EditText
 import android.widget.Toast
 import kotterknife.bindView
 import test.p00.R
-import test.p00.data.websocket.Connection
+import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationView
 import test.p00.presentation.conversation.impl.adapter.ConversationAdapter
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MessageModel
+import test.p00.presentation.util.dismissKeyboard
 import test.p00.util.reactivex.CompletableTransformers
 
 /**
@@ -37,8 +38,14 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
     }
 
+    private val conversationId by lazy {
+        arguments!!.getString(FRAGMENT_ARG_CONVERSATION)
+    }
+
     private val presenter: ConversationPresenter by lazy {
-        ConversationPresenterImpl(router = ConversationRouterImpl(fragmentManager, this))
+        ConversationPresenterImpl(
+                conversationId = conversationId,
+                router = ConversationRouterImpl(conversationId, fragmentManager, this))
     }
 
     override val targetLayout: Int = R.layout.view_conversation
@@ -60,6 +67,12 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
         vConversationMembers.setOnClickListener {
             presenter.displayMembers()
+
+            dismissKeyboard(activity)
+        }
+
+        vConversationMessage.apply {
+            requestFocus()
         }
 
         vConversationMessageSend.setOnClickListener {
@@ -82,7 +95,7 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
     }
 
     override fun onMessageRead(message: MessageModel) {
-        presenter.readMessage(message)
+        //presenter.readMessage(message)
     }
 
     override fun showMessage(message: MessageModel) {
@@ -92,7 +105,7 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
                 .subscribe { vConversationMessages.scrollToPosition(0) })
     }
 
-    override fun showConnectionStatus(status: Connection.Status) {
+    override fun showConnectionStatus(status: WebSocketConnection.Status) {
         Toast.makeText(context, "Статус соединения: ${status.name}", Toast.LENGTH_LONG).show()
     }
 

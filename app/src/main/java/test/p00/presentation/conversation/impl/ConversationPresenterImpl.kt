@@ -1,8 +1,11 @@
 package test.p00.presentation.conversation.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.data.model.conversation.message.Message
 import test.p00.domain.conversation.ConversationInteractor
 import test.p00.domain.conversation.ConversationInteractorFactory
+import test.p00.domain.conversations.ConversationsInteractor
+import test.p00.domain.conversations.ConversationsInteractorFactory
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.ConversationView
@@ -16,9 +19,11 @@ import test.p00.util.reactivex.Schedulers
  * Created by Peter Bukhal on 4/27/18.
  */
 class ConversationPresenterImpl(
+        private val conversationId: String,
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: ConversationRouter,
-        private val conversationInteractor: ConversationInteractor = ConversationInteractorFactory.create()) :
+        private val conversationsInteractor: ConversationsInteractor = ConversationsInteractorFactory.create(),
+        private val conversationInteractor: ConversationInteractor = ConversationInteractorFactory.create(conversationId)) :
         ConversationPresenter {
 
     override var attachedView: ConversationView? = null
@@ -27,12 +32,14 @@ class ConversationPresenterImpl(
     override fun attachView(view: ConversationView) {
         super.attachView(view)
 
-        displayConversation("")
+        displayConversation()
     }
 
-    override fun displayConversation(conversationId: String) {
+    override fun displayConversation() {
+        conversationInteractor.joinConversation()
+
         disposables.add(
-            conversationInteractor
+            conversationsInteractor
                 .fetchConversation(conversationId)
                 .map(ConversationModel.Mapper::map)
                 .compose(ObservableTransformers.schedulers(scheduler))
@@ -40,7 +47,7 @@ class ConversationPresenterImpl(
 
         disposables.add(
             conversationInteractor
-                .watchOnConversation(conversationId)
+                .watchOnConversation()
                 .map(MessageModel.Mapper::map)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ message -> attachedView?.showMessage(message) }, { }))
@@ -65,11 +72,11 @@ class ConversationPresenterImpl(
     }
 
     override fun sendMessage(messageText: String) {
-        conversationInteractor.sendMessage(messageText)
+        conversationInteractor.sendMessageText(messageText)
     }
 
     override fun readMessage(message: MessageModel) {
-        conversationInteractor.readMessage()
+        conversationInteractor.readMessage(Message())
     }
 
     override fun detachView() {

@@ -17,7 +17,7 @@ open class Message : RealmObject() {
 
     enum class Content {
 
-        DEFAULT, SYSTEM, TEXT, IMAGE, FILE, AUDIO, VIDEO, WEB, LOCATION, VOICE
+        DEFAULT, SYSTEM, TEXT, IMAGE, DOCUMENT, AUDIO, VIDEO, WEB, LOCATION, VOICE
 
     }
 
@@ -35,7 +35,7 @@ open class Message : RealmObject() {
         const val FIELD_CONTENT_TYPE = "contentType"
         const val FIELD_CONTENT_TEXT = "contentText"
         const val FIELD_CONTENT_IMAGE = "contentImage"
-        const val FIELD_CONTENT_FILE = "contentFile"
+        const val FIELD_CONTENT_FILE = "contentDocument"
         const val FIELD_CONTENT_AUDIO = "contentAudio"
         const val FIELD_CONTENT_VIDEO = "contentVideo"
         const val FIELD_CONTENT_WEB = "contentWeb"
@@ -60,7 +60,7 @@ open class Message : RealmObject() {
     var contentSystem: ContentSystem? = ContentSystem.DEFAULT
     var contentText: ContentText? = ContentText.DEFAULT
     var contentImage: ContentImage? = ContentImage.DEFAULT
-    var contentFile: ContentFile? = ContentFile.DEFAULT
+    var contentDocument: ContentDocument? = ContentDocument.DEFAULT
     var contentAudio: ContentAudio? = ContentAudio.DEFAULT
     var contentVideo: ContentVideo? = ContentVideo.DEFAULT
     var contentWeb: ContentWeb? = ContentWeb.DEFAULT

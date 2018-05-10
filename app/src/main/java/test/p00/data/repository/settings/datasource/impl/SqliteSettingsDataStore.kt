@@ -3,7 +3,7 @@ package test.p00.data.repository.settings.datasource.impl
 import io.reactivex.Observable
 import test.p00.data.model.settings.Settings
 import test.p00.data.repository.settings.datasource.SettingsDataSource
-import test.p00.data.sqlite.PrimaryStorage
+import test.p00.data.storage.sqlite.PrimaryStorage
 
 /**
  * Created by Peter Bukhal on 4/20/18.

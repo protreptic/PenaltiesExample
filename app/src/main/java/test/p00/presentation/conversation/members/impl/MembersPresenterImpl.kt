@@ -1,8 +1,8 @@
 package test.p00.presentation.conversation.members.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.domain.conversation.ConversationInteractor
-import test.p00.domain.conversation.ConversationInteractorFactory
+import test.p00.domain.conversations.ConversationsInteractor
+import test.p00.domain.conversations.ConversationsInteractorFactory
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.members.MembersPresenter
 import test.p00.presentation.conversation.members.MembersView
@@ -15,9 +15,11 @@ import test.p00.util.reactivex.Schedulers
  * Created by Peter Bukhal on 4/28/18.
  */
 class MembersPresenterImpl(
+        private val conversationId: String,
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: ConversationRouter,
-        private val conversationInteractor: ConversationInteractor = ConversationInteractorFactory.create()) : MembersPresenter {
+        private val conversationsInteractor: ConversationsInteractor = ConversationsInteractorFactory.create()) :
+        MembersPresenter {
 
     override var attachedView: MembersView? = null
     override var disposables = CompositeDisposable()
@@ -25,12 +27,12 @@ class MembersPresenterImpl(
     override fun attachView(view: MembersView) {
         super.attachView(view)
 
-        displayMembers("")
+        displayMembers()
     }
 
-    override fun displayMembers(conversationId: String) {
+    override fun displayMembers() {
         disposables.add(
-            conversationInteractor
+            conversationsInteractor
                 .fetchConversation(conversationId)
                 .map(ConversationModel.Mapper::map)
                 .map { conversation -> conversation.members }

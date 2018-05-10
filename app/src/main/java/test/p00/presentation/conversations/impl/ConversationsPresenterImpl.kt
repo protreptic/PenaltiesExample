@@ -1,8 +1,8 @@
 package test.p00.presentation.conversations.impl
 
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.domain.conversation.ConversationInteractor
-import test.p00.domain.conversation.ConversationInteractorFactory
+import test.p00.domain.conversations.ConversationsInteractor
+import test.p00.domain.conversations.ConversationsInteractorFactory
 import test.p00.presentation.conversations.ConversationsPresenter
 import test.p00.presentation.conversations.ConversationsView
 import test.p00.presentation.conversations.ConversationsRouter
@@ -16,7 +16,7 @@ import test.p00.util.reactivex.Schedulers
 class ConversationsPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: ConversationsRouter,
-        private val conversationInteractor: ConversationInteractor = ConversationInteractorFactory.create()) :
+        private val conversationsInteractor: ConversationsInteractor = ConversationsInteractorFactory.create()):
         ConversationsPresenter {
 
     override var attachedView: ConversationsView? = null
@@ -30,7 +30,7 @@ class ConversationsPresenterImpl(
 
     override fun displayConversations() {
         disposables.add(
-            conversationInteractor
+            conversationsInteractor
                 .fetchConversations()
                 .map { conversations -> conversations.map(ConversationModel.Mapper::map) }
                 .compose(ObservableTransformers.schedulers(scheduler))

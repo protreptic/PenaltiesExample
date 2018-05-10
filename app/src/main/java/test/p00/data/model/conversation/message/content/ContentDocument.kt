@@ -5,7 +5,7 @@ import io.realm.RealmObject
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-open class ContentFile : RealmObject() {
+open class ContentDocument : RealmObject() {
 
     companion object {
 
@@ -14,7 +14,7 @@ open class ContentFile : RealmObject() {
         const val FIELD_SIZE = "size"
         const val FIELD_URI = "uri"
 
-        val DEFAULT = ContentFile()
+        val DEFAULT = ContentDocument()
 
     }
 

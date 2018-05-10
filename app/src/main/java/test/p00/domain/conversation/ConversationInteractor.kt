@@ -1,45 +1,63 @@
 package test.p00.domain.conversation
 
+import android.net.Uri
 import io.reactivex.Observable
-import test.p00.data.model.conversation.Conversation
 import test.p00.data.model.conversation.message.Message
-import test.p00.data.repository.conversation.datasource.impl.CacheConversationDataSource
+import test.p00.data.repository.conversation.datasource.impl.MockConversationDataSource
 import test.p00.data.repository.conversation.datasource.impl.CloudConversationDataSource
-import test.p00.data.websocket.Connection.Status
+import test.p00.data.storage.websocket.WebSocketConnection
+import test.p00.data.storage.websocket.WebSocketConnection.Status
 import test.p00.domain.abs.Interactor
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
 class ConversationInteractor(
-        private val cache: CacheConversationDataSource = CacheConversationDataSource(),
-        private val cloud: CloudConversationDataSource = CloudConversationDataSource()) : Interactor {
+        private val conversationId: String,
+        private val cache: MockConversationDataSource = MockConversationDataSource(),
+        private val cloud: CloudConversationDataSource = CloudConversationDataSource(conversationId)):
+        Interactor {
 
-    fun fetchConversations() =
-            cache.fetchConversations()
+    fun joinConversation() =
+            cloud.joinConversation()
 
-    fun fetchConversation(conversationId: String): Observable<Conversation> =
-            cache.fetchConversation(conversationId)
+    fun watchOnConversation(): Observable<Message> =
+            cloud.watchOnConversation()
 
-    fun watchOnConversation(conversationId: String): Observable<Message> = cloud.watchOnConversation()
-    fun watchOnConnection(): Observable<Status> = cloud.watchOnConnection()
+    fun watchOnConnection(): Observable<Status> =
+            cloud.watchOnConnection()
+                 .doOnNext { status ->
+                     if (status == WebSocketConnection.Status.FAILURE) {
+                         cloud.joinConversation() }}
 
-    fun sendMessage(text: String) = cloud.sendMessage(text)
+    fun quitConversation() =
+            cloud.quitConversation()
 
-    fun sendMessageText(text: String) {
-        sendMessage(text)
-    }
+    fun readMessage(message: Message) =
+            cloud.readMessage(message)
 
-    fun sendMessageImage() {}
-    fun sendMessageAudio() {}
-    fun sendMessageVideo() {}
-    fun sendMessageLocation() {}
-    fun sendMessageWeb() {}
+    fun sendMessageText(text: String) =
+            cloud.sendText(text)
 
-    fun readMessage() {}
+    fun sendMessageDocument(document: Uri) =
+            cloud.sendDocument(document)
 
-    fun quitConversation() {
-        cloud.quitConversation()
-    }
+    fun sendMessageImage(image: Uri) =
+            cloud.sendImage(image)
+
+    fun sendMessageAudio(audio: Uri) =
+            cloud.sendAudio(audio)
+
+    fun sendMessageVideo(video: Uri) =
+            cloud.sendVideo(video)
+
+    fun sendMessageVoice(voice: Uri) =
+            cloud.sendVoice(voice)
+
+    fun sendMessageLocation(latitude: Float, longitude: Float) =
+            cloud.sendLocation(latitude, longitude)
+
+    fun sendMessageWeb(web: Uri) =
+            cloud.sendWeb(web)
 
 }

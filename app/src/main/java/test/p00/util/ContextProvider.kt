@@ -12,14 +12,14 @@ class ContextProvider : ContentProvider() {
     companion object {
 
         @SuppressLint("StaticFieldLeak")
-        private var context: Context? = null
+        private var subjectContext: Context? = null
 
-        fun context(): Context = context!!
+        fun provide(): Context = subjectContext!!
 
     }
 
     override fun onCreate(): Boolean {
-        Companion.context = context.applicationContext
+        subjectContext = context.applicationContext
 
         return true
     }

@@ -65,7 +65,7 @@ class MembersAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             MemberViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.view_conversation_members_member_item, parent, false))
+                    .inflate(R.layout.view_conversation_members_member, parent, false))
 
     override fun getItemCount() = data.size
 

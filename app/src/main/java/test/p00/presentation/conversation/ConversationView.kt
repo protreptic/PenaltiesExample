@@ -1,6 +1,6 @@
 package test.p00.presentation.conversation
 
-import test.p00.data.websocket.Connection
+import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.presentation.abs.View
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MessageModel
@@ -13,6 +13,6 @@ interface ConversationView : View {
     fun showConversation(conversation: ConversationModel)
     fun showMessage(message: MessageModel)
 
-    fun showConnectionStatus(status: Connection.Status)
+    fun showConnectionStatus(status: WebSocketConnection.Status)
 
 }

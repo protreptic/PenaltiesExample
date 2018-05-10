@@ -9,11 +9,10 @@ import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.conversation.impl.adapter.ConversationsAdapter
+import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter
 import test.p00.presentation.conversations.ConversationsPresenter
 import test.p00.presentation.conversations.ConversationsView
 import test.p00.presentation.model.conversation.ConversationModel
-import test.p00.util.reactivex.CompletableTransformers
 
 /**
  * Created by Peter Bukhal on 4/28/18.

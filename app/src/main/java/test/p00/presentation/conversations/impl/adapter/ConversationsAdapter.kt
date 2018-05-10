@@ -1,4 +1,4 @@
-package test.p00.presentation.conversation.impl.adapter
+package test.p00.presentation.conversations.impl.adapter
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.calculateDiff
@@ -12,7 +12,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.conversation.impl.adapter.ConversationsAdapter.ConversationViewHolder
+import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter.ConversationViewHolder
 import test.p00.presentation.model.conversation.ConversationModel
 
 /**
@@ -66,7 +66,7 @@ class ConversationsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ConversationViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.view_conversations_conversation_item, parent, false))
+                    .inflate(R.layout.view_conversations_conversation, parent, false))
 
     override fun getItemCount() = data.size
 

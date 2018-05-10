@@ -10,18 +10,11 @@ import test.p00.data.model.conversation.message.Message
 interface ConversationRepository {
 
     /**
+     * Возвращает беседу по ее идентификатору.
      *
+     * @param conversationId идентификатор беседы
+     * @return беседа
      */
-    fun fetchEverything(): Observable<List<Conversation>>
-
-    /**
-     *
-     */
-    fun fetchById(conversationId: Int): Observable<Conversation>
-
-    /**
-     *
-     */
-    fun addMessage(message: Message): Observable<Message>
+    fun fetchById(conversationId: String): Observable<Conversation>
 
 }

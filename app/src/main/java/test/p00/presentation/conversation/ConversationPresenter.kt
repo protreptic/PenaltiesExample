@@ -9,7 +9,7 @@ import test.p00.presentation.model.conversation.MessageModel
  */
 interface ConversationPresenter : Presenter<ConversationView> {
 
-    fun displayConversation(conversationId: String)
+    fun displayConversation()
     fun quitConversation()
 
     fun displayMember(member: MemberModel)

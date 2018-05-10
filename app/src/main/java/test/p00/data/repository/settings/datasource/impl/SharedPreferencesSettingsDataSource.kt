@@ -11,7 +11,7 @@ import test.p00.util.ContextProvider
  * Created by Peter Bukhal on 4/23/18.
  */
 class SharedPreferencesSettingsDataSource(
-        private val context: Context = ContextProvider.context()) : SettingsDataSource {
+        private val context: Context = ContextProvider.provide()) : SettingsDataSource {
 
     private val name = "default"
     private val fieldWasOnBoardingShown = "wasOnBoardingShown"

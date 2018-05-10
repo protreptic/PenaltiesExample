@@ -10,10 +10,6 @@ import test.p00.presentation.model.conversation.MemberModel
  */
 interface MemberPresenter : Presenter<MemberView> {
 
-    /**
-     * @param conversationId
-     * @param member
-     */
-    fun displayMember(conversationId: String, memberId: String)
+    fun displayMember()
 
 }

@@ -32,8 +32,19 @@ class MemberFragment : AbsFragment(), MemberView {
 
     }
 
+    private val conversationId by lazy {
+        arguments!!.getString(FRAGMENT_ARG_CONVERSATION)
+    }
+
+    private val memberId by lazy {
+        arguments!!.getString(FRAGMENT_ARG_MEMBER)
+    }
+
     private val presenter: MemberPresenter by lazy {
-        MemberPresenterImpl(router = ConversationRouterImpl(fragmentManager, this))
+        MemberPresenterImpl(
+                conversationId = conversationId,
+                memberId = arguments!!.getString(FRAGMENT_ARG_MEMBER),
+                router = ConversationRouterImpl(memberId, fragmentManager, this))
     }
 
     override val targetLayout: Int = R.layout.view_conversation_member

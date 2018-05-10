@@ -7,6 +7,14 @@ import test.p00.data.model.conversation.message.Message
  */
 data class MessageModel(val id: String, val text: String?, val isRead: Boolean = false) {
 
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
     object Mapper {
 
         fun map(message: Message) =

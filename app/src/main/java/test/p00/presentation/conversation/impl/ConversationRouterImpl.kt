@@ -12,6 +12,7 @@ import test.p00.presentation.model.conversation.MemberModel
  * Created by Peter Bukhal on 4/27/18.
  */
 class ConversationRouterImpl(
+        private val conversationId: String,
         override val fragmentManager: FragmentManager?,
         override val delegate: Delegate) : ConversationRouter {
 
@@ -23,7 +24,7 @@ class ConversationRouterImpl(
                         R.anim.slide_in_right, R.anim.slide_out_right,
                         R.anim.slide_in_right, R.anim.slide_out_right)
                 ?.add(android.R.id.content,
-                        MemberFragment.newInstance("", member.id),
+                        MemberFragment.newInstance(conversationId, member.id),
                         MemberFragment.FRAGMENT_TAG)
                 ?.addToBackStack(MemberFragment.FRAGMENT_TAG)
                 ?.commit()
@@ -38,7 +39,7 @@ class ConversationRouterImpl(
                         R.anim.slide_in_right, R.anim.slide_out_right,
                         R.anim.slide_in_right, R.anim.slide_out_right)
                 ?.add(android.R.id.content,
-                        MembersFragment.newInstance(""),
+                        MembersFragment.newInstance(conversationId),
                         MembersFragment.FRAGMENT_TAG)
                 ?.addToBackStack(MembersFragment.FRAGMENT_TAG)
                 ?.commit()

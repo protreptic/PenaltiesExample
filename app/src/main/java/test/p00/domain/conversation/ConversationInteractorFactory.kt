@@ -5,6 +5,6 @@ package test.p00.domain.conversation
  */
 object ConversationInteractorFactory {
 
-    fun create() = ConversationInteractor()
+    fun create(conversationId: String) = ConversationInteractor(conversationId)
 
 }
