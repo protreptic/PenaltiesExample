@@ -1,4 +1,6 @@
-package test.p00.data.storage.websocket.model
+package test.p00.data.storage.websocket.model.message
+
+import test.p00.data.storage.websocket.model.RemoteContentLocation
 
 /**
  * Created by Peter Bukhal on 4/29/18.
@@ -12,11 +14,9 @@ class RemoteMessage {
 
     var contentType: String? = ""
     var contentText: String? = ""
+    var contentLocation: RemoteContentLocation? = null
 
     var message: String? = ""
-
-    var latitude: Float = 0.0F
-    var longitude: Float = 0.0F
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,8 +31,6 @@ class RemoteMessage {
         if (contentType != other.contentType) return false
         if (contentText != other.contentText) return false
         if (message != other.message) return false
-        if (latitude != other.latitude) return false
-        if (longitude != other.longitude) return false
 
         return true
     }
@@ -45,13 +43,11 @@ class RemoteMessage {
         result = 31 * result + (contentType?.hashCode() ?: 0)
         result = 31 * result + (contentText?.hashCode() ?: 0)
         result = 31 * result + (message?.hashCode() ?: 0)
-        result = 31 * result + latitude.hashCode()
-        result = 31 * result + longitude.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "RemoteMessage(id='$id', createdAt=$createdAt, status=$status, author=$author, contentType=$contentType, contentText=$contentText, message=$message, latitude=$latitude, longitude=$longitude)"
+        return "RemoteMessage(id='$id', createdAt=$createdAt, status=$status, author=$author, contentType=$contentType, contentText=$contentText, contentLocation=$contentLocation, message=$message)"
     }
 
 }

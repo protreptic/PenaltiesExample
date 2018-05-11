@@ -6,41 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/vPhoto"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/vText"
-        app:srcCompat="@drawable/ic_photo" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/vAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/vPhoto"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="{author}" />
-
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/vText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:background="@drawable/bubble_yellow"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="28dp"
+        android:background="@drawable/bubble_white"
         android:maxWidth="280dp"
-        android:minWidth="64dp"
+        android:minWidth="70dp"
+        android:autoLink="all"
         android:textColor="@android:color/black"
         android:textIsSelectable="true"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/vPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/vAuthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="{message text}" />
 
     <android.support.v7.widget.AppCompatTextView
@@ -49,8 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="16dp"
+        android:drawableEnd="@drawable/ic_message_read"
+        android:drawablePadding="2dp"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/vText"
         app:layout_constraintEnd_toEndOf="@+id/vText"

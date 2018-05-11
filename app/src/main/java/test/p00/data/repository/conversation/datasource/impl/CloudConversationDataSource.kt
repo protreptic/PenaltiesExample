@@ -36,7 +36,7 @@ class CloudConversationDataSource(
                     sentAt = receivedMessage.createdAt
 
                     author = Author().apply {
-                        id = receivedMessage.author?.hashCode() ?: 0
+                        id = receivedMessage.author ?: ""
                         name = receivedMessage.author ?: ""
                     }
 
@@ -55,7 +55,7 @@ class CloudConversationDataSource(
     private fun createNewMessage() =
             Message().apply {
                 status = Message.Status.ADDED.name
-                author?.name = "0123456789"
+                author?.name = "Peter Bukhal"
 
                 addedAt = System.currentTimeMillis()
             }
@@ -108,12 +108,12 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendLocation(latitude: Float, longitude: Float) =
+    fun sendLocation(location: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.LOCATION.name
                 contentLocation = ContentLocation().apply {
-                    this.latitude = latitude
-                    this.longitude = longitude
+                    this.latitude = 0F
+                    this.longitude = 0F
                 }
             })
 

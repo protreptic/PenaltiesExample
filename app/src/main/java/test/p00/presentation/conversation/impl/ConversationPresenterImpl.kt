@@ -1,5 +1,6 @@
 package test.p00.presentation.conversation.impl
 
+import android.net.Uri
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.model.conversation.message.Message
 import test.p00.domain.conversation.ConversationInteractor
@@ -71,8 +72,12 @@ class ConversationPresenterImpl(
         router.toMembers()
     }
 
-    override fun sendMessage(messageText: String) {
-        conversationInteractor.sendMessageText(messageText)
+    override fun sendMessageText(messageText: String) {
+        conversationInteractor.sendText(messageText)
+    }
+
+    override fun sendMessageLocation(latitude: Float, longitude: Float) {
+        conversationInteractor.sendLocation(Uri.parse(String.format("geo:%f,%f", latitude, longitude)))
     }
 
     override fun readMessage(message: MessageModel) {

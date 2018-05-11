@@ -65,6 +65,6 @@ open class Message : RealmObject() {
     var contentVideo: ContentVideo? = ContentVideo.DEFAULT
     var contentWeb: ContentWeb? = ContentWeb.DEFAULT
     var contentLocation: ContentLocation? = ContentLocation.DEFAULT
-    var contentVoice: ContentVoice? = ContentVoice()
+    var contentVoice: ContentVoice? = ContentVoice.DEFAULT
 
 }

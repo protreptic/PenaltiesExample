@@ -12,17 +12,17 @@ class MockConversationsDataSource : ConversationsDataSource {
 
     private val mockMember1 = Member().apply {
         id = "1"
-        name = "A"
+        name = "Иванов Петр"
     }
 
     private val mockMember2 = Member().apply {
         id = "2"
-        name = "B"
+        name = "Петров Иван"
     }
 
     private val mockMember3 = Member().apply {
         id = "3"
-        name = "C"
+        name = "Rjr+"
     }
 
     private val mockMember4 = Member().apply {
@@ -42,6 +42,7 @@ class MockConversationsDataSource : ConversationsDataSource {
 
     private val mockConversation1 = Conversation().apply {
         id = "1"
+        name = "Group conversation1"
         members.apply {
             add(mockMember1)
             add(mockMember2)
@@ -50,6 +51,7 @@ class MockConversationsDataSource : ConversationsDataSource {
 
     private val mockConversation2 = Conversation().apply {
         id = "2"
+        name = "Group conversation2"
         members.apply {
             add(mockMember4)
             add(mockMember5)

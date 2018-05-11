@@ -6,7 +6,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -80,10 +83,16 @@ class MembersAdapter(
 
     class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val vText: TextView by bindView(R.id.text)
+        private val vPhoto: ImageView by bindView(R.id.vPhoto)
+        private val vName: TextView by bindView(R.id.vName)
 
         fun bindMember(member: MemberModel) {
-            vText.text = member.name
+            Glide.with(itemView.context)
+                    .load("http://via.placeholder.com/56x56")
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(vPhoto)
+
+            vName.text = member.name
         }
 
     }

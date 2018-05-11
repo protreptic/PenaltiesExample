@@ -18,7 +18,7 @@ open class Author : RealmObject() {
     }
 
     @PrimaryKey
-    var id: Int = 0
+    var id: String = ""
     var name: String = ""
 
 }

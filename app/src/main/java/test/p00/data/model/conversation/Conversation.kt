@@ -13,6 +13,7 @@ open class Conversation : RealmObject() {
     companion object {
 
         const val FIELD_ID = "id"
+        const val FIELD_NAME = "name"
         const val FIELD_MEMBERS = "members"
         const val FIELD_MESSAGES = "messages"
 
@@ -20,6 +21,7 @@ open class Conversation : RealmObject() {
 
     @PrimaryKey
     var id: String = ""
+    var name: String = ""
     var members: RealmList<Member> = RealmList()
     var messages: RealmList<Message> = RealmList()
 

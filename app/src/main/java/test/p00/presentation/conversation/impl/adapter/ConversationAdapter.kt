@@ -7,6 +7,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import test.p00.R
 import test.p00.presentation.conversation.impl.adapter.holder.*
+import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MessageModel
 import java.util.*
 
@@ -14,8 +15,8 @@ import java.util.*
  * Created by Peter Bukhal on 4/28/18.
  */
 class ConversationAdapter(
-        private var data: LinkedList<MessageModel> = LinkedList(),
-        private var delegate: Delegate? = null) : RecyclerView.Adapter<ConversationMessageViewHolder>() {
+        private var delegate: Delegate? = null):
+        RecyclerView.Adapter<ConversationMessageViewHolder>() {
 
     interface Delegate {
 
@@ -28,9 +29,14 @@ class ConversationAdapter(
 
     }
 
-    fun changeData(newData: List<MessageModel>): Completable =
-            Observable.just(newData)
-                      .doOnNext { data = LinkedList(newData) }
+    private lateinit var conversation: ConversationModel
+    private var data: LinkedList<MessageModel> = LinkedList()
+
+    fun changeData(conversation: ConversationModel): Completable =
+            Observable.just(conversation)
+                      .doOnNext {
+                          this.conversation = conversation
+                          this.data = LinkedList(conversation.messages) }
                       .ignoreElements()
 
     fun addMessage(message: MessageModel): Completable =
@@ -91,7 +97,7 @@ class ConversationAdapter(
                 }
                 else -> {
                     ConversationMessageViewHolder(from(parent.context)
-                            .inflate(R.layout.view_conversation_message, parent, false))
+                            .inflate(R.layout.view_conversation_message_default, parent, false))
                 }
             }
 

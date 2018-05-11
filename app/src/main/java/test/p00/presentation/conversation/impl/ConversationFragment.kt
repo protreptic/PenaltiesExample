@@ -77,7 +77,7 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
         vConversationMessageSend.setOnClickListener {
             if (vConversationMessage.text.isNotEmpty()) {
-                presenter.sendMessage(vConversationMessage.text.toString())
+                presenter.sendMessageText(vConversationMessage.text.toString())
             }
 
             vConversationMessage.setText("")
@@ -89,7 +89,7 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
     override fun showConversation(conversation: ConversationModel) {
         disposables.add(
             messageAdapter
-                .changeData(conversation.messages)
+                .changeData(conversation)
                 .compose(CompletableTransformers.schedulers())
                 .subscribe { messageAdapter.notifyDataSetChanged() })
     }

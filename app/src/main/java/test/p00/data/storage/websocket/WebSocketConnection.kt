@@ -4,9 +4,12 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import io.reactivex.subjects.PublishSubject
 import okhttp3.*
+import test.p00.data.model.conversation.Member
+import test.p00.data.model.conversation.message.Author
 import test.p00.data.model.conversation.message.Message
 import test.p00.data.storage.websocket.WebSocketConnection.Status.*
-import test.p00.data.storage.websocket.model.RemoteMessage
+import test.p00.data.storage.websocket.model.RemoteContentLocation
+import test.p00.data.storage.websocket.model.message.RemoteMessage
 
 /**
  * Created by Peter Bukhal on 4/28/18.
@@ -31,7 +34,15 @@ class WebSocketConnection {
     val status: PublishSubject<Status> = PublishSubject.create<Status>()
     val messages: PublishSubject<RemoteMessage> = PublishSubject.create<RemoteMessage>()
 
-    private val gson = GsonBuilder().create()
+    private val gson =
+            GsonBuilder()
+                    .registerTypeAdapter(Author::class.java, AuthorSerializer())
+                    .registerTypeAdapter(Author::class.java, AuthorDeserializer())
+                    .registerTypeAdapter(Member::class.java, MemberSerializer())
+                    .registerTypeAdapter(Member::class.java, MemberDeserializer())
+                    .registerTypeAdapter(Message::class.java, MessageSerializer())
+                    .registerTypeAdapter(Message::class.java, MessageDeserializer())
+                    .create()
 
     private var webSocket: WebSocket? = null
     private val webSocketListener = object : WebSocketListener() {
@@ -102,7 +113,16 @@ class WebSocketConnection {
                     message = newMessage.contentText?.text
 
                     contentType = newMessage.contentType
-                    contentText = newMessage.contentText?.text
+
+                    if (newMessage.contentText != null) {
+                        contentText = newMessage.contentText?.text
+                    }
+
+                    if (newMessage.contentLocation != null) {
+                        contentLocation = RemoteContentLocation(
+                                newMessage.contentLocation?.latitude ?: 0F,
+                                newMessage.contentLocation?.longitude ?: 0F)
+                    }
                 }))
             } catch (e: Exception) {
                 //

@@ -36,28 +36,28 @@ class ConversationInteractor(
     fun readMessage(message: Message) =
             cloud.readMessage(message)
 
-    fun sendMessageText(text: String) =
+    fun sendText(text: String) =
             cloud.sendText(text)
 
-    fun sendMessageDocument(document: Uri) =
+    fun sendDocument(document: Uri) =
             cloud.sendDocument(document)
 
-    fun sendMessageImage(image: Uri) =
+    fun sendImage(image: Uri) =
             cloud.sendImage(image)
 
-    fun sendMessageAudio(audio: Uri) =
+    fun sendAudio(audio: Uri) =
             cloud.sendAudio(audio)
 
-    fun sendMessageVideo(video: Uri) =
+    fun sendVideo(video: Uri) =
             cloud.sendVideo(video)
 
-    fun sendMessageVoice(voice: Uri) =
+    fun sendVoice(voice: Uri) =
             cloud.sendVoice(voice)
 
-    fun sendMessageLocation(latitude: Float, longitude: Float) =
-            cloud.sendLocation(latitude, longitude)
+    fun sendLocation(location: Uri) =
+            cloud.sendLocation(location)
 
-    fun sendMessageWeb(web: Uri) =
+    fun sendWeb(web: Uri) =
             cloud.sendWeb(web)
 
 }

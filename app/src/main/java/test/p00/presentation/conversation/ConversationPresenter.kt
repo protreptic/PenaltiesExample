@@ -15,7 +15,9 @@ interface ConversationPresenter : Presenter<ConversationView> {
     fun displayMember(member: MemberModel)
     fun displayMembers()
 
-    fun sendMessage(messageText: String)
+    fun sendMessageText(messageText: String)
+    fun sendMessageLocation(latitude: Float, longitude: Float)
+
     fun readMessage(message: MessageModel)
 
 }
