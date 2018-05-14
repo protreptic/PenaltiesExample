@@ -1,4 +1,4 @@
-package test.p00.data.model
+package test.p00.data.model.countries
 
 /**
  * Created by Peter Bukhal on 5/14/18.

@@ -14,4 +14,7 @@ class CountriesRepositoryImpl(val storage: CountriesStorage = CountriesStorage()
     override fun fetchDefault() =
             storage.fetchDefault()
 
+    override fun fetchByName(name: String) =
+            storage.fetchByName(name)
+
 }

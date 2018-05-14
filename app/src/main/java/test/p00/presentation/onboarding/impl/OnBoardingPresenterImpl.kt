@@ -31,7 +31,10 @@ class OnBoardingPresenterImpl(
                 .displayOnBoarding()
                 .map(OnBoardingModel.Mapper::map)
                 .compose(ObservableTransformers.schedulers(scheduler))
-                .subscribe({ attachedView?.displayOnBoarding(it) }, { })) }
+                .subscribe(
+                        { attachedView?.displayOnBoarding(it) },
+                        { /* игнорируем */ }))
+    }
 
     override fun closeOnBoarding() {
         router.toLauncher()

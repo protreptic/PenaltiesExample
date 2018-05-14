@@ -6,6 +6,7 @@ import test.p00.presentation.abs.Router.Delegate
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.member.impl.MemberFragment
 import test.p00.presentation.conversation.members.impl.MembersFragment
+import test.p00.presentation.countries.impl.CountriesFragment
 import test.p00.presentation.model.conversation.MemberModel
 
 /**
@@ -38,10 +39,13 @@ class ConversationRouterImpl(
                 ?.setCustomAnimations(
                         R.anim.slide_in_right, R.anim.slide_out_right,
                         R.anim.slide_in_right, R.anim.slide_out_right)
-                ?.add(android.R.id.content,
-                        MembersFragment.newInstance(conversationId),
-                        MembersFragment.FRAGMENT_TAG)
-                ?.addToBackStack(MembersFragment.FRAGMENT_TAG)
+//                ?.add(android.R.id.content,
+//                        MembersFragment.newInstance(conversationId),
+//                        MembersFragment.FRAGMENT_TAG)
+                    ?.add(android.R.id.content,
+                            CountriesFragment.newInstance(),
+                            CountriesFragment.FRAGMENT_TAG)
+                ?.addToBackStack(CountriesFragment.FRAGMENT_TAG)
                 ?.commit()
         }
     }

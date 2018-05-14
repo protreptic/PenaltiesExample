@@ -90,8 +90,8 @@ class CountriesAdapter(
 
         fun bindCountry(country: CountryModel) {
             Glide.with(itemView.context)
-                    .load("")
-                    .apply(RequestOptions.circleCropTransform())
+                    .load("file:///android_asset/storage/countries/flags/${country.iso}.png")
+                    //.apply(RequestOptions.circleCropTransform())
                     .into(vFlag)
 
             vName.text = country.name

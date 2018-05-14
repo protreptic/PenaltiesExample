@@ -34,7 +34,18 @@ class CountriesPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe(
                         { countries -> attachedView?.showCountries(countries) },
-                        { /* игнорируем */ }))
+                        {  }))
+    }
+
+    override fun displayCountries(name: String) {
+        disposables.add(
+            countriesRepository
+                .fetchByName(name)
+                .map { countries -> countries.map(Mapper::map) }
+                .compose(ObservableTransformers.schedulers(scheduler))
+                .subscribe(
+                        { countries -> attachedView?.showCountries(countries) },
+                        {  }))
     }
 
 }

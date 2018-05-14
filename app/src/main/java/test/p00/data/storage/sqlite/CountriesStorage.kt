@@ -3,7 +3,7 @@ package test.p00.data.storage.sqlite
 import android.content.Context
 import android.database.Cursor
 import io.reactivex.Observable
-import test.p00.data.model.Country
+import test.p00.data.model.countries.Country
 import test.p00.data.storage.sqlite.abs.Storage
 import test.p00.util.ContextProvider
 import java.util.*
@@ -22,7 +22,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
 
     private fun country(cursor: Cursor): Country {
         val id = cursor.getInt(cursor.getColumnIndexOrThrow("ID"))
-        val iso = cursor.getString(cursor.getColumnIndexOrThrow("ISO"))
+        val iso = cursor.getString(cursor.getColumnIndexOrThrow("ISO")).toLowerCase()
         val name = cursor.getString(cursor.getColumnIndexOrThrow("NAME"))
         val name2 = cursor.getString(cursor.getColumnIndexOrThrow("NAME2"))
         val phoneCode = cursor.getInt(cursor.getColumnIndexOrThrow("PHONECODE"))
@@ -38,7 +38,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
 
     fun fetchEverything(): Observable<List<Country>> =
             Observable.create { source ->
-                SettingsStorage().use { storage ->
+                CountriesStorage().use { storage ->
                     storage.readableDatabase.use { database ->
                         database.rawQuery("SELECT * FROM COUNTRIES ORDER BY NAME2 ASC", null).use { cursor ->
                             val countries = mutableListOf<Country>()
@@ -56,7 +56,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
 
     fun fetchDefault(): Observable<Country> =
             Observable.create { source ->
-                SettingsStorage().use { storage ->
+                CountriesStorage().use { storage ->
                     storage.readableDatabase.use { database ->
                         val defaultCountry = Locale.getDefault().isO3Country
 
@@ -73,4 +73,21 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
                 }
             }
 
+    fun fetchByName(name: String): Observable<List<Country>> =
+            Observable.create { source ->
+                CountriesStorage().use { storage ->
+                    storage.readableDatabase.use { database ->
+                        database.rawQuery("SELECT * FROM COUNTRIES WHERE NAME2 LIKE ? ORDER BY NAME2 ASC", arrayOf("%$name%")).use { cursor ->
+                            val countries = mutableListOf<Country>()
+
+                            while (cursor.moveToNext()) {
+                                countries.add(country(cursor))
+                            }
+
+                            source.onNext(countries.toList())
+                            source.onComplete()
+                        }
+                    }
+                }
+            }
 }

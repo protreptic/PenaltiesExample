@@ -12,4 +12,9 @@ interface CountriesPresenter : Presenter<CountriesView> {
      */
     fun displayCountries()
 
+    /**
+     *
+     */
+    fun displayCountries(name: String)
+
 }

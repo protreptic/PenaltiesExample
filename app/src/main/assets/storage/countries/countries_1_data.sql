@@ -188,7 +188,6 @@ INSERT INTO 'COUNTRIES' ('ID', 'ISO', 'NAME', 'NAME2', 'ISO3', 'NUMCODE', 'PHONE
         (186, 'ST', 'SAO TOME AND PRINCIPE', 'Sao Tome and Principe', 'STP', 678, 239),
         (187, 'SA', 'SAUDI ARABIA', 'Saudi Arabia', 'SAU', 682, 966),
         (188, 'SN', 'SENEGAL', 'Senegal', 'SEN', 686, 221),
-        (189, 'CS', 'SERBIA AND MONTENEGRO', 'Serbia and Montenegro', NULL, NULL, 381),
         (190, 'SC', 'SEYCHELLES', 'Seychelles', 'SYC', 690, 248),
         (191, 'SL', 'SIERRA LEONE', 'Sierra Leone', 'SLE', 694, 232),
         (192, 'SG', 'SINGAPORE', 'Singapore', 'SGP', 702, 65),
@@ -238,4 +237,6 @@ INSERT INTO 'COUNTRIES' ('ID', 'ISO', 'NAME', 'NAME2', 'ISO3', 'NUMCODE', 'PHONE
         (236, 'EH', 'WESTERN SAHARA', 'Western Sahara', 'ESH', 732, 212),
         (237, 'YE', 'YEMEN', 'Yemen', 'YEM', 887, 967),
         (238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB', 894, 260),
-        (239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', 716, 263);
+        (239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', 716, 263),
+        (240, 'RS', 'SERBIA', 'Serbia', 'SRB', 688, 381),
+        (241, 'ME', 'MONTENEGRO', 'Montenegro', 'MNE', 499, 382);
