@@ -33,6 +33,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
             this.name = name
             this.name2 = name2
             this.phoneCode = phoneCode
+            this.flag = "file:///android_asset/storage/countries/flags/$iso.png"
         }
     }
 

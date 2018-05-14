@@ -12,5 +12,6 @@ class Country {
     var iso3: String = ""
     var numCode: Int = 0
     var phoneCode: Int = 0
+    var flag: String = ""
 
 }

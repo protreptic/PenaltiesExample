@@ -50,8 +50,7 @@ class CountriesAdapter(
 
         /**
          * Событие наступает когда пользователь
-         * выбирает страну из списка
-         * стран.
+         * выбирает страну из списка стран.
          *
          * @param country выбранная страна
          */
@@ -90,8 +89,7 @@ class CountriesAdapter(
 
         fun bindCountry(country: CountryModel) {
             Glide.with(itemView.context)
-                    .load("file:///android_asset/storage/countries/flags/${country.iso}.png")
-                    //.apply(RequestOptions.circleCropTransform())
+                    .load(country.flag)
                     .into(vFlag)
 
             vName.text = country.name

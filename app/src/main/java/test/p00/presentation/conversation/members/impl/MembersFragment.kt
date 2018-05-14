@@ -45,16 +45,15 @@ class MembersFragment : AbsFragment(), MembersView, MembersAdapter.Delegate {
 
     override val targetLayout: Int = R.layout.view_conversation_members
 
-    private val vMembers: RecyclerView by bindView(R.id.vMembers)
-
-    private val memberAdapter by lazy { MembersAdapter(delegate = this) }
+    private val members: RecyclerView by bindView(R.id.vMembers)
+    private val membersAdapter by lazy { MembersAdapter(delegate = this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vMembers.apply {
+        members.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = memberAdapter
+            adapter = membersAdapter
         }
 
         presenter.attachView(this)
@@ -62,7 +61,7 @@ class MembersFragment : AbsFragment(), MembersView, MembersAdapter.Delegate {
 
     override fun showMembers(members: List<MemberModel>) {
         disposables.add(
-            memberAdapter
+            membersAdapter
                 .changeData(members)
                 .subscribeOn(Schedulers.computation())
                 .subscribe())

@@ -3,6 +3,7 @@ package test.p00.presentation.activity
 import android.os.Bundle
 import test.p00.presentation.activity.abs.AbsActivity
 import test.p00.presentation.launcher.impl.LauncherFragment
+import test.p00.presentation.signup.impl.SignUpFragment
 
 class MainActivity : AbsActivity() {
 
@@ -13,9 +14,16 @@ class MainActivity : AbsActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .replace(android.R.id.content,
-                            LauncherFragment.newInstance(),
-                            LauncherFragment.FRAGMENT_TAG)
+                            SignUpFragment.newInstance(),
+                            SignUpFragment.FRAGMENT_TAG)
                     .commit()
+
+//            supportFragmentManager
+//                    .beginTransaction()
+//                    .replace(android.R.id.content,
+//                            LauncherFragment.newInstance(),
+//                            LauncherFragment.FRAGMENT_TAG)
+//                    .commit()
         }
     }
 

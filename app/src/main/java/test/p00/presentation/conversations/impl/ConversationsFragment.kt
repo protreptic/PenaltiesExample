@@ -35,14 +35,13 @@ class ConversationsFragment : AbsFragment(), ConversationsView, ConversationsAda
 
     override val targetLayout: Int = R.layout.view_conversations
 
-    private val vConversations: RecyclerView by bindView(R.id.vConversations)
-
+    private val conversations: RecyclerView by bindView(R.id.vConversations)
     private val conversationsAdapter by lazy { ConversationsAdapter(delegate = this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vConversations.apply {
+        conversations.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = conversationsAdapter
         }

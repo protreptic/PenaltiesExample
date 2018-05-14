@@ -14,7 +14,7 @@ import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationView
-import test.p00.presentation.conversation.impl.adapter.ConversationAdapter
+import test.p00.presentation.conversation.impl.adapter.MessagesAdapter
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.message.MessageModel
 import test.p00.presentation.util.dismissKeyboard
@@ -23,7 +23,7 @@ import test.p00.util.reactivex.CompletableTransformers
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapter.Delegate {
+class ConversationFragment : AbsFragment(), ConversationView, MessagesAdapter.Delegate {
 
     companion object {
 
@@ -50,19 +50,19 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
     override val targetLayout: Int = R.layout.view_conversation
 
-    private val vConversationMessages: RecyclerView by bindView(R.id.vConversationMessages)
     private val vConversationMessage: EditText by bindView(R.id.vConversationMessage)
     private val vConversationMessageSend: View by bindView(R.id.vConversationMessageSend)
     private val vConversationMembers: View by bindView(R.id.vConversationMembers)
 
-    private val messageAdapter by lazy { ConversationAdapter(delegate = this) }
+    private val messages: RecyclerView by bindView(R.id.vConversationMessages)
+    private val messagesAdapter by lazy { MessagesAdapter(delegate = this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vConversationMessages.apply {
+        messages.apply {
             layoutManager = LinearLayoutManager(context, VERTICAL, true)
-            adapter = messageAdapter
+            adapter = messagesAdapter
         }
 
         vConversationMembers.setOnClickListener {
@@ -88,10 +88,10 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
     override fun showConversation(conversation: ConversationModel) {
         disposables.add(
-            messageAdapter
+            messagesAdapter
                 .changeData(conversation)
                 .compose(CompletableTransformers.schedulers())
-                .subscribe { messageAdapter.notifyDataSetChanged() })
+                .subscribe { messagesAdapter.notifyDataSetChanged() })
     }
 
     override fun onMessageRead(message: MessageModel) {
@@ -100,9 +100,9 @@ class ConversationFragment : AbsFragment(), ConversationView, ConversationAdapte
 
     override fun showMessage(message: MessageModel) {
         disposables.add(
-            messageAdapter
+            messagesAdapter
                 .addMessage(message)
-                .subscribe { vConversationMessages.scrollToPosition(0) })
+                .subscribe { messages.scrollToPosition(0) })
     }
 
     override fun showConnectionStatus(status: WebSocketConnection.Status) {

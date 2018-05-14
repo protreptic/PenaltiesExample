@@ -14,7 +14,7 @@ import java.util.*
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-class ConversationAdapter(
+class MessagesAdapter(
         private var delegate: Delegate? = null):
         RecyclerView.Adapter<ConversationMessageViewHolder>() {
 
