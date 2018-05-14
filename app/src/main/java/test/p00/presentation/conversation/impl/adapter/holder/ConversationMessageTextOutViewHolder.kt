@@ -1,11 +1,10 @@
 package test.p00.presentation.conversation.impl.adapter.holder
 
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.model.conversation.MessageModel
+import test.p00.presentation.model.conversation.message.MessageModel
 
 class ConversationMessageTextOutViewHolder(itemView: View): ConversationMessageViewHolder(itemView) {
 

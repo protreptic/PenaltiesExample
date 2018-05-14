@@ -1,7 +1,7 @@
 package test.p00.presentation.conversation.impl.adapter.holder
 
 import android.view.View
-import test.p00.presentation.model.conversation.MessageModel
+import test.p00.presentation.model.conversation.message.MessageModel
 
 class ConversationMessageImageViewHolder(itemView: View): ConversationMessageViewHolder(itemView) {
 

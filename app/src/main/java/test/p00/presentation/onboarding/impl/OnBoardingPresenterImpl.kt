@@ -13,7 +13,8 @@ import test.p00.util.reactivex.Schedulers
 class OnBoardingPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: OnBoardingRouter,
-        private val interactor: OnBoardingInteractor = OnBoardingInteractorFactory.create()) : OnBoardingPresenter {
+        private val interactor: OnBoardingInteractor = OnBoardingInteractorFactory.create()):
+        OnBoardingPresenter {
 
     override var attachedView: OnBoardingView? = null
     override var disposables = CompositeDisposable()

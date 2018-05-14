@@ -1,4 +1,4 @@
-package test.p00.presentation.model.conversation
+package test.p00.presentation.model.conversation.message
 
 import test.p00.data.model.conversation.message.Author
 

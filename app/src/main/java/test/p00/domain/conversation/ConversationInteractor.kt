@@ -28,7 +28,9 @@ class ConversationInteractor(
             cloud.watchOnConnection()
                  .doOnNext { status ->
                      if (status == WebSocketConnection.Status.FAILURE) {
-                         cloud.joinConversation() }}
+                         cloud.joinConversation()
+                     }
+                 }
 
     fun quitConversation() =
             cloud.quitConversation()

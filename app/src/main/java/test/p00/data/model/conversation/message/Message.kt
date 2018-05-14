@@ -24,6 +24,7 @@ open class Message : RealmObject() {
     companion object {
 
         const val FIELD_ID = "id"
+        const val FIELD_CONVERSATION_ID = "conversationId"
         const val FIELD_AUTHOR = "author"
         const val FIELD_STATUS = "status"
 
@@ -48,6 +49,8 @@ open class Message : RealmObject() {
 
     @PrimaryKey
     var id: String = ""
+    var conversationId: String = ""
+
     var author: Author? = Author.DEFAULT
     var status: String = Status.DEFAULT.name
 

@@ -4,11 +4,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.RequestOptions.*
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.model.conversation.MessageModel
+import test.p00.presentation.model.conversation.message.MessageModel
 
 class ConversationMessageTextViewHolder(itemView: View): ConversationMessageViewHolder(itemView) {
 

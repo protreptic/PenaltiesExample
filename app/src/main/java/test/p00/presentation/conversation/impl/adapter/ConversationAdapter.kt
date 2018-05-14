@@ -8,7 +8,7 @@ import io.reactivex.Observable
 import test.p00.R
 import test.p00.presentation.conversation.impl.adapter.holder.*
 import test.p00.presentation.model.conversation.ConversationModel
-import test.p00.presentation.model.conversation.MessageModel
+import test.p00.presentation.model.conversation.message.MessageModel
 import java.util.*
 
 /**

@@ -17,10 +17,12 @@ interface Router {
     val fragmentManager: FragmentManager?
     val delegate: Delegate
 
+    fun checkIfBackStackNotEmpty() = fragmentManager?.backStackEntryCount != 0
+
     fun purifyRoute() {
         if (delegate.checkIfRoutingAvailable()) {
-            while (fragmentManager?.backStackEntryCount != 0) {
-                   fragmentManager?.popBackStackImmediate()
+            while (checkIfBackStackNotEmpty()) {
+                fragmentManager?.popBackStackImmediate()
             }
         }
     }
@@ -35,6 +37,12 @@ interface Router {
                         HomeFragment.newInstance(),
                         HomeFragment.FRAGMENT_TAG)
                 ?.commit()
+        }
+    }
+
+    fun toBack() {
+        if (delegate.checkIfRoutingAvailable() && checkIfBackStackNotEmpty()) {
+            fragmentManager?.popBackStack()
         }
     }
 

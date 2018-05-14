@@ -1,5 +1,6 @@
 package test.p00.presentation.launcher.impl
 
+import android.util.Log
 import io.reactivex.Observable.*
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.launcher.LauncherInteractor
@@ -37,15 +38,21 @@ class LauncherPresenterImpl(
                     when (shouldShow) {
                         true -> {
                             displayOnBoardingWizard()
-                            never() }
-                        else -> launcher.shouldShowOnBoarding() } }
+                            never()
+                        }
+                        else -> launcher.shouldShowOnBoarding()
+                    }
+                }
                 .flatMap { shouldShow ->
                     when (shouldShow) {
                         true -> {
                             displayOnBoarding()
-                            never() }
-                        else -> just(true) } }
-                .subscribe({ router.toHome() }, { }))
+                            never()
+                        }
+                        else -> just(true)
+                    }
+                }
+                .subscribe({ router.toHome() }, { Log.d("ada", "error") }))
     }
 
     override fun displayOnBoardingWizard() {

@@ -55,6 +55,8 @@ class CloudConversationDataSource(
     private fun createNewMessage() =
             Message().apply {
                 status = Message.Status.ADDED.name
+
+                author?.id = "1"
                 author?.name = "Peter Bukhal"
 
                 addedAt = System.currentTimeMillis()

@@ -1,6 +1,7 @@
 package test.p00.presentation.model.conversation
 
 import test.p00.data.model.conversation.Conversation
+import test.p00.presentation.model.conversation.message.MessageModel
 
 /**
  * Created by Peter Bukhal on 4/28/18.

@@ -14,6 +14,7 @@ class HomeRouterImpl(
         override val delegate: Delegate) : HomeRouter {
 
     override fun toHome() { /* игнорируем */ }
+    override fun toBack() { /* игнорируем */ }
 
     override fun toConversations() {
         if (delegate.checkIfRoutingAvailable()) {
