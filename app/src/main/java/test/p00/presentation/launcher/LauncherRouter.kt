@@ -9,5 +9,6 @@ interface LauncherRouter : Router {
 
     fun toOnBoardingWizard()
     fun toOnBoarding()
+    fun toSignUp()
 
 }

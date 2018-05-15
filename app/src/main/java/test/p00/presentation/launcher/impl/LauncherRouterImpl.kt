@@ -1,16 +1,11 @@
 package test.p00.presentation.launcher.impl
 
 import android.support.v4.app.FragmentManager
-import test.p00.R
 import test.p00.presentation.abs.Router.Delegate
-import test.p00.presentation.conversation.impl.ConversationFragment
-import test.p00.presentation.conversation.member.impl.MemberFragment
-import test.p00.presentation.conversation.members.impl.MembersFragment
-import test.p00.presentation.conversations.impl.ConversationsFragment
-import test.p00.presentation.home.impl.HomeFragment
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardFragment
+import test.p00.presentation.signup.impl.SignUpFragment
 
 /**
  * Created by Peter Bukhal on 4/23/18.
@@ -91,6 +86,19 @@ class LauncherRouterImpl(
                     ?.replace(android.R.id.content,
                             OnBoardingFragment.newInstance(),
                             OnBoardingFragment.FRAGMENT_TAG)
+                    ?.commit()
+        }
+    }
+
+    override fun toSignUp() {
+        purifyRoute()
+
+        if (delegate.checkIfRoutingAvailable()) {
+            fragmentManager
+                    ?.beginTransaction()
+                    ?.replace(android.R.id.content,
+                            SignUpFragment.newInstance(),
+                            SignUpFragment.FRAGMENT_TAG)
                     ?.commit()
         }
     }

@@ -10,6 +10,7 @@ import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.signup.impl.SignUpRouterImpl
 import test.p00.presentation.signup.verification.SignUpVerificationPresenter
 import test.p00.presentation.signup.verification.SignUpVerificationView
+import test.p00.presentation.util.dismissKeyboard
 
 /**
  * Created by Peter Bukhal on 5/14/18.
@@ -31,10 +32,10 @@ class SignUpVerificationFragment : AbsFragment(), SignUpVerificationView {
         SignUpVerificationPresenterImpl(router = SignUpRouterImpl(fragmentManager, this))
     }
 
-    override val targetLayout = R.layout.view_sign_up_verification
+    override val targetLayout = R.layout.view_sign_up_phone_verification
 
     private val vVerificationCode: EditText by bindView(R.id.sign_up_verification_code)
-    private val vConfirm: View by bindView(R.id.sign_up_confirm)
+    private val vVerificationCodeConfirm: View by bindView(R.id.sign_up_verification_code_confirm)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,8 +43,9 @@ class SignUpVerificationFragment : AbsFragment(), SignUpVerificationView {
         vVerificationCode.apply {
 
         }
-        vConfirm.setOnClickListener {
 
+        vVerificationCodeConfirm.setOnClickListener {
+            dismissKeyboard(activity)
         }
     }
 

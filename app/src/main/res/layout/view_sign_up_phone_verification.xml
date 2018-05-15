@@ -36,12 +36,12 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_up_verification_code" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/sign_up_confirm"
+        android:id="@+id/sign_up_verification_code_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
-        android:text="Confirm"
+        android:text="@string/verify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_verification_explanations" />
 </android.support.constraint.ConstraintLayout>

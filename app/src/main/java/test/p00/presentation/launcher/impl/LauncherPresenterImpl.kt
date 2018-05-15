@@ -1,6 +1,5 @@
 package test.p00.presentation.launcher.impl
 
-import android.util.Log
 import io.reactivex.Observable.*
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.launcher.LauncherInteractor
@@ -52,7 +51,9 @@ class LauncherPresenterImpl(
                         else -> just(true)
                     }
                 }
-                .subscribe({ router.toHome() }, { Log.d("ada", "error") }))
+                .subscribe(
+                        { router.toHome() },
+                        { /*  */ }))
     }
 
     override fun displayOnBoardingWizard() {

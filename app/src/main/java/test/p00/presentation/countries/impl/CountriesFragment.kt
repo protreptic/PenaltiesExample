@@ -1,11 +1,12 @@
 package test.p00.presentation.countries.impl
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
 import android.view.View
+import android.widget.EditText
 import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
@@ -15,6 +16,8 @@ import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.util.notify
+import test.p00.widget.DefaultTextWatcher
+import test.p00.widget.PaddingTopItemDecoration
 
 /**
  * Created by Peter Bukhal on 5/14/18.
@@ -24,7 +27,6 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     companion object {
 
         const val FRAGMENT_TAG = "tag_CountriesFragment"
-        const val F_ARG = "country_code"
 
         fun newInstance(): Fragment = CountriesFragment().apply {
             arguments = Bundle.EMPTY
@@ -39,6 +41,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     override val targetLayout = R.layout.view_countries
 
     private val countries: RecyclerView by bindView(R.id.vCountries)
+    private val countriesFilter: EditText by bindView(R.id.vCountriesFilter)
     private val countriesAdapter by lazy { CountriesAdapter(delegate = this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +50,20 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
         countries.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
+
+            addItemDecoration(PaddingTopItemDecoration(54))
+        }
+
+        countriesFilter.apply {
+            requestFocus()
+
+            addTextChangedListener(object : DefaultTextWatcher() {
+
+                override fun afterTextChanged(s: Editable?) {
+                    presenter.displayCountries(s.toString())
+                }
+
+            })
         }
 
         presenter.attachView(this)

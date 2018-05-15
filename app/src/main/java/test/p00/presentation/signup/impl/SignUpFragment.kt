@@ -36,7 +36,7 @@ class SignUpFragment : AbsFragment(), SignUpView {
         SignUpPresenterImpl(router = SignUpRouterImpl(fragmentManager, this))
     }
 
-    override val targetLayout = R.layout.view_sign_up
+    override val targetLayout = R.layout.view_sign_up_phone
 
     private val vCountry: EditText by bindView(R.id.sign_up_country)
     private val vCountryFlag: ImageView by bindView(R.id.sign_up_country_flag)
@@ -68,6 +68,8 @@ class SignUpFragment : AbsFragment(), SignUpView {
 
         vVerify.setOnClickListener {
             presenter.displaySignUpVerificationForm()
+
+            dismissKeyboard(activity)
         }
 
         presenter.attachView(this)
@@ -88,7 +90,6 @@ class SignUpFragment : AbsFragment(), SignUpView {
                  .into(vCountryFlag)
         }
 
-        vNumber.setText("915 188 47 34")
         vNumber.requestFocus()
     }
 

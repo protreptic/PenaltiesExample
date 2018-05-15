@@ -36,5 +36,7 @@
     <string name="something_gone_wrong">Что то пошло не так…</string>
     <string name="run_chat">Открыть чат</string>
     <string name="sign_up_explanations">Укажите вашу страну и номер телефона на который будет выслан код подтверждения.</string>
-    <string name="sign_up_verification_explanations">Укажите код подтверждения ранее высланный вам на указанный на предыдущем шаге номер телефона.</string>
+    <string name="sign_up_verification_explanations">Укажите код подтверждения высланный на указанный номер телефона.</string>
+    <string name="verify">Verify</string>
+    <string name="confirm">Confirm</string>
 </resources>

@@ -146,7 +146,6 @@ INSERT INTO 'COUNTRIES' ('CODE', 'ISO2', 'ISO3', 'NAME', 'CALLING_CODE')
         (520, 'NR', 'NRU', 'Nauru', 674),
         (524, 'NP', 'NPL', 'Nepal', 977),
         (528, 'NL', 'NLD', 'Netherlands', 31),
-        (530, 'AN', 'ANT', 'Netherlands Antilles', 599),
         (540, 'NC', 'NCL', 'New Caledonia', 687),
         (554, 'NZ', 'NZL', 'New Zealand', 64),
         (558, 'NI', 'NIC', 'Nicaragua', 505),
