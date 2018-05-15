@@ -17,4 +17,9 @@ interface SignUpPresenter : Presenter<SignUpView> {
      */
     fun displayCountries()
 
+    /**
+     *
+     */
+    fun displaySignUpVerificationForm()
+
 }

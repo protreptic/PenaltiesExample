@@ -17,6 +17,7 @@
 
     <color name="ripple">#dddddd</color>
 
+    <color name="background">#fff4f4f4</color>
     <color name="next_btn_normal">#ffff9800</color>
     <color name="next_btn_hover">#fffb8c00</color>
     <color name="next_btn_pressed">#fff57c00</color>

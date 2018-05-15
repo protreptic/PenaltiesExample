@@ -34,7 +34,7 @@ class CountriesPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe(
                         { countries -> attachedView?.showCountries(countries) },
-                        {  }))
+                        { /*  */ }))
     }
 
     override fun displayCountries(name: String) {
@@ -45,7 +45,7 @@ class CountriesPresenterImpl(
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe(
                         { countries -> attachedView?.showCountries(countries) },
-                        {  }))
+                        { /*  */ }))
     }
 
 }

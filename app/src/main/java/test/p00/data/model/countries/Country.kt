@@ -5,13 +5,11 @@ package test.p00.data.model.countries
  */
 class Country {
 
-    var id: Int = 0
-    var iso: String = ""
-    var name: String = ""
-    var name2: String = ""
+    var code: Int = 0
+    var iso2: String = ""
     var iso3: String = ""
-    var numCode: Int = 0
-    var phoneCode: Int = 0
+    var name: String = ""
     var flag: String = ""
+    var callingCode: Int = 0
 
 }

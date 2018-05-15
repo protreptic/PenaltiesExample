@@ -1,7 +1,7 @@
 package test.p00.presentation.countries.impl.adapter
 
 import android.support.v7.util.DiffUtil
-import android.support.v7.util.DiffUtil.*
+import android.support.v7.util.DiffUtil.calculateDiff
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -34,7 +33,7 @@ class CountriesAdapter(
             val old = old[oldItemPosition]
             val new = new[newItemPosition]
 
-            return old.id == new.id
+            return old.code == new.code
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
@@ -93,7 +92,7 @@ class CountriesAdapter(
                     .into(vFlag)
 
             vName.text = country.name
-            vPhoneCode.text = String.format("+%d", country.phoneCode)
+            vPhoneCode.text = country.callingCode
         }
 
     }

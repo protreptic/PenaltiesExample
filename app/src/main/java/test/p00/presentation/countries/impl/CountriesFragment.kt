@@ -14,6 +14,7 @@ import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
+import test.p00.presentation.util.notify
 
 /**
  * Created by Peter Bukhal on 5/14/18.
@@ -23,6 +24,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     companion object {
 
         const val FRAGMENT_TAG = "tag_CountriesFragment"
+        const val F_ARG = "country_code"
 
         fun newInstance(): Fragment = CountriesFragment().apply {
             arguments = Bundle.EMPTY
@@ -59,7 +61,9 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     }
 
     override fun onCountryPicked(country: CountryModel) {
-        targetFragment?.onActivityResult(0, 0, Intent())
+        fragmentManager?.popBackStack().also {
+            notify(country)
+        }
     }
 
     override fun onDestroyView() {

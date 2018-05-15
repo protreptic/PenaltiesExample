@@ -39,6 +39,10 @@ class SignUpPresenterImpl(
                     { /*  */ }))
     }
 
+    override fun displaySignUpVerificationForm() {
+        router.toVerification()
+    }
+
     override fun displayCountries() {
         router.toCountries()
     }

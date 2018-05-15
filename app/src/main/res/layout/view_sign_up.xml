@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/sign_up_country"
@@ -15,6 +16,8 @@
         android:layout_marginTop="32dp"
         android:inputType="text"
         android:textSize="20sp"
+        android:lines="1"
+        android:ellipsize="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:inputType="numberDecimal"
+        android:inputType="phone"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_country"
@@ -49,22 +52,32 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:inputType="text"
+        android:inputType="phone"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sign_up_country_code"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_country" />
 
     <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/explanations"
+        android:id="@+id/sign_up_explanations"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text=""
-        android:textSize="20sp"
+        android:text="@string/sign_up_explanations"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_country_code" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/sign_up_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Verify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_explanations" />
 </android.support.constraint.ConstraintLayout>

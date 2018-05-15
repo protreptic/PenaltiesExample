@@ -21,19 +21,19 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
     }
 
     private fun country(cursor: Cursor): Country {
-        val id = cursor.getInt(cursor.getColumnIndexOrThrow("ID"))
-        val iso = cursor.getString(cursor.getColumnIndexOrThrow("ISO")).toLowerCase()
+        val code = cursor.getInt(cursor.getColumnIndexOrThrow("CODE"))
+        val iso2 = cursor.getString(cursor.getColumnIndexOrThrow("ISO2")).toLowerCase()
+        val iso3 = cursor.getString(cursor.getColumnIndexOrThrow("ISO3")).toLowerCase()
         val name = cursor.getString(cursor.getColumnIndexOrThrow("NAME"))
-        val name2 = cursor.getString(cursor.getColumnIndexOrThrow("NAME2"))
-        val phoneCode = cursor.getInt(cursor.getColumnIndexOrThrow("PHONECODE"))
+        val callingCode = cursor.getInt(cursor.getColumnIndexOrThrow("CALLING_CODE"))
 
         return Country().apply {
-            this.id = id
-            this.iso = iso
+            this.code = code
+            this.iso2 = iso2
+            this.iso3 = iso3
             this.name = name
-            this.name2 = name2
-            this.phoneCode = phoneCode
-            this.flag = "file:///android_asset/storage/countries/flags/$iso.png"
+            this.flag = "file:///android_asset/storage/countries/flags/$iso2.png"
+            this.callingCode = callingCode
         }
     }
 
@@ -41,7 +41,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
             Observable.create { source ->
                 CountriesStorage().use { storage ->
                     storage.readableDatabase.use { database ->
-                        database.rawQuery("SELECT * FROM COUNTRIES ORDER BY NAME2 ASC", null).use { cursor ->
+                        database.rawQuery("SELECT * FROM COUNTRIES ORDER BY NAME ASC", null).use { cursor ->
                             val countries = mutableListOf<Country>()
 
                             while (cursor.moveToNext()) {
@@ -78,7 +78,7 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
             Observable.create { source ->
                 CountriesStorage().use { storage ->
                     storage.readableDatabase.use { database ->
-                        database.rawQuery("SELECT * FROM COUNTRIES WHERE NAME2 LIKE ? ORDER BY NAME2 ASC", arrayOf("%$name%")).use { cursor ->
+                        database.rawQuery("SELECT * FROM COUNTRIES WHERE NAME LIKE ? ORDER BY NAME ASC", arrayOf("%$name%")).use { cursor ->
                             val countries = mutableListOf<Country>()
 
                             while (cursor.moveToNext()) {

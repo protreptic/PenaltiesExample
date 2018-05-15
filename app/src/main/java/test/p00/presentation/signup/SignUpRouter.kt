@@ -7,6 +7,14 @@ import test.p00.presentation.abs.Router
  */
 interface SignUpRouter : Router {
 
+    /**
+     *
+     */
     fun toCountries()
+
+    /**
+     *
+     */
+    fun toVerification()
 
 }
