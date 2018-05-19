@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.text.Editable
 import android.view.View
 import android.widget.EditText
+import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
@@ -16,7 +16,6 @@ import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.util.notify
-import test.p00.widget.DefaultTextWatcher
 import test.p00.widget.PaddingTopItemDecoration
 
 /**
@@ -54,17 +53,12 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
             addItemDecoration(PaddingTopItemDecoration(54))
         }
 
-        countriesFilter.apply {
-            requestFocus()
-
-            addTextChangedListener(object : DefaultTextWatcher() {
-
-                override fun afterTextChanged(s: Editable?) {
-                    presenter.displayCountries(s.toString())
-                }
-
-            })
-        }
+        disposables.add(
+            RxTextView
+                .afterTextChangeEvents(countriesFilter)
+                .doOnSubscribe { countriesFilter.requestFocus() }
+                .map { input -> input.editable().toString() }
+                .subscribe({ pattern -> presenter.displayCountries(pattern) }, {  }))
 
         presenter.attachView(this)
     }

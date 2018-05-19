@@ -1,6 +1,7 @@
 package test.p00.data.storage.sqlite.abs
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
@@ -20,6 +21,36 @@ abstract class Storage(
         private const val SCRIPTS_DIRECTORY = "storage"
         private const val SCRIPTS_MIGRATIONS_DIRECTORY = "migrations"
 
+    }
+
+    fun fetch(query: String, arguments: Array<String>? = null, block: (Cursor) -> Unit) =
+        read { storage ->
+            storage.rawQuery(query, arguments).use { cursor ->
+                block(cursor)
+            }
+        }
+
+    fun read(writable: Boolean = false, block: (SQLiteDatabase) -> Unit) {
+        var exception: Throwable? = null
+
+        try {
+            return block(if (writable) writableDatabase else readableDatabase)
+        } catch (e: Throwable) {
+            exception = e
+
+            throw e
+        } finally {
+            when(exception) {
+                null -> close()
+                else -> {
+                    try {
+                        close()
+                    } catch (closeException: Throwable) {
+                        // игнорируем
+                    }
+                }
+            }
+        }
     }
 
     private fun creationScript(): String =
