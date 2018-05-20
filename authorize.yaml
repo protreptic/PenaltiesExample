@@ -1,0 +1,99 @@
+swagger: "2.0"
+info:
+  title: ""
+  description: ""
+  version: "1.0.0"
+  contact:
+    email: "peter.bukhal@gmail.com"
+host: "petstore.swagger.io"
+basePath: "/v1"
+schemes:
+- "https"
+paths:
+  /authorize:
+    post:
+      summary: ""
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/AuthorizeRequest"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/AuthorizeResponse"
+        400:
+          description: "Invalid input"
+          schema:
+            $ref: "#/definitions/Error"
+  /authorize/confirmation:
+    post:
+      summary: ""
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/AuthorizeConfirmationRequest"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/AuthorizeConfirmationResponse"
+        400:
+          description: "Invalid input"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        example: 1003
+      message:
+        type: "string"
+        example: "Error message text"
+      forUser:
+        type: "boolean"
+        example: false
+  AuthorizeRequest:
+    type: "object"
+    properties:
+      countryCode:
+        type: "string"
+        example: "+7"
+      phoneNumber:
+        type: "string"
+        example: "9151884734"
+  AuthorizeResponse:
+    type: "object"
+    properties:
+      confirmationRetryDelay:
+        description: "in seconds"
+        type: "integer"
+        example: 360
+  AuthorizeConfirmationRequest:
+    type: "object"
+    properties:
+      confirmationCode:
+        type: "integer"
+  AuthorizeConfirmationResponse:
+    type: "object"
+    properties:
+      accessToken:
+        type: "string"

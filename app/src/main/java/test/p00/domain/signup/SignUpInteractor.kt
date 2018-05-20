@@ -37,6 +37,10 @@ class SignUpInteractor(
     fun confirmCode(confirmationCode: Int): Observable<String> =
             authorize.authorizeConfirmation(AuthorizeConfirmationRequest(confirmationCode))
                      .map { response -> response.accessToken }
+                     .doOnNext { accessToken -> saveAccessToken(accessToken) }
 
+    private fun saveAccessToken(accessToken: String) {
+
+    }
 
 }
