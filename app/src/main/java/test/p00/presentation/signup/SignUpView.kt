@@ -1,6 +1,7 @@
 package test.p00.presentation.signup
 
 import test.p00.presentation.abs.View
+import test.p00.presentation.model.ErrorModel
 import test.p00.presentation.model.countries.CountryModel
 
 /**
@@ -12,5 +13,20 @@ interface SignUpView : View {
      *
      */
     fun showSignUpForm(country: CountryModel)
+
+    /**
+     *
+     */
+    fun showLoading()
+
+    /**
+     *
+     */
+    fun showCountries()
+
+    /**
+     *
+     */
+    fun showError(error: ErrorModel)
 
 }

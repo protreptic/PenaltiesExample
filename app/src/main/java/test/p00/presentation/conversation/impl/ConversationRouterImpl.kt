@@ -39,12 +39,9 @@ class ConversationRouterImpl(
                 ?.setCustomAnimations(
                         R.anim.slide_in_right, R.anim.slide_out_right,
                         R.anim.slide_in_right, R.anim.slide_out_right)
-//                ?.add(android.R.id.content,
-//                        MembersFragment.newInstance(conversationId),
-//                        MembersFragment.FRAGMENT_TAG)
-                    ?.add(android.R.id.content,
-                            CountriesFragment.newInstance(),
-                            CountriesFragment.FRAGMENT_TAG)
+                ?.add(android.R.id.content,
+                        MembersFragment.newInstance(conversationId),
+                        MembersFragment.FRAGMENT_TAG)
                 ?.addToBackStack(CountriesFragment.FRAGMENT_TAG)
                 ?.commit()
         }

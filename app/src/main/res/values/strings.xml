@@ -35,8 +35,8 @@
     <string name="input_valid_driver_license_hint">11 AA 435545</string>
     <string name="something_gone_wrong">Что то пошло не так…</string>
     <string name="run_chat">Открыть чат</string>
-    <string name="sign_up_explanations">Укажите вашу страну и номер телефона на который будет выслан код подтверждения.</string>
-    <string name="sign_up_verification_explanations">Укажите код подтверждения высланный на указанный номер телефона.</string>
+    <string name="sign_up_explanations">Укажите вашу страну и номер мобильного телефона на который будет выслан код подтверждения.</string>
+    <string name="sign_up_verification_explanations">Укажите код подтверждения высланный на указанный ранее номер мобильного телефона.</string>
     <string name="verify">Verify</string>
     <string name="confirm">Confirm</string>
     <string name="search">Search</string>

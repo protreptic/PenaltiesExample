@@ -10,11 +10,16 @@ interface SignUpRouter : Router {
     /**
      *
      */
-    fun toCountries()
+    fun toPhone()
 
     /**
      *
      */
     fun toVerification()
+
+    /**
+     *
+     */
+    fun toLauncher()
 
 }

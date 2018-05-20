@@ -67,7 +67,6 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
         disposables.add(
             countriesAdapter
                 .changeData(countries)
-                .subscribeOn(Schedulers.computation())
                 .subscribe())
     }
 

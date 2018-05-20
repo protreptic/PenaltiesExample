@@ -45,6 +45,8 @@ class SignUpVerificationFragment : AbsFragment(), SignUpVerificationView {
         }
 
         vVerificationCodeConfirm.setOnClickListener {
+            presenter.verifyCode(vVerificationCode.text.toString())
+
             dismissKeyboard(activity)
         }
     }

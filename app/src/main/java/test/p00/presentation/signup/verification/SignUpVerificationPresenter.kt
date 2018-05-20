@@ -7,6 +7,6 @@ import test.p00.presentation.abs.Presenter
  */
 interface SignUpVerificationPresenter : Presenter<SignUpVerificationView> {
 
-
+    fun verifyCode(confirmationCode: String)
 
 }

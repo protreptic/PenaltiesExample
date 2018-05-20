@@ -10,16 +10,11 @@ interface SignUpPresenter : Presenter<SignUpView> {
     /**
      *
      */
-    fun displaySignUpForm()
+    fun changeCountry()
 
     /**
      *
      */
-    fun displayCountries()
-
-    /**
-     *
-     */
-    fun displaySignUpVerificationForm()
+    fun confirmPhoneNumber(countryCode: String, phoneNumber: String)
 
 }

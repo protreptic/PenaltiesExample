@@ -1,9 +1,10 @@
-package test.p00.data.storage.sqlite
+package test.p00.data.repository.countries.datasource.impl
 
 import android.content.Context
 import android.database.Cursor
 import io.reactivex.Observable
 import test.p00.data.model.countries.Country
+import test.p00.data.repository.countries.datasource.CountriesDataSource
 import test.p00.data.storage.sqlite.abs.Storage
 import test.p00.util.ContextProvider
 import java.util.*
@@ -11,7 +12,8 @@ import java.util.*
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(context, NAME, VERSION) {
+class CountriesDataSourceImpl(context: Context = ContextProvider.provide()):
+        Storage(context, NAME, VERSION), CountriesDataSource {
 
     companion object {
 
@@ -44,11 +46,11 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
                 }
             }.toList()
 
-    fun fetchDefault(): Observable<Country> =
+    override fun fetchDefault(): Observable<Country> =
             Observable.create { source ->
                 val arguments = arrayOf(Locale.getDefault().isO3Country)
 
-                CountriesStorage().fetch("SELECT * FROM COUNTRIES WHERE ISO3 = ? LIMIT 1", arguments) { cursor ->
+                fetch("SELECT * FROM COUNTRIES WHERE ISO3 = ? LIMIT 1", arguments) { cursor ->
                     while (cursor.moveToNext()) {
                         source.onNext(country(cursor))
                         source.onComplete()
@@ -56,19 +58,19 @@ class CountriesStorage(context: Context = ContextProvider.provide()) : Storage(c
                 }
             }
 
-    fun fetchEverything(): Observable<List<Country>> =
+    override fun fetchEverything(): Observable<List<Country>> =
             Observable.create { source ->
-                CountriesStorage().fetch("SELECT * FROM COUNTRIES ORDER BY NAME ASC") { cursor ->
+                fetch("SELECT * FROM COUNTRIES ORDER BY NAME ASC") { cursor ->
                     source.onNext(countries(cursor))
                     source.onComplete()
                 }
             }
 
-    fun fetchByName(name: String): Observable<List<Country>> =
+    override fun fetchByName(name: String): Observable<List<Country>> =
             Observable.create { source ->
                 val arguments = arrayOf("%$name%")
 
-                CountriesStorage().fetch("SELECT * FROM COUNTRIES WHERE NAME LIKE ? ORDER BY NAME ASC", arguments) { cursor ->
+                fetch("SELECT * FROM COUNTRIES WHERE NAME LIKE ? ORDER BY NAME ASC", arguments) { cursor ->
                     source.onNext(countries(cursor))
                     source.onComplete()
                 }

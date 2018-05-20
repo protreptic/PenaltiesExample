@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotterknife.bindView
 import test.p00.R
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter.CountryViewHolder
@@ -60,7 +59,6 @@ class CountriesAdapter(
     fun changeData(newData: List<CountryModel>): Completable =
             Observable.just(newData)
                     .map { calculateDiff(Diff(data, newData), false) }
-                    .observeOn(AndroidSchedulers.mainThread())
                     .doOnNext { data = newData }
                     .doOnNext { result -> result.dispatchUpdatesTo(this) }
                     .ignoreElements()

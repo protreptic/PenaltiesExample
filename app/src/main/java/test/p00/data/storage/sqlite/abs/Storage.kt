@@ -31,20 +31,21 @@ abstract class Storage(
         }
 
     fun read(writable: Boolean = false, block: (SQLiteDatabase) -> Unit) {
+        val database = if (writable) writableDatabase else readableDatabase
         var exception: Throwable? = null
 
         try {
-            return block(if (writable) writableDatabase else readableDatabase)
+            return block(database)
         } catch (e: Throwable) {
             exception = e
 
             throw e
         } finally {
             when(exception) {
-                null -> close()
+                null -> database.close()
                 else -> {
                     try {
-                        close()
+                        database.close()
                     } catch (closeException: Throwable) {
                         // игнорируем
                     }
