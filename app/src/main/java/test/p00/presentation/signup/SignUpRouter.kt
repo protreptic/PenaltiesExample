@@ -22,4 +22,9 @@ interface SignUpRouter : Router {
      */
     fun toLauncher()
 
+    /**
+     *
+     */
+    fun toCountries()
+
 }

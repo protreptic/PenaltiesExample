@@ -7,16 +7,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.EditText
 import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
+import test.p00.presentation.DefaultRouter
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
-import test.p00.presentation.util.notify
-import test.p00.widget.PaddingTopItemDecoration
+import test.p00.widget.TopPaddingItemDecoration
 
 /**
  * Created by Peter Bukhal on 5/14/18.
@@ -25,7 +24,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
 
     companion object {
 
-        const val FRAGMENT_TAG = "tag_CountriesFragment"
+        const val FRAGMENT_TAG = "fragment_tag_countries"
 
         fun newInstance(): Fragment = CountriesFragment().apply {
             arguments = Bundle.EMPTY
@@ -34,14 +33,14 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     }
 
     private val presenter: CountriesPresenter by lazy {
-        CountriesPresenterImpl()
+        CountriesPresenterImpl(router = DefaultRouter(fragmentManager, this))
     }
 
     override val targetLayout = R.layout.view_countries
 
     private val countries: RecyclerView by bindView(R.id.vCountries)
     private val countriesFilter: EditText by bindView(R.id.vCountriesFilter)
-    private val countriesAdapter by lazy { CountriesAdapter(delegate = this) }
+    private val countriesAdapter = CountriesAdapter(delegate = this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +49,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
             layoutManager = LinearLayoutManager(context)
             adapter = countriesAdapter
 
-            addItemDecoration(PaddingTopItemDecoration(54))
+            addItemDecoration(TopPaddingItemDecoration(54))
         }
 
         disposables.add(
@@ -71,9 +70,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     }
 
     override fun onCountryPicked(country: CountryModel) {
-        fragmentManager?.popBackStack().also {
-            notify(country)
-        }
+        presenter.pickCountry(country)
     }
 
     override fun onDestroyView() {

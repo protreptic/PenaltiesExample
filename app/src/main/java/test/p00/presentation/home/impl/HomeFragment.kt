@@ -20,7 +20,7 @@ import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.impl.adapter.DriversAdapter
 import test.p00.presentation.home.impl.adapter.VehiclesAdapter
 import test.p00.presentation.model.user.UserModel
-import test.p00.util.reactivex.CompletableTransformers
+import test.p00.util.reactivex.transformers.CompletableTransformers
 
 class HomeFragment : AbsFragment(), HomeView {
 
@@ -34,7 +34,9 @@ class HomeFragment : AbsFragment(), HomeView {
 
     }
 
-    private val presenter: HomePresenter by lazy { HomePresenterImpl(route = HomeRouterImpl(fragmentManager, this)) }
+    private val presenter: HomePresenter by lazy {
+        HomePresenterImpl(route = HomeRouterImpl(fragmentManager, this))
+    }
 
     override val targetLayout: Int = R.layout.view_home
 

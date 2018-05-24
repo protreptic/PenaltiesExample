@@ -7,8 +7,8 @@ import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingRouter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.model.onboarding.OnBoardingModel
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 class OnBoardingPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),

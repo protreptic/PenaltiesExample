@@ -7,8 +7,8 @@ import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.member.MemberPresenter
 import test.p00.presentation.conversation.member.MemberView
 import test.p00.presentation.model.conversation.ConversationModel
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 /**
  * Created by Peter Bukhal on 4/28/18.

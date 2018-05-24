@@ -7,7 +7,7 @@ import android.view.View
 /**
  * Created by Peter Bukhal on 5/15/18.
  */
-class PaddingTopItemDecoration(private val paddingTop: Int) : RecyclerView.ItemDecoration() {
+class TopPaddingItemDecoration(private val paddingTop: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         if (parent.getChildAdapterPosition(view) == 0) {

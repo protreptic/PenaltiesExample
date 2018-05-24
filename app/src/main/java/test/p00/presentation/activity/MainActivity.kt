@@ -20,7 +20,7 @@ class MainActivity : AbsActivity() {
 
 //            supportFragmentManager
 //                    .beginTransaction()
-//                    .replace(android.R.id.content,
+//                    .pushRoot(android.R.id.content,
 //                            LauncherFragment.newInstance(),
 //                            LauncherFragment.FRAGMENT_TAG)
 //                    .commit()

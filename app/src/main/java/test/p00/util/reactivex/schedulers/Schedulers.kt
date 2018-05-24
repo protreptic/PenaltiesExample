@@ -1,4 +1,4 @@
-package test.p00.util.reactivex
+package test.p00.util.reactivex.schedulers
 
 import io.reactivex.Scheduler
 

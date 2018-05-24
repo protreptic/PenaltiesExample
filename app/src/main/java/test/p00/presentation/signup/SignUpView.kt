@@ -22,11 +22,6 @@ interface SignUpView : View {
     /**
      *
      */
-    fun showCountries()
-
-    /**
-     *
-     */
     fun showError(error: ErrorModel)
 
 }

@@ -7,7 +7,7 @@ import test.p00.domain.launcher.LauncherInteractorFactory
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.launcher.LauncherView
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 class LauncherPresenterImpl(

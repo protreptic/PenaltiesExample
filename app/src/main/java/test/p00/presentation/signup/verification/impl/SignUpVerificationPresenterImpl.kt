@@ -5,8 +5,8 @@ import test.p00.domain.signup.SignUpInteractor
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.verification.SignUpVerificationPresenter
 import test.p00.presentation.signup.verification.SignUpVerificationView
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 /**
  * Created by Peter Bukhal on 5/14/18.

@@ -18,7 +18,7 @@ class CircularProgressBar : View {
     private var mViewWidth: Int = 0
     private var mViewHeight: Int = 0
 
-    private val mStartAngle = -90f      // Always start from top (default is: "3 o'clock on a watch.")
+    private val mStartAngle = -90f      // Always start from top (default is: "3 o'clock on defaultError watch.")
     private var mSweepAngle = 0f              // How long to sweep from mStartAngle
     private val mMaxSweepAngle = 360f         // Max degrees to sweep = full circle
     private var mStrokeWidth = 30              // Width of outline

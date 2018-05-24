@@ -2,15 +2,17 @@ package test.p00.presentation.signup.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.signup.SignUpInteractor
-import test.p00.presentation.model.ErrorModel.*
+import test.p00.presentation.countries.CountriesPresenter
+import test.p00.presentation.model.ErrorModel.Mapper
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.SignUpView
-import test.p00.util.get
-import test.p00.util.reactivex.CompletableTransformers
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.extension.get
+import test.p00.util.reactivex.bus.RxBus
+import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.util.reactivex.transformers.CompletableTransformers
+import test.p00.util.reactivex.transformers.ObservableTransformers
 
 /**
  * Created by Peter Bukhal on 5/12/18.
@@ -18,7 +20,8 @@ import test.p00.util.reactivex.Schedulers
 class SignUpPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
         private val interactor: SignUpInteractor = SignUpInteractor(),
-        private val router: SignUpRouter):
+        private val router: SignUpRouter,
+        private val bus: RxBus = RxBus):
         SignUpPresenter {
 
     override var attachedView: SignUpView? = null
@@ -35,6 +38,13 @@ class SignUpPresenterImpl(
                 .subscribe(
                     { country -> attachedView?.showSignUpForm(country) },
                     { error -> attachedView?.showError(Mapper.map(error.get())) }))
+
+        disposables.add(
+            bus.subscribe({ event ->
+                if (event is CountriesPresenter.CountryPickedEvent) {
+                    attachedView?.showSignUpForm(event.pickedCountry)
+                }
+            }))
     }
 
     override fun confirmPhoneNumber(countryCode: String, phoneNumber: String) {
@@ -48,7 +58,7 @@ class SignUpPresenterImpl(
     }
 
     override fun changeCountry() {
-        attachedView?.showCountries()
+        router.toCountries()
     }
 
 }

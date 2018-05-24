@@ -7,8 +7,8 @@ import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeRouter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.model.user.UserModel.Mapper
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 class HomePresenterImpl(
         private val schedulers: Schedulers = Schedulers.create(),

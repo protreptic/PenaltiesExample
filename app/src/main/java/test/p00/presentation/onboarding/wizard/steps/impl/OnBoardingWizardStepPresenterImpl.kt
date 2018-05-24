@@ -6,8 +6,8 @@ import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractorFactory
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardRouter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 class OnBoardingWizardStepPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),

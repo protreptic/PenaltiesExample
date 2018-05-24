@@ -6,6 +6,7 @@ import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardFragment
 import test.p00.presentation.signup.impl.SignUpFragment
+import test.p00.util.extension.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/23/18.
@@ -23,7 +24,7 @@ class LauncherRouterImpl(
 //                    ?.setCustomAnimations(
 //                            0, R.anim.slide_out_right,
 //                            0, R.anim.slide_out_right)
-//                    ?.add(android.R.id.content,
+//                    ?.push(android.R.id.content,
 //                            ConversationsFragment.newInstance(),
 //                            ConversationsFragment.FRAGMENT_TAG)
 //                    ?.addToBackStack(ConversationsFragment.FRAGMENT_TAG)
@@ -34,7 +35,7 @@ class LauncherRouterImpl(
 //                    ?.setCustomAnimations(
 //                            0, R.anim.slide_out_right,
 //                            0, R.anim.slide_out_right)
-//                    ?.add(android.R.id.content,
+//                    ?.push(android.R.id.content,
 //                            ConversationFragment.newInstance(""),
 //                            ConversationFragment.FRAGMENT_TAG)
 //                    ?.addToBackStack(ConversationFragment.FRAGMENT_TAG)
@@ -45,7 +46,7 @@ class LauncherRouterImpl(
 //                    ?.setCustomAnimations(
 //                            0, R.anim.slide_out_right,
 //                            0, R.anim.slide_out_right)
-//                    ?.add(android.R.id.content,
+//                    ?.push(android.R.id.content,
 //                            MembersFragment.newInstance(""),
 //                            MembersFragment.FRAGMENT_TAG)
 //                    ?.addToBackStack(MembersFragment.FRAGMENT_TAG)
@@ -56,7 +57,7 @@ class LauncherRouterImpl(
 //                    ?.setCustomAnimations(
 //                            0, R.anim.slide_out_right,
 //                            0, R.anim.slide_out_right)
-//                    ?.add(android.R.id.content,
+//                    ?.push(android.R.id.content,
 //                            MemberFragment.newInstance("", ""),
 //                            MemberFragment.FRAGMENT_TAG)
 //                    ?.addToBackStack(MemberFragment.FRAGMENT_TAG)
@@ -68,12 +69,7 @@ class LauncherRouterImpl(
         purifyRoute()
 
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.replace(android.R.id.content,
-                            OnBoardingWizardFragment.newInstance(),
-                            OnBoardingWizardFragment.FRAGMENT_TAG)
-                    ?.commit()
+            fragmentManager?.pushRoot(OnBoardingWizardFragment.newInstance())
         }
     }
 
@@ -81,12 +77,7 @@ class LauncherRouterImpl(
         purifyRoute()
 
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.replace(android.R.id.content,
-                            OnBoardingFragment.newInstance(),
-                            OnBoardingFragment.FRAGMENT_TAG)
-                    ?.commit()
+            fragmentManager?.pushRoot(OnBoardingFragment.newInstance())
         }
     }
 
@@ -94,12 +85,7 @@ class LauncherRouterImpl(
         purifyRoute()
 
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.replace(android.R.id.content,
-                            SignUpFragment.newInstance(),
-                            SignUpFragment.FRAGMENT_TAG)
-                    ?.commit()
+            fragmentManager?.pushRoot(SignUpFragment.newInstance())
         }
     }
 

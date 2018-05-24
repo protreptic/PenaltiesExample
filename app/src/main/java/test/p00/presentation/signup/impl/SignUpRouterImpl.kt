@@ -1,12 +1,14 @@
 package test.p00.presentation.signup.impl
 
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentManager.*
-import test.p00.R
 import test.p00.presentation.abs.Router
+import test.p00.presentation.countries.impl.CountriesFragment
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.verification.impl.SignUpVerificationFragment
+import test.p00.util.extension.push
+import test.p00.util.extension.pop
+import test.p00.util.extension.pushRoot
 
 /**
  * Created by Peter Bukhal on 5/12/18.
@@ -17,25 +19,13 @@ class SignUpRouterImpl(
 
     override fun toPhone() {
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.popBackStack(
-                            SignUpVerificationFragment.FRAGMENT_TAG,
-                            POP_BACK_STACK_INCLUSIVE)
+            fragmentManager?.pop(SignUpVerificationFragment.FRAGMENT_TAG)
         }
     }
 
     override fun toVerification() {
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.setCustomAnimations(
-                            R.anim.slide_in_right, R.anim.slide_out_right,
-                            R.anim.slide_in_right, R.anim.slide_out_right)
-                    ?.add(android.R.id.content,
-                            SignUpVerificationFragment.newInstance(),
-                            SignUpVerificationFragment.FRAGMENT_TAG)
-                    ?.addToBackStack(SignUpVerificationFragment.FRAGMENT_TAG)
-                    ?.commit()
+            fragmentManager?.push(SignUpVerificationFragment.newInstance())
         }
     }
 
@@ -43,15 +33,13 @@ class SignUpRouterImpl(
         purifyRoute()
 
         if (delegate.checkIfRoutingAvailable()) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.setCustomAnimations(
-                            R.anim.slide_in_right, R.anim.slide_out_right,
-                            R.anim.slide_in_right, R.anim.slide_out_right)
-                    ?.replace(android.R.id.content,
-                            LauncherFragment.newInstance(),
-                            LauncherFragment.FRAGMENT_TAG)
-                    ?.commit()
+            fragmentManager?.pushRoot(LauncherFragment.newInstance())
+        }
+    }
+
+    override fun toCountries() {
+        if (delegate.checkIfRoutingAvailable()) {
+            fragmentManager?.push(CountriesFragment.newInstance())
         }
     }
 

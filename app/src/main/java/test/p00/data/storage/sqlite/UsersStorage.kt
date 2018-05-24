@@ -2,6 +2,7 @@ package test.p00.data.storage.sqlite
 
 import android.content.Context
 import android.database.Cursor
+import android.util.Log
 import io.reactivex.Observable
 import test.p00.data.model.user.UserNew
 import test.p00.data.model.user.profile.UserProfile

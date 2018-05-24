@@ -13,8 +13,8 @@ import test.p00.presentation.conversation.ConversationView
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MemberModel
 import test.p00.presentation.model.conversation.message.MessageModel
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
 
 /**
  * Created by Peter Bukhal on 4/27/18.

@@ -3,18 +3,24 @@ package test.p00.presentation.countries.impl
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.countries.CountriesRepository
 import test.p00.data.repository.countries.CountriesRepositoryFactory
+import test.p00.presentation.abs.Router
 import test.p00.presentation.countries.CountriesPresenter
+import test.p00.presentation.countries.CountriesPresenter.*
 import test.p00.presentation.countries.CountriesView
+import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.model.countries.CountryModel.Mapper
-import test.p00.util.reactivex.ObservableTransformers
-import test.p00.util.reactivex.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.util.reactivex.bus.RxBus
 
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
 class CountriesPresenterImpl(
         private val scheduler: Schedulers = Schedulers.create(),
-        private val countriesRepository: CountriesRepository = CountriesRepositoryFactory.create()):
+        private val countriesRepository: CountriesRepository = CountriesRepositoryFactory.create(),
+        private val router: Router,
+        private val bus: RxBus = RxBus):
         CountriesPresenter {
 
     override var attachedView: CountriesView? = null
@@ -46,6 +52,11 @@ class CountriesPresenterImpl(
                 .subscribe(
                         { countries -> attachedView?.showCountries(countries) },
                         { /*  */ }))
+    }
+
+    override fun pickCountry(country: CountryModel) {
+        bus.sendEvent(CountryPickedEvent(country))
+        router.back()
     }
 
 }

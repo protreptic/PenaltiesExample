@@ -18,7 +18,7 @@ import test.p00.presentation.conversation.impl.adapter.MessagesAdapter
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.message.MessageModel
 import test.p00.presentation.util.dismissKeyboard
-import test.p00.util.reactivex.CompletableTransformers
+import test.p00.util.reactivex.transformers.CompletableTransformers
 
 /**
  * Created by Peter Bukhal on 4/27/18.
