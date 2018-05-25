@@ -6,8 +6,7 @@ import test.p00.data.repository.settings.SettingsRepositoryFactory
 import test.p00.domain.abs.Interactor
 
 class LauncherInteractor(
-        private val settingsRepository: SettingsRepository =
-                                        SettingsRepositoryFactory.create()) : Interactor {
+        private val settingsRepository: SettingsRepository) : Interactor {
 
     fun shouldShowOnBoardingWizard(): Observable<Boolean> =
             settingsRepository

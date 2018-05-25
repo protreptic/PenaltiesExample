@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import test.p00.R
+import test.p00.domain.launcher.LauncherInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherView
+import javax.inject.Inject
 
 class LauncherFragment : AbsFragment(), LauncherView {
 
@@ -20,8 +22,12 @@ class LauncherFragment : AbsFragment(), LauncherView {
 
     }
 
+    @Inject lateinit var launcherInteractor: LauncherInteractor
+
     private val presenter: LauncherPresenter by lazy {
-        LauncherPresenterImpl(router = LauncherRouterImpl(fragmentManager, this))
+        LauncherPresenterImpl(
+                router = LauncherRouterImpl(fragmentManager, this),
+                launcher = launcherInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_launcher

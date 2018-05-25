@@ -5,6 +5,6 @@ import test.p00.data.repository.settings.datasource.impl.SqliteSettingsDataStore
 
 object SettingsDataSourceFactory {
 
-    fun create(): SettingsDataSource = SharedPreferencesSettingsDataSource()
+    fun create() {}
 
 }

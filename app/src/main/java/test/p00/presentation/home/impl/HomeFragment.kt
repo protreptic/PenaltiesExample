@@ -67,7 +67,7 @@ class HomeFragment : AbsFragment(), HomeView {
                     /*
                      * Очищаем SharedPreferences хранилище
                      */
-                    SharedPreferencesSettingsDataSource().wipe()
+                    SharedPreferencesSettingsDataSource(context!!).wipe()
 
                     /*
                      * Повторно запускаем приложение

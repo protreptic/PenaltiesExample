@@ -10,8 +10,13 @@ import test.p00.dependecies.DaggerApplicationComponent
 class PenaltiesApplication : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<PenaltiesApplication> =
-            DaggerApplicationComponent.builder()
-                    .build()
+            applicationComponent
+
+    private val applicationComponent by lazy {
+        DaggerApplicationComponent.builder()
+                .withContext(applicationContext)
+                .build()
+    }
 
     override fun onCreate() {
         super.onCreate()

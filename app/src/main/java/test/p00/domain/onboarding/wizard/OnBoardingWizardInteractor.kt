@@ -6,17 +6,16 @@ import test.p00.data.model.settings.Settings
 import test.p00.data.model.user.Driver
 import test.p00.data.model.user.Vehicle
 import test.p00.data.repository.settings.SettingsRepository
-import test.p00.data.repository.settings.SettingsRepositoryFactory
 import test.p00.data.repository.user.UserRepository
-import test.p00.data.repository.user.UserRepositoryFactory
 import test.p00.domain.abs.Interactor
 import java.util.regex.Pattern.matches
+import javax.inject.Inject
 
-class OnBoardingWizardInteractor(
-        private val userRepository: UserRepository =
-                                    UserRepositoryFactory.create(),
-        private val settingsRepository: SettingsRepository =
-                                        SettingsRepositoryFactory.create()) : Interactor {
+class OnBoardingWizardInteractor
+    @Inject constructor(
+        private val userRepository: UserRepository,
+        private val settingsRepository: SettingsRepository):
+            Interactor {
 
     fun addDriver(rawName: String, number: String): Observable<Boolean> =
                 validateDriver(number)

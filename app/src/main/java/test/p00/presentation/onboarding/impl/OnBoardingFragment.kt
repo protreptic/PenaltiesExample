@@ -8,11 +8,13 @@ import android.view.View
 import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.onboarding.OnBoardingInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.impl.adapter.OnBoardingAdapter
+import javax.inject.Inject
 
 class OnBoardingFragment : AbsFragment(), OnBoardingView {
 
@@ -26,8 +28,13 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
 
     }
 
+    @Inject
+    lateinit var interactor: OnBoardingInteractor
+
     private val presenter: OnBoardingPresenter by lazy {
-        OnBoardingPresenterImpl(router = OnBoardingRouterImpl(fragmentManager, this))
+        OnBoardingPresenterImpl(
+                router = OnBoardingRouterImpl(fragmentManager, this),
+                interactor = interactor)
     }
 
     override val targetLayout: Int = R.layout.view_onboarding

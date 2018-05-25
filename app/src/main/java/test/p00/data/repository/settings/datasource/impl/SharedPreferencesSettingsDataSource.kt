@@ -5,13 +5,13 @@ import android.content.Context.MODE_PRIVATE
 import io.reactivex.Observable
 import test.p00.data.model.settings.Settings
 import test.p00.data.repository.settings.datasource.SettingsDataSource
-import test.p00.util.ContextProvider
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/23/18.
  */
-class SharedPreferencesSettingsDataSource(
-        private val context: Context = ContextProvider.provide()) : SettingsDataSource {
+class SharedPreferencesSettingsDataSource
+    @Inject constructor (private val context: Context): SettingsDataSource {
 
     private val name = "default"
     private val fieldWasOnBoardingShown = "wasOnBoardingShown"

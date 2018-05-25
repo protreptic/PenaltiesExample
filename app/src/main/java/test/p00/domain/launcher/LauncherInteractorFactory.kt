@@ -5,6 +5,6 @@ package test.p00.domain.launcher
  */
 object LauncherInteractorFactory {
 
-    fun create() = LauncherInteractor()
+    fun create() {}
 
 }

@@ -5,6 +5,6 @@ package test.p00.domain.onboarding
  */
 object OnBoardingInteractorFactory {
 
-    fun create() = OnBoardingInteractor()
+    fun create() {}
 
 }

@@ -8,6 +8,6 @@ object SettingsRepositoryFactory {
     /**
      *
      */
-    fun create(): SettingsRepository = SettingsRepositoryImpl(SettingsDataSourceFactory.create())
+    fun create() {}
 
 }

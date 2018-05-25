@@ -5,6 +5,6 @@ package test.p00.domain.onboarding.wizard
  */
 object OnBoardingWizardInteractorFactory {
 
-    fun create() = OnBoardingWizardInteractor()
+    fun create() {}
 
 }

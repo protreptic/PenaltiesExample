@@ -10,17 +10,24 @@ import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.onboarding.OnBoardingInteractor
+import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.util.dismissKeyboard
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
+import javax.inject.Inject
 
 abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {
 
+    @Inject
+    lateinit var interactor: OnBoardingWizardInteractor
+
     protected val presenter: OnBoardingWizardStepPresenter by lazy {
         OnBoardingWizardStepPresenterImpl(
-                router = OnBoardingWizardRouterImpl(fragmentManager, this)) }
+                router = OnBoardingWizardRouterImpl(fragmentManager, this),
+                interactor = interactor) }
 
     override val targetLayout: Int = R.layout.view_onboarding_wizard_step
 

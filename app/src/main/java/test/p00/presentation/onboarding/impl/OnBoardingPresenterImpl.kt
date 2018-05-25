@@ -2,19 +2,20 @@ package test.p00.presentation.onboarding.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.onboarding.OnBoardingInteractor
-import test.p00.domain.onboarding.OnBoardingInteractorFactory
+import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingRouter
 import test.p00.presentation.onboarding.OnBoardingView
-import test.p00.presentation.model.onboarding.OnBoardingModel
-import test.p00.util.reactivex.transformers.ObservableTransformers
 import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import javax.inject.Inject
 
-class OnBoardingPresenterImpl(
+class OnBoardingPresenterImpl
+    @Inject constructor(
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: OnBoardingRouter,
-        private val interactor: OnBoardingInteractor = OnBoardingInteractorFactory.create()):
-        OnBoardingPresenter {
+        private val interactor: OnBoardingInteractor):
+            OnBoardingPresenter {
 
     override var attachedView: OnBoardingView? = null
     override var disposables = CompositeDisposable()

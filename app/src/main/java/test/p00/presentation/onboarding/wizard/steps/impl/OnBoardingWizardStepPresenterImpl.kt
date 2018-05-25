@@ -2,17 +2,19 @@ package test.p00.presentation.onboarding.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractor
-import test.p00.domain.onboarding.wizard.OnBoardingWizardInteractorFactory
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardRouter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
-import test.p00.util.reactivex.transformers.ObservableTransformers
 import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.util.reactivex.transformers.ObservableTransformers
+import javax.inject.Inject
 
-class OnBoardingWizardStepPresenterImpl(
+class OnBoardingWizardStepPresenterImpl
+    @Inject constructor(
         private val scheduler: Schedulers = Schedulers.create(),
         private val router: OnBoardingWizardRouter,
-        private val interactor: OnBoardingWizardInteractor = OnBoardingWizardInteractorFactory.create()) : OnBoardingWizardStepPresenter {
+        private val interactor: OnBoardingWizardInteractor):
+            OnBoardingWizardStepPresenter {
 
     override var attachedView: OnBoardingWizardStepView? = null
     override var disposables = CompositeDisposable()
