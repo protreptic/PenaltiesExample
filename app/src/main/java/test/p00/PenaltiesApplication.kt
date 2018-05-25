@@ -1,11 +1,17 @@
 package test.p00
 
-import android.app.Application
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import test.p00.dependecies.DaggerApplicationComponent
 
 @Suppress("unused")
-class PenaltiesApplication : Application() {
+class PenaltiesApplication : DaggerApplication() {
+
+    override fun applicationInjector(): AndroidInjector<PenaltiesApplication> =
+            DaggerApplicationComponent.builder()
+                    .build()
 
     override fun onCreate() {
         super.onCreate()
