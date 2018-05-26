@@ -4,14 +4,17 @@ import io.reactivex.Observable
 import test.p00.data.model.onboarding.OnBoarding
 import test.p00.data.repository.onboarding.OnBoardingRepository
 import test.p00.data.repository.settings.SettingsRepository
+import test.p00.domain.abs.Interactor
 import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
 class OnBoardingInteractor
-    @Inject constructor(private val onBoardingRepository: OnBoardingRepository,
-                        private val settingsRepository: SettingsRepository) {
+    @Inject constructor(
+        private val onBoardingRepository: OnBoardingRepository,
+        private val settingsRepository: SettingsRepository):
+            Interactor {
 
     fun displayOnBoarding(): Observable<OnBoarding> =
             settingsRepository

@@ -9,8 +9,8 @@ import test.p00.presentation.onboarding.wizard.introductory.impl.OnBoardingWizar
 import test.p00.presentation.onboarding.wizard.steps.impl.OnBoardingWizardAddDriverStepFragment
 import test.p00.presentation.onboarding.wizard.steps.impl.OnBoardingWizardAddVehicleLicenseStepFragment
 import test.p00.presentation.onboarding.wizard.steps.impl.OnBoardingWizardAddVehicleStepFragment
-import test.p00.util.extension.push
-import test.p00.util.extension.pushRoot
+import test.p00.extensions.push
+import test.p00.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/23/18.

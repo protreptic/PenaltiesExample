@@ -10,15 +10,18 @@ import android.widget.EditText
 import android.widget.Toast
 import kotterknife.bindView
 import test.p00.R
+import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
 import test.p00.data.storage.websocket.WebSocketConnection
+import test.p00.domain.conversation.ConversationInteractor
+import test.p00.domain.conversations.ConversationsInteractor
 import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationView
 import test.p00.presentation.conversation.impl.adapter.MessagesAdapter
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.message.MessageModel
-import test.p00.presentation.util.dismissKeyboard
-import test.p00.util.reactivex.transformers.CompletableTransformers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
@@ -39,13 +42,19 @@ class ConversationFragment : AbsFragment(), ConversationView, MessagesAdapter.De
     }
 
     private val conversationId by lazy {
-        arguments!!.getString(FRAGMENT_ARG_CONVERSATION)
+        arguments!!.getString(FRAGMENT_ARG_CONVERSATION, "1")
     }
+
+    @Inject lateinit var conversationInteractor: ConversationInteractor
+    @Inject lateinit var conversationsInteractor: ConversationsInteractor
 
     private val presenter: ConversationPresenter by lazy {
         ConversationPresenterImpl(
-                conversationId = conversationId,
-                router = ConversationRouterImpl(conversationId, fragmentManager, this))
+                conversationId,
+                schedulers,
+                ConversationRouterImpl(conversationId, fragmentManager, this),
+                conversationsInteractor,
+                conversationInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_conversation

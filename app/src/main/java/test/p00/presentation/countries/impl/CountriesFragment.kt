@@ -38,8 +38,10 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
 
     private val presenter: CountriesPresenter by lazy {
         CountriesPresenterImpl(
-                router = DefaultRouter(fragmentManager, this),
-                countriesRepository = countriesRepository)
+                schedulers,
+                countriesRepository,
+                DefaultRouter(fragmentManager, this),
+                rxBus)
     }
 
     override val targetLayout = R.layout.view_countries

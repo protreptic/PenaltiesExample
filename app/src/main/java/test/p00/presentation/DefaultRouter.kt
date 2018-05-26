@@ -8,4 +8,4 @@ import test.p00.presentation.abs.Router
  */
 class DefaultRouter(
         override val fragmentManager: FragmentManager?,
-        override val delegate: Router.Delegate) : Router
+        override val delegate: Router.Delegate): Router

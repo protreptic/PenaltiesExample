@@ -1,4 +1,4 @@
-package test.p00.util.reactivex.bus
+package test.p00.auxiliary.reactivex.bus
 
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject

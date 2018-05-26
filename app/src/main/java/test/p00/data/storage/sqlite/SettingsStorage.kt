@@ -2,12 +2,14 @@ package test.p00.data.storage.sqlite
 
 import android.content.Context
 import test.p00.data.storage.sqlite.abs.Storage
-import test.p00.util.ContextProvider.Companion.provide
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/20/18.
  */
-class SettingsStorage(context: Context = provide()) : Storage(context, NAME, VERSION) {
+class SettingsStorage
+    @Inject constructor(context: Context):
+        Storage(context, NAME, VERSION) {
 
     companion object {
 

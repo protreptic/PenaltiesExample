@@ -5,15 +5,16 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.conversations.ConversationsInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.conversation.impl.ConversationRouterImpl
 import test.p00.presentation.conversation.members.MembersPresenter
 import test.p00.presentation.conversation.members.MembersView
 import test.p00.presentation.conversation.members.impl.adapter.MembersAdapter
 import test.p00.presentation.model.conversation.MemberModel
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/28/18.
@@ -37,10 +38,14 @@ class MembersFragment : AbsFragment(), MembersView, MembersAdapter.Delegate {
         arguments!!.getString(FRAGMENT_ARG_CONVERSATION)
     }
 
+    @Inject lateinit var conversationsInteractor: ConversationsInteractor
+
     private val presenter: MembersPresenter by lazy {
         MembersPresenterImpl(
-                conversationId = conversationId,
-                router = ConversationRouterImpl(conversationId, fragmentManager, this))
+                conversationId,
+                schedulers,
+                ConversationRouterImpl(conversationId, fragmentManager, this),
+                conversationsInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_conversation_members
@@ -63,7 +68,7 @@ class MembersFragment : AbsFragment(), MembersView, MembersAdapter.Delegate {
         disposables.add(
             membersAdapter
                 .changeData(members)
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(schedulers.background())
                 .subscribe())
     }
 

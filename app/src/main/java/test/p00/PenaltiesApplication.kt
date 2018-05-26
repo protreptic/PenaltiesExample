@@ -4,8 +4,9 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import test.p00.auxiliary.reactivex.bus.RxBus
 import test.p00.dependecies.DaggerApplicationComponent
-import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
 
 @Suppress("unused")
 class PenaltiesApplication : DaggerApplication() {
@@ -17,6 +18,7 @@ class PenaltiesApplication : DaggerApplication() {
         DaggerApplicationComponent.builder()
                 .withContext(applicationContext)
                 .withSchedulers(Schedulers.create())
+                .withBus(RxBus)
                 .build()
     }
 

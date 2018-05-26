@@ -1,4 +1,4 @@
-package test.p00.domain.onboarding.wizard
+package test.p00.domain.onboarding
 
 import io.reactivex.Observable
 import io.reactivex.Observable.just

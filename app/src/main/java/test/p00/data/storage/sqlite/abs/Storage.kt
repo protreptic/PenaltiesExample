@@ -14,7 +14,7 @@ abstract class Storage(
         protected val context: Context,
         protected val name: String,
         protected val version: Int):
-        SQLiteOpenHelper(context, name, null, version), Closeable {
+            SQLiteOpenHelper(context, name, null, version), Closeable {
 
     companion object {
 

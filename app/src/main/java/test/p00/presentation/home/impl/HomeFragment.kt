@@ -7,12 +7,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import io.reactivex.Completable
-import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotterknife.bindView
 import test.p00.R
+import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
+import test.p00.domain.home.HomeInteractor
 import test.p00.presentation.activity.MainActivity
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.home.HomePresenter
@@ -20,7 +21,7 @@ import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.impl.adapter.DriversAdapter
 import test.p00.presentation.home.impl.adapter.VehiclesAdapter
 import test.p00.presentation.model.user.UserModel
-import test.p00.util.reactivex.transformers.CompletableTransformers
+import javax.inject.Inject
 
 class HomeFragment : AbsFragment(), HomeView {
 
@@ -34,8 +35,13 @@ class HomeFragment : AbsFragment(), HomeView {
 
     }
 
+    @Inject lateinit var homeInteractor: HomeInteractor
+
     private val presenter: HomePresenter by lazy {
-        HomePresenterImpl(route = HomeRouterImpl(fragmentManager, this))
+        HomePresenterImpl(
+                schedulers,
+                HomeRouterImpl(fragmentManager, this),
+                homeInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_home
@@ -99,11 +105,11 @@ class HomeFragment : AbsFragment(), HomeView {
         disposables.addAll(
             vehiclesAdapter
                 .changeData(user.vehicles)
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(schedulers.background())
                 .subscribe(),
             driversAdapter
                 .changeData(user.drivers)
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(schedulers.background())
                 .subscribe())
     }
 

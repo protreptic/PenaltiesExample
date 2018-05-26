@@ -6,9 +6,9 @@ import test.p00.presentation.countries.impl.CountriesFragment
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.verification.impl.SignUpVerificationFragment
-import test.p00.util.extension.push
-import test.p00.util.extension.pop
-import test.p00.util.extension.pushRoot
+import test.p00.extensions.push
+import test.p00.extensions.pop
+import test.p00.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 5/12/18.

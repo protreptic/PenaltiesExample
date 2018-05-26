@@ -8,11 +8,11 @@ import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.SignUpView
-import test.p00.util.extension.get
-import test.p00.util.reactivex.bus.RxBus
-import test.p00.util.reactivex.schedulers.Schedulers
-import test.p00.util.reactivex.transformers.CompletableTransformers
-import test.p00.util.reactivex.transformers.ObservableTransformers
+import test.p00.extensions.get
+import test.p00.auxiliary.reactivex.bus.RxBus
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import javax.inject.Inject
 
 /**
@@ -20,10 +20,10 @@ import javax.inject.Inject
  */
 class SignUpPresenterImpl
     @Inject constructor(
-        private val scheduler: Schedulers = Schedulers.create(),
+        private val scheduler: Schedulers,
         private val interactor: SignUpInteractor,
         private val router: SignUpRouter,
-        private val bus: RxBus = RxBus):
+        private val bus: RxBus):
             SignUpPresenter {
 
     override var attachedView: SignUpView? = null

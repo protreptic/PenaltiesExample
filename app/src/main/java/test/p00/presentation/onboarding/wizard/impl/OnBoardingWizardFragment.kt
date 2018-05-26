@@ -21,7 +21,8 @@ class OnBoardingWizardFragment : AbsFragment(), OnBoardingWizardView {
     }
 
     private val presenter: OnBoardingWizardPresenter by lazy {
-        OnBoardingWizardPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager, this))
+        OnBoardingWizardPresenterImpl(
+                OnBoardingWizardRouterImpl(fragmentManager, this))
     }
 
     override val targetLayout: Int = R.layout.view_onboarding_wizard

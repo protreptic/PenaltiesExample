@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import test.p00.R
 import test.p00.presentation.model.onboarding.OnBoardingModel
-import test.p00.util.glide.GlideApp
+import test.p00.auxiliary.glide.GlideApp
 
 class OnBoardingAdapter(private val context: Context,
                         private val onBoarding: OnBoardingModel): PagerAdapter() {

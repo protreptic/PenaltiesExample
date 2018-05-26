@@ -1,4 +1,4 @@
-package test.p00.presentation.util
+package test.p00.presentation.auxiliary
 
 import android.app.Activity
 import android.content.Context

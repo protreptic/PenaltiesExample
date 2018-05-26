@@ -3,20 +3,21 @@ package test.p00.domain.conversation
 import android.net.Uri
 import io.reactivex.Observable
 import test.p00.data.model.conversation.message.Message
-import test.p00.data.repository.conversation.datasource.impl.MockConversationDataSource
-import test.p00.data.repository.conversation.datasource.impl.CloudConversationDataSource
+import test.p00.data.repository.conversation.datasource.ConversationDataSource
 import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.data.storage.websocket.WebSocketConnection.Status
 import test.p00.domain.abs.Interactor
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class ConversationInteractor(
+class ConversationInteractor
+    @Inject constructor(
         private val conversationId: String,
-        private val cache: MockConversationDataSource = MockConversationDataSource(),
-        private val cloud: CloudConversationDataSource = CloudConversationDataSource(conversationId)):
-        Interactor {
+        private val cache: ConversationDataSource,
+        private val cloud: ConversationDataSource):
+            Interactor {
 
     fun joinConversation() =
             cloud.joinConversation()

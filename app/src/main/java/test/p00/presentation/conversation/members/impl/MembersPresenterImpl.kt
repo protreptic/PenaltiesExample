@@ -2,24 +2,25 @@ package test.p00.presentation.conversation.members.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.domain.conversations.ConversationsInteractor
-import test.p00.domain.conversations.ConversationsInteractorFactory
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.members.MembersPresenter
 import test.p00.presentation.conversation.members.MembersView
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MemberModel
-import test.p00.util.reactivex.transformers.ObservableTransformers
-import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-class MembersPresenterImpl(
+class MembersPresenterImpl
+    @Inject constructor(
         private val conversationId: String,
-        private val scheduler: Schedulers = Schedulers.create(),
+        private val scheduler: Schedulers,
         private val router: ConversationRouter,
-        private val conversationsInteractor: ConversationsInteractor = ConversationsInteractorFactory.create()) :
-        MembersPresenter {
+        private val conversationsInteractor: ConversationsInteractor):
+            MembersPresenter {
 
     override var attachedView: MembersView? = null
     override var disposables = CompositeDisposable()

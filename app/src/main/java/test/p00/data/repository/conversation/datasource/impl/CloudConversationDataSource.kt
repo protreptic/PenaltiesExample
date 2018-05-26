@@ -2,7 +2,7 @@ package test.p00.data.repository.conversation.datasource.impl
 
 import android.net.Uri
 import io.reactivex.Observable
-import io.reactivex.Observable.*
+import io.reactivex.Observable.never
 import test.p00.data.model.conversation.Conversation
 import test.p00.data.model.conversation.message.Author
 import test.p00.data.model.conversation.message.Message
@@ -10,19 +10,21 @@ import test.p00.data.model.conversation.message.content.*
 import test.p00.data.repository.conversation.datasource.ConversationDataSource
 import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.data.storage.websocket.WebSocketConnection.Status
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class CloudConversationDataSource(
+class CloudConversationDataSource
+    @Inject constructor(
         private val conversationId: String,
-        private val connection: WebSocketConnection = WebSocketConnection.connection):
-        ConversationDataSource {
+        private val connection: WebSocketConnection):
+            ConversationDataSource {
 
-    fun joinConversation() =
+    override fun joinConversation() =
             connection.joinConversation(conversationId)
 
-    fun watchOnConversation(): Observable<Message> =
+    override fun watchOnConversation(): Observable<Message> =
             connection
                 .messages
                 .map { receivedMessage -> Message().apply {
@@ -46,10 +48,10 @@ class CloudConversationDataSource(
                     }
                 }}
 
-    fun watchOnConnection(): Observable<Status> =
+    override fun watchOnConnection(): Observable<Status> =
             connection.status
 
-    fun quitConversation() =
+    override fun quitConversation() =
             connection.quitConversation()
 
     private fun createNewMessage() =
@@ -62,7 +64,7 @@ class CloudConversationDataSource(
                 addedAt = System.currentTimeMillis()
             }
 
-    fun sendText(text: String) =
+    override fun sendText(text: String) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.TEXT.name
                 contentText = ContentText().apply {
@@ -70,7 +72,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendDocument(document: Uri) =
+    override fun sendDocument(document: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.DOCUMENT.name
                 contentDocument = ContentDocument().apply {
@@ -78,7 +80,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendImage(image: Uri) =
+    override fun sendImage(image: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.IMAGE.name
                 contentImage = ContentImage().apply {
@@ -86,7 +88,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendAudio(audio: Uri) =
+    override fun sendAudio(audio: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.AUDIO.name
                 contentAudio = ContentAudio().apply {
@@ -94,7 +96,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendVideo(video: Uri) =
+    override fun sendVideo(video: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.VIDEO.name
                 contentVideo = ContentVideo().apply {
@@ -102,7 +104,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendVoice(voice: Uri) =
+    override fun sendVoice(voice: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.VOICE.name
                 contentVoice = ContentVoice().apply {
@@ -110,7 +112,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendLocation(location: Uri) =
+    override fun sendLocation(location: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.LOCATION.name
                 contentLocation = ContentLocation().apply {
@@ -119,7 +121,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun sendWeb(web: Uri) =
+    override fun sendWeb(web: Uri) =
             connection.sendMessage(createNewMessage().apply {
                 contentType = Message.Content.WEB.name
                 contentWeb = ContentWeb().apply {
@@ -127,7 +129,7 @@ class CloudConversationDataSource(
                 }
             })
 
-    fun readMessage(message: Message) =
+    override fun readMessage(message: Message) =
             connection.sendMessage(message.apply {
                 status = Message.Status.READ.name
             })

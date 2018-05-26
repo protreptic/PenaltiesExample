@@ -26,8 +26,9 @@ class LauncherFragment : AbsFragment(), LauncherView {
 
     private val presenter: LauncherPresenter by lazy {
         LauncherPresenterImpl(
-                router = LauncherRouterImpl(fragmentManager, this),
-                launcher = launcherInteractor)
+                schedulers,
+                LauncherRouterImpl(fragmentManager, this),
+                launcherInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_launcher

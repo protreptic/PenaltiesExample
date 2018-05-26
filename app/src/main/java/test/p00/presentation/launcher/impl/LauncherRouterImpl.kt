@@ -6,7 +6,7 @@ import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardFragment
 import test.p00.presentation.signup.impl.SignUpFragment
-import test.p00.util.extension.pushRoot
+import test.p00.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/23/18.

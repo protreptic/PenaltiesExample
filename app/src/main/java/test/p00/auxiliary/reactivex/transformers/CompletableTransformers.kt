@@ -1,7 +1,7 @@
-package test.p00.util.reactivex.transformers
+package test.p00.auxiliary.reactivex.transformers
 
 import io.reactivex.CompletableTransformer
-import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
 
 object CompletableTransformers {
 

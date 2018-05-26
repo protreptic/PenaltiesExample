@@ -4,28 +4,28 @@ import android.net.Uri
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.model.conversation.message.Message
 import test.p00.domain.conversation.ConversationInteractor
-import test.p00.domain.conversation.ConversationInteractorFactory
 import test.p00.domain.conversations.ConversationsInteractor
-import test.p00.domain.conversations.ConversationsInteractorFactory
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.ConversationView
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MemberModel
 import test.p00.presentation.model.conversation.message.MessageModel
-import test.p00.util.reactivex.transformers.ObservableTransformers
-import test.p00.util.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class ConversationPresenterImpl(
+class ConversationPresenterImpl
+    @Inject constructor(
         private val conversationId: String,
-        private val scheduler: Schedulers = Schedulers.create(),
+        private val scheduler: Schedulers,
         private val router: ConversationRouter,
-        private val conversationsInteractor: ConversationsInteractor = ConversationsInteractorFactory.create(),
-        private val conversationInteractor: ConversationInteractor = ConversationInteractorFactory.create(conversationId)) :
-        ConversationPresenter {
+        private val conversationsInteractor: ConversationsInteractor,
+        private val conversationInteractor: ConversationInteractor):
+            ConversationPresenter {
 
     override var attachedView: ConversationView? = null
     override var disposables = CompositeDisposable()

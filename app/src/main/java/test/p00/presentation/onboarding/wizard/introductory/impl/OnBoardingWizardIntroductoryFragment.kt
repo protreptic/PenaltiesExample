@@ -12,7 +12,7 @@ import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryPresenter
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryView
-import test.p00.util.glide.GlideApp
+import test.p00.auxiliary.glide.GlideApp
 
 class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntroductoryView {
 
@@ -27,7 +27,7 @@ class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntr
     }
 
     private val presenter: OnBoardingWizardIntroductoryPresenter by lazy {
-        OnBoardingWizardIntroductoryPresenterImpl(router = OnBoardingWizardRouterImpl(fragmentManager, this))
+        OnBoardingWizardIntroductoryPresenterImpl(OnBoardingWizardRouterImpl(fragmentManager, this))
     }
 
     override val targetLayout: Int = R.layout.view_onboarding_wizard_introductory

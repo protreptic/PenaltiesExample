@@ -1,19 +1,24 @@
 package test.p00.data.repository.settings.datasource.impl
 
 import android.content.ContentValues
+import android.content.Context
 import io.reactivex.Observable
 import test.p00.data.model.settings.Settings
 import test.p00.data.repository.settings.datasource.SettingsDataSource
 import test.p00.data.storage.sqlite.SettingsStorage
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/20/18.
  */
-class SqliteSettingsDataStore : SettingsDataSource {
+class SqliteSettingsDataStore
+    @Inject constructor(
+        private val context: Context):
+            SettingsDataSource {
 
     override fun fetch(): Observable<Settings> =
             Observable.create { source ->
-                SettingsStorage().use { storage ->
+                SettingsStorage(context).use { storage ->
                     storage.readableDatabase.use { database ->
                         database.rawQuery("SELECT * FROM SETTINGS", null).use { cursor ->
                                 val settings = Settings()
@@ -40,7 +45,7 @@ class SqliteSettingsDataStore : SettingsDataSource {
             }
 
     override fun retain(settings: Settings): Observable<Settings> {
-        SettingsStorage().use { storage ->
+        SettingsStorage(context).use { storage ->
             storage.writableDatabase.use {
                 it.update("SETTINGS", ContentValues().apply {
                     put("VALUE", if (settings.wasOnBoardingShown) "1" else "0") },

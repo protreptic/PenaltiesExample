@@ -16,7 +16,7 @@ import test.p00.presentation.model.ErrorModel
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpView
-import test.p00.presentation.util.dismissKeyboard
+import test.p00.presentation.auxiliary.dismissKeyboard
 import javax.inject.Inject
 
 /**
@@ -38,8 +38,10 @@ class SignUpFragment : AbsFragment(), SignUpView {
 
     private val presenter: SignUpPresenter by lazy {
         SignUpPresenterImpl(
-                router = SignUpRouterImpl(fragmentManager, this),
-                interactor = signUpInteractor)
+                schedulers,
+                signUpInteractor,
+                SignUpRouterImpl(fragmentManager, this),
+                rxBus)
     }
 
     override val targetLayout = R.layout.view_sign_up_phone

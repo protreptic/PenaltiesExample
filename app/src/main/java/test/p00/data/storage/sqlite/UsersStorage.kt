@@ -5,15 +5,14 @@ import android.database.Cursor
 import io.reactivex.Observable
 import test.p00.data.model.user.UserNew
 import test.p00.data.model.user.profile.UserProfile
-import test.p00.data.repository.countries.datasource.CountriesDataSource
 import test.p00.data.repository.countries.datasource.impl.CountriesDataSourceImpl
 import test.p00.data.storage.sqlite.abs.Storage
 import javax.inject.Inject
 
 class UsersStorage
     @Inject constructor(
-            private val context1: Context):
-                Storage(context1, NAME, VERSION) {
+        context: Context):
+            Storage(context, NAME, VERSION) {
 
     companion object {
 
@@ -43,7 +42,7 @@ class UsersStorage
 
     fun fetchEverything(): Observable<List<UserNew>> =
             Observable.create { source ->
-                CountriesDataSourceImpl(context1).fetch("SELECT USERS.*, USER_PROFILES.PHONE_NUMBER FROM USERS, USER_PROFILES") { cursor ->
+                CountriesDataSourceImpl(context).fetch("SELECT USERS.*, USER_PROFILES.PHONE_NUMBER FROM USERS, USER_PROFILES") { cursor ->
                     source.onNext(users(cursor))
                     source.onComplete()
                 }
@@ -51,7 +50,7 @@ class UsersStorage
 
     fun fetchDefault(): Observable<UserNew> =
             Observable.create { source ->
-                CountriesDataSourceImpl(context1).fetch("SELECT * FROM USERS WHERE IS_DEFAULT = 1 LIMIT 1") { cursor ->
+                CountriesDataSourceImpl(context).fetch("SELECT * FROM USERS WHERE IS_DEFAULT = 1 LIMIT 1") { cursor ->
                     while (cursor.moveToNext()) {
                         source.onNext(user(cursor))
                         source.onComplete()
@@ -63,7 +62,7 @@ class UsersStorage
             Observable.create { source ->
                 val arguments = arrayOf(userId.toString())
 
-                CountriesDataSourceImpl(context1).fetch("SELECT * FROM USERS WHERE ID = ? LIMIT 1", arguments) { cursor ->
+                CountriesDataSourceImpl(context).fetch("SELECT * FROM USERS WHERE ID = ? LIMIT 1", arguments) { cursor ->
                     while (cursor.moveToNext()) {
                         source.onNext(user(cursor))
                         source.onComplete()

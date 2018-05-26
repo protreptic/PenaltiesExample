@@ -5,14 +5,15 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import io.reactivex.schedulers.Schedulers
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.conversations.ConversationsInteractor
 import test.p00.presentation.activity.abs.AbsFragment
-import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter
 import test.p00.presentation.conversations.ConversationsPresenter
 import test.p00.presentation.conversations.ConversationsView
+import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter
 import test.p00.presentation.model.conversation.ConversationModel
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/28/18.
@@ -29,8 +30,13 @@ class ConversationsFragment : AbsFragment(), ConversationsView, ConversationsAda
 
     }
 
+    @Inject lateinit var conversationsInteractor: ConversationsInteractor
+
     private val presenter: ConversationsPresenter by lazy {
-        ConversationsPresenterImpl(router = ConversationsRouterImpl(fragmentManager, this))
+        ConversationsPresenterImpl(
+                schedulers,
+                ConversationsRouterImpl(fragmentManager, this),
+                conversationsInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_conversations
@@ -53,7 +59,7 @@ class ConversationsFragment : AbsFragment(), ConversationsView, ConversationsAda
         disposables.add(
             conversationsAdapter
                 .changeData(conversations)
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(schedulers.background())
                 .subscribe { conversationsAdapter.notifyDataSetChanged() })
     }
 

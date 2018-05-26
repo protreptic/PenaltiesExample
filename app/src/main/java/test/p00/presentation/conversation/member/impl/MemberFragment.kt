@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.conversations.ConversationsInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.conversation.impl.ConversationRouterImpl
 import test.p00.presentation.conversation.member.MemberPresenter
 import test.p00.presentation.conversation.member.MemberView
 import test.p00.presentation.model.conversation.MemberModel
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/28/18.
@@ -40,11 +42,15 @@ class MemberFragment : AbsFragment(), MemberView {
         arguments!!.getString(FRAGMENT_ARG_MEMBER)
     }
 
+    @Inject lateinit var conversationsInteractor: ConversationsInteractor
+
     private val presenter: MemberPresenter by lazy {
         MemberPresenterImpl(
-                conversationId = conversationId,
-                memberId = arguments!!.getString(FRAGMENT_ARG_MEMBER),
-                router = ConversationRouterImpl(memberId, fragmentManager, this))
+                conversationId,
+                memberId,
+                schedulers,
+                ConversationRouterImpl(memberId, fragmentManager, this),
+                conversationsInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_conversation_member

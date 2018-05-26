@@ -28,13 +28,13 @@ class OnBoardingFragment : AbsFragment(), OnBoardingView {
 
     }
 
-    @Inject
-    lateinit var interactor: OnBoardingInteractor
+    @Inject lateinit var interactor: OnBoardingInteractor
 
     private val presenter: OnBoardingPresenter by lazy {
         OnBoardingPresenterImpl(
-                router = OnBoardingRouterImpl(fragmentManager, this),
-                interactor = interactor)
+                schedulers,
+                OnBoardingRouterImpl(fragmentManager, this),
+                interactor)
     }
 
     override val targetLayout: Int = R.layout.view_onboarding

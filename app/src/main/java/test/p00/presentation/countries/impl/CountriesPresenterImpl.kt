@@ -8,9 +8,9 @@ import test.p00.presentation.countries.CountriesPresenter.*
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.model.countries.CountryModel.Mapper
-import test.p00.util.reactivex.transformers.ObservableTransformers
-import test.p00.util.reactivex.schedulers.Schedulers
-import test.p00.util.reactivex.bus.RxBus
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.bus.RxBus
 import javax.inject.Inject
 
 /**
@@ -18,10 +18,10 @@ import javax.inject.Inject
  */
 class CountriesPresenterImpl
     @Inject constructor(
-        private val scheduler: Schedulers = Schedulers.create(),
+        private val scheduler: Schedulers,
         private val countriesRepository: CountriesRepository,
         private val router: Router,
-        private val bus: RxBus = RxBus):
+        private val bus: RxBus):
             CountriesPresenter {
 
     override var attachedView: CountriesView? = null
