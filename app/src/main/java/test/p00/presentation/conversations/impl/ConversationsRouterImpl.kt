@@ -5,7 +5,7 @@ import test.p00.presentation.Router.Delegate
 import test.p00.presentation.conversation.impl.ConversationFragment
 import test.p00.presentation.conversations.ConversationsRouter
 import test.p00.presentation.model.conversation.ConversationModel
-import test.p00.extensions.push
+import test.p00.auxiliary.extensions.push
 
 /**
  * Created by Peter Bukhal on 4/28/18.

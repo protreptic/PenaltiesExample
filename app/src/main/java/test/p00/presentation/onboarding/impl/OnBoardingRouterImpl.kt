@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentManager
 import test.p00.presentation.Router.Delegate
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.onboarding.OnBoardingRouter
-import test.p00.extensions.pushRoot
+import test.p00.auxiliary.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/23/18.

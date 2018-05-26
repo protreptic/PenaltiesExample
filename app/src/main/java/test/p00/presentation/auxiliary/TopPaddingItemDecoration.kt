@@ -1,4 +1,4 @@
-package test.p00.widget
+package test.p00.presentation.auxiliary
 
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView

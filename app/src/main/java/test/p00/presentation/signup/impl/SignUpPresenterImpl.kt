@@ -8,7 +8,7 @@ import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.SignUpView
-import test.p00.extensions.get
+import test.p00.auxiliary.extensions.get
 import test.p00.auxiliary.reactivex.bus.RxBus
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
 import test.p00.auxiliary.reactivex.transformers.CompletableTransformers

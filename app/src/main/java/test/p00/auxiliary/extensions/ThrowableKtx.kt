@@ -1,4 +1,4 @@
-package test.p00.extensions
+package test.p00.auxiliary.extensions
 
 import retrofit2.HttpException
 import test.p00.data.remote.authorize.Authorize

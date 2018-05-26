@@ -5,13 +5,13 @@ import dagger.android.support.DaggerApplication
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import test.p00.auxiliary.reactivex.bus.RxBus
-import test.p00.dependecies.DaggerApplicationComponent
+import test.p00.auxiliary.dependecies.DaggerApplicationComponent
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
 
 @Suppress("unused")
-class PenaltiesApplication : DaggerApplication() {
+class DefaultApplication : DaggerApplication() {
 
-    override fun applicationInjector(): AndroidInjector<PenaltiesApplication> =
+    override fun applicationInjector(): AndroidInjector<DefaultApplication> =
             applicationComponent
 
     private val applicationComponent by lazy {

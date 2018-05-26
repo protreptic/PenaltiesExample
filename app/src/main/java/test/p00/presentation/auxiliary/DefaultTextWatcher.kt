@@ -1,4 +1,4 @@
-package test.p00.widget
+package test.p00.presentation.auxiliary
 
 import android.text.Editable
 import android.text.TextWatcher

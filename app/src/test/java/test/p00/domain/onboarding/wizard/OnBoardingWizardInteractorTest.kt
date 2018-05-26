@@ -127,6 +127,7 @@ class OnBoardingWizardInteractorTest {
     fun validateVehicle() {
         VEHICLE_NUMBER_VALID.forEach { item ->
             sut.validateVehicle(item).test().assertValue(true) }
+
         VEHICLE_NUMBER_INVALID.forEach { item ->
             sut.validateVehicle(item).test().assertValue(false) }
     }

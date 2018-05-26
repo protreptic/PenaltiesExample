@@ -15,7 +15,7 @@ import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
-import test.p00.widget.TopPaddingItemDecoration
+import test.p00.presentation.auxiliary.TopPaddingItemDecoration
 import javax.inject.Inject
 
 /**

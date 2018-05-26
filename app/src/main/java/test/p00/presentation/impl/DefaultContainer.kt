@@ -1,7 +1,7 @@
 package test.p00.presentation.impl
 
 import android.os.Bundle
-import test.p00.extensions.pushRoot
+import test.p00.auxiliary.extensions.pushRoot
 import test.p00.presentation.impl.abs.AbsContainer
 import test.p00.presentation.signup.impl.SignUpFragment
 

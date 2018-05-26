@@ -1,4 +1,4 @@
-package test.p00.widget
+package test.p00.presentation.auxiliary.widgets
 
 import android.animation.ValueAnimator
 import android.content.Context

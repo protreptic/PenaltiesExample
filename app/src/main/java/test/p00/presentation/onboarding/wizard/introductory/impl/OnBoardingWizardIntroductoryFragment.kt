@@ -12,7 +12,7 @@ import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryPresenter
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryView
-import test.p00.auxiliary.glide.GlideApp
+import test.p00.presentation.auxiliary.glide.GlideApp
 
 class OnBoardingWizardIntroductoryFragment : AbsView(), OnBoardingWizardIntroductoryView {
 

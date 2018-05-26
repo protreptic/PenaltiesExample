@@ -1,4 +1,4 @@
-package test.p00.auxiliary.glide
+package test.p00.presentation.auxiliary.glide
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

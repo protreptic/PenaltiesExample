@@ -2,8 +2,8 @@ package test.p00.presentation
 
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.home.impl.HomeFragment
-import test.p00.extensions.pop
-import test.p00.extensions.pushRoot
+import test.p00.auxiliary.extensions.pop
+import test.p00.auxiliary.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/24/18.

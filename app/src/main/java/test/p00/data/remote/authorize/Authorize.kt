@@ -11,6 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import test.p00.BuildConfig
 import test.p00.data.remote.authorize.request.AuthorizeConfirmationRequest
 import test.p00.data.remote.authorize.request.AuthorizeRequest
 import test.p00.data.remote.authorize.response.AuthorizeConfirmationResponse
@@ -28,11 +29,10 @@ interface Authorize {
         val api: Authorize by lazy {
             Retrofit.Builder()
                     .baseUrl("http://private-26abae-peterbukhal.apiary-mock.com/")
-                    .client(OkHttpClient.Builder()
-                            .addInterceptor(HttpLoggingInterceptor().apply {
-                                level = BODY
-                            })
-                            .build())
+                    .client(OkHttpClient.Builder().
+                        addInterceptor(HttpLoggingInterceptor().apply {
+                            level = if (BuildConfig.DEBUG) BODY else NONE
+                        }).build())
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()

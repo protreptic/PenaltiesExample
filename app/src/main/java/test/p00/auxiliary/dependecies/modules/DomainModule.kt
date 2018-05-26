@@ -1,4 +1,4 @@
-package test.p00.dependecies.modules
+package test.p00.auxiliary.dependecies.modules
 
 import dagger.Module
 import dagger.Provides

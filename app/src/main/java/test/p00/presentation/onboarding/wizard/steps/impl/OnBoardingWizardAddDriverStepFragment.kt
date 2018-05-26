@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.text.InputFilter
 import android.view.View
 import test.p00.R
-import test.p00.auxiliary.glide.GlideApp
+import test.p00.presentation.auxiliary.glide.GlideApp
 import test.p00.presentation.onboarding.wizard.steps.abs.OnBoardingWizardStepFragment
 
 class OnBoardingWizardAddDriverStepFragment : OnBoardingWizardStepFragment() {
