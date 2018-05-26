@@ -6,13 +6,14 @@ import io.reactivex.Observable
 import test.p00.data.model.countries.Country
 import test.p00.data.repository.countries.datasource.CountriesDataSource
 import test.p00.data.storage.sqlite.abs.Storage
-import test.p00.util.ContextProvider
 import java.util.*
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class CountriesDataSourceImpl(context: Context = ContextProvider.provide()):
+class CountriesDataSourceImpl
+    @Inject constructor(context: Context):
         Storage(context, NAME, VERSION), CountriesDataSource {
 
     companion object {

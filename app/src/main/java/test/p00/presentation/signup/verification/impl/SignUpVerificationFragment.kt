@@ -6,11 +6,14 @@ import android.view.View
 import android.widget.EditText
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.signup.SignUpInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.signup.impl.SignUpRouterImpl
 import test.p00.presentation.signup.verification.SignUpVerificationPresenter
 import test.p00.presentation.signup.verification.SignUpVerificationView
 import test.p00.presentation.util.dismissKeyboard
+import test.p00.util.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/14/18.
@@ -28,8 +31,14 @@ class SignUpVerificationFragment : AbsFragment(), SignUpVerificationView {
 
     }
 
+    @Inject lateinit var schedulers: Schedulers
+    @Inject lateinit var signUpInteractor: SignUpInteractor
+
     private val presenter: SignUpVerificationPresenter by lazy {
-        SignUpVerificationPresenterImpl(router = SignUpRouterImpl(fragmentManager, this))
+        SignUpVerificationPresenterImpl(
+                schedulers = schedulers,
+                router = SignUpRouterImpl(fragmentManager, this),
+                interactor = signUpInteractor)
     }
 
     override val targetLayout = R.layout.view_sign_up_phone_verification

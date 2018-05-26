@@ -5,6 +5,7 @@ import dagger.android.support.DaggerApplication
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import test.p00.dependecies.DaggerApplicationComponent
+import test.p00.util.reactivex.schedulers.Schedulers
 
 @Suppress("unused")
 class PenaltiesApplication : DaggerApplication() {
@@ -15,6 +16,7 @@ class PenaltiesApplication : DaggerApplication() {
     private val applicationComponent by lazy {
         DaggerApplicationComponent.builder()
                 .withContext(applicationContext)
+                .withSchedulers(Schedulers.create())
                 .build()
     }
 

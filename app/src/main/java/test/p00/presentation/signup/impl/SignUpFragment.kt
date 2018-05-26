@@ -10,12 +10,14 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotterknife.bindView
 import test.p00.R
+import test.p00.domain.signup.SignUpInteractor
 import test.p00.presentation.activity.abs.AbsFragment
 import test.p00.presentation.model.ErrorModel
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpView
 import test.p00.presentation.util.dismissKeyboard
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/12/18.
@@ -32,8 +34,12 @@ class SignUpFragment : AbsFragment(), SignUpView {
 
     }
 
+    @Inject lateinit var signUpInteractor: SignUpInteractor
+
     private val presenter: SignUpPresenter by lazy {
-        SignUpPresenterImpl(router = SignUpRouterImpl(fragmentManager, this))
+        SignUpPresenterImpl(
+                router = SignUpRouterImpl(fragmentManager, this),
+                interactor = signUpInteractor)
     }
 
     override val targetLayout = R.layout.view_sign_up_phone

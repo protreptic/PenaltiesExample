@@ -3,6 +3,11 @@ package test.p00.dependecies
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import test.p00.data.remote.authorize.Authorize
+import test.p00.data.repository.countries.CountriesRepository
+import test.p00.data.repository.countries.datasource.CountriesDataSource
+import test.p00.data.repository.countries.datasource.impl.CountriesDataSourceImpl
+import test.p00.data.repository.countries.impl.CountriesRepositoryImpl
 import test.p00.data.repository.onboarding.OnBoardingRepository
 import test.p00.data.repository.onboarding.datasource.OnBoardingDataSource
 import test.p00.data.repository.onboarding.datasource.impl.RealmOnBoardingDataSource
@@ -24,6 +29,17 @@ class DataModule {
             onBoardingRepository: OnBoardingRepository,
             settingsRepository: SettingsRepository) =
                     OnBoardingInteractor(onBoardingRepository, settingsRepository)
+
+    @Provides
+    fun provideAuthorize(): Authorize = Authorize.api
+
+    @Provides
+    fun provideCountriesRepository(countriesDataSource: CountriesDataSource): CountriesRepository =
+            CountriesRepositoryImpl(countriesDataSource)
+
+    @Provides
+    fun provideCountriesDataSource(context: Context): CountriesDataSource =
+            CountriesDataSourceImpl(context)
 
     @Provides
     fun provideUserRepository(userDataSource: UserDataSource) =

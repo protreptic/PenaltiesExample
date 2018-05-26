@@ -2,18 +2,18 @@ package test.p00.data.storage.sqlite
 
 import android.content.Context
 import android.database.Cursor
-import android.util.Log
 import io.reactivex.Observable
 import test.p00.data.model.user.UserNew
 import test.p00.data.model.user.profile.UserProfile
+import test.p00.data.repository.countries.datasource.CountriesDataSource
 import test.p00.data.repository.countries.datasource.impl.CountriesDataSourceImpl
 import test.p00.data.storage.sqlite.abs.Storage
-import test.p00.util.ContextProvider
+import javax.inject.Inject
 
-/**
- * Created by Peter Bukhal on 5/20/18.
- */
-class UsersStorage(context: Context = ContextProvider.provide()) : Storage(context, NAME, VERSION) {
+class UsersStorage
+    @Inject constructor(
+            private val context1: Context):
+                Storage(context1, NAME, VERSION) {
 
     companion object {
 
@@ -43,7 +43,7 @@ class UsersStorage(context: Context = ContextProvider.provide()) : Storage(conte
 
     fun fetchEverything(): Observable<List<UserNew>> =
             Observable.create { source ->
-                CountriesDataSourceImpl().fetch("SELECT USERS.*, USER_PROFILES.PHONE_NUMBER FROM USERS, USER_PROFILES") { cursor ->
+                CountriesDataSourceImpl(context1).fetch("SELECT USERS.*, USER_PROFILES.PHONE_NUMBER FROM USERS, USER_PROFILES") { cursor ->
                     source.onNext(users(cursor))
                     source.onComplete()
                 }
@@ -51,7 +51,7 @@ class UsersStorage(context: Context = ContextProvider.provide()) : Storage(conte
 
     fun fetchDefault(): Observable<UserNew> =
             Observable.create { source ->
-                CountriesDataSourceImpl().fetch("SELECT * FROM USERS WHERE IS_DEFAULT = 1 LIMIT 1") { cursor ->
+                CountriesDataSourceImpl(context1).fetch("SELECT * FROM USERS WHERE IS_DEFAULT = 1 LIMIT 1") { cursor ->
                     while (cursor.moveToNext()) {
                         source.onNext(user(cursor))
                         source.onComplete()
@@ -63,20 +63,12 @@ class UsersStorage(context: Context = ContextProvider.provide()) : Storage(conte
             Observable.create { source ->
                 val arguments = arrayOf(userId.toString())
 
-                CountriesDataSourceImpl().fetch("SELECT * FROM USERS WHERE ID = ? LIMIT 1", arguments) { cursor ->
+                CountriesDataSourceImpl(context1).fetch("SELECT * FROM USERS WHERE ID = ? LIMIT 1", arguments) { cursor ->
                     while (cursor.moveToNext()) {
                         source.onNext(user(cursor))
                         source.onComplete()
                     }
                 }
             }
-
-    fun updateAccessToken(userId: Int, accessToken: String) {
-
-    }
-
-    fun updatePushToken(userId: Int, pushToken: String) {
-
-    }
 
 }

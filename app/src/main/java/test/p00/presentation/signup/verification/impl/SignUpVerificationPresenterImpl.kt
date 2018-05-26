@@ -7,15 +7,17 @@ import test.p00.presentation.signup.verification.SignUpVerificationPresenter
 import test.p00.presentation.signup.verification.SignUpVerificationView
 import test.p00.util.reactivex.transformers.ObservableTransformers
 import test.p00.util.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class SignUpVerificationPresenterImpl(
-        private val scheduler: Schedulers = Schedulers.create(),
-        private val interactor: SignUpInteractor = SignUpInteractor(),
+class SignUpVerificationPresenterImpl
+    @Inject constructor(
+        private val schedulers: Schedulers,
+        private val interactor: SignUpInteractor,
         private val router: SignUpRouter):
-        SignUpVerificationPresenter {
+            SignUpVerificationPresenter {
 
     override var attachedView: SignUpVerificationView? = null
     override var disposables = CompositeDisposable()
@@ -24,7 +26,7 @@ class SignUpVerificationPresenterImpl(
         disposables.add(
             interactor
                 .confirmCode(confirmationCode.toInt())
-                .compose(ObservableTransformers.schedulers(scheduler))
+                .compose(ObservableTransformers.schedulers(schedulers))
                 .subscribe(
                     { router.toLauncher() },
                     { router.toPhone() }))

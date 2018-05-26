@@ -7,15 +7,17 @@ import test.p00.data.remote.authorize.Authorize
 import test.p00.data.remote.authorize.request.AuthorizeConfirmationRequest
 import test.p00.data.remote.authorize.request.AuthorizeRequest
 import test.p00.data.repository.countries.CountriesRepository
-import test.p00.data.repository.countries.CountriesRepositoryFactory
 import test.p00.domain.abs.Interactor
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/20/18.
  */
-class SignUpInteractor(
-        private val countries: CountriesRepository = CountriesRepositoryFactory.create(),
-        private val authorize: Authorize = Authorize.api): Interactor {
+class SignUpInteractor
+    @Inject constructor(
+        private val countries: CountriesRepository,
+        private val authorize: Authorize):
+            Interactor {
 
     /**
      *

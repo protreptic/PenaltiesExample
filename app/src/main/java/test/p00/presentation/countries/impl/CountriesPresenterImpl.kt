@@ -2,7 +2,6 @@ package test.p00.presentation.countries.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.countries.CountriesRepository
-import test.p00.data.repository.countries.CountriesRepositoryFactory
 import test.p00.presentation.abs.Router
 import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesPresenter.*
@@ -12,16 +11,18 @@ import test.p00.presentation.model.countries.CountryModel.Mapper
 import test.p00.util.reactivex.transformers.ObservableTransformers
 import test.p00.util.reactivex.schedulers.Schedulers
 import test.p00.util.reactivex.bus.RxBus
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class CountriesPresenterImpl(
+class CountriesPresenterImpl
+    @Inject constructor(
         private val scheduler: Schedulers = Schedulers.create(),
-        private val countriesRepository: CountriesRepository = CountriesRepositoryFactory.create(),
+        private val countriesRepository: CountriesRepository,
         private val router: Router,
         private val bus: RxBus = RxBus):
-        CountriesPresenter {
+            CountriesPresenter {
 
     override var attachedView: CountriesView? = null
     override var disposables = CompositeDisposable()

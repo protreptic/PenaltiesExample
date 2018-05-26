@@ -13,16 +13,18 @@ import test.p00.util.reactivex.bus.RxBus
 import test.p00.util.reactivex.schedulers.Schedulers
 import test.p00.util.reactivex.transformers.CompletableTransformers
 import test.p00.util.reactivex.transformers.ObservableTransformers
+import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 5/12/18.
  */
-class SignUpPresenterImpl(
+class SignUpPresenterImpl
+    @Inject constructor(
         private val scheduler: Schedulers = Schedulers.create(),
-        private val interactor: SignUpInteractor = SignUpInteractor(),
+        private val interactor: SignUpInteractor,
         private val router: SignUpRouter,
         private val bus: RxBus = RxBus):
-        SignUpPresenter {
+            SignUpPresenter {
 
     override var attachedView: SignUpView? = null
     override var disposables = CompositeDisposable()
