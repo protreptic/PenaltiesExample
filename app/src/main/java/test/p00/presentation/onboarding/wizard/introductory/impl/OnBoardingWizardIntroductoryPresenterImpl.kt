@@ -9,7 +9,8 @@ import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntr
  * Created by Peter Bukhal on 4/23/18.
  */
 class OnBoardingWizardIntroductoryPresenterImpl(
-        private val router: OnBoardingWizardRouter) : OnBoardingWizardIntroductoryPresenter {
+        private val router: OnBoardingWizardRouter):
+            OnBoardingWizardIntroductoryPresenter {
 
     override var attachedView: OnBoardingWizardIntroductoryView? = null
     override var disposables = CompositeDisposable()

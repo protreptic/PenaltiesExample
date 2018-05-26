@@ -11,9 +11,9 @@ import test.p00.data.storage.websocket.WebSocketConnection
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class CacheConversationDataSource : ConversationDataSource {
+class CacheConversationDataSource: ConversationDataSource {
 
-    override fun joinConversation() {}
+    override fun joinConversation(conversationId: String) {}
     override fun watchOnConversation(): Observable<Message> = never()
     override fun watchOnConnection(): Observable<WebSocketConnection.Status> = never()
     override fun quitConversation() {}

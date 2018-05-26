@@ -1,17 +1,15 @@
 package test.p00.presentation.home.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.domain.home.HomeInteractor
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeRouter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.model.user.UserModel.Mapper
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
 
-class HomePresenterImpl
-    @Inject constructor(
+class HomePresenterImpl(
         private val schedulers: Schedulers,
         private val route: HomeRouter,
         private val homeInteractor: HomeInteractor):

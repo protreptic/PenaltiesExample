@@ -1,5 +1,6 @@
 package test.p00.presentation.countries
 
+import test.p00.auxiliary.bus.BusEvent
 import test.p00.presentation.Presenter
 import test.p00.presentation.model.countries.CountryModel
 
@@ -14,7 +15,7 @@ interface CountriesPresenter : Presenter<CountriesView> {
      *
      * @param pickedCountry выбранная страна
      */
-    data class CountryPickedEvent(val pickedCountry: CountryModel)
+    data class CountryPickedEvent(val pickedCountry: CountryModel): BusEvent
 
     /**
      *

@@ -58,17 +58,89 @@ class MockConversationsDataSource : ConversationsDataSource {
             add(mockMember6)
         }}
 
+    private val mockConversation3 = Conversation().apply {
+        id = "3"
+        name = "Group conversation3"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation4 = Conversation().apply {
+        id = "4"
+        name = "Group conversation4"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation5 = Conversation().apply {
+        id = "5"
+        name = "Group conversation5"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation6 = Conversation().apply {
+        id = "6"
+        name = "Group conversation6"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation7 = Conversation().apply {
+        id = "7"
+        name = "Group conversation7"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation8 = Conversation().apply {
+        id = "8"
+        name = "Group conversation8"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation9 = Conversation().apply {
+        id = "9"
+        name = "Group conversation9"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val mockConversation10 = Conversation().apply {
+        id = "10"
+        name = "Group conversation10"
+        members.apply {
+            add(mockMember1)
+            add(mockMember2)
+            add(mockMember3)
+        }}
+
+    private val conversations =
+            listOf(mockConversation1, mockConversation2,
+                    mockConversation3, mockConversation4,
+                     mockConversation5, mockConversation6,
+                      mockConversation7, mockConversation8,
+                        mockConversation9, mockConversation10)
+
     override fun fetchEverything(): Observable<List<Conversation>> =
-            Observable.just(listOf(mockConversation1, mockConversation2))
+            Observable.just(conversations)
 
     override fun fetchById(conversationId: String): Observable<Conversation> =
-            Observable.just(Conversation().apply {
-                id = conversationId
-                members.apply {
-                    add(mockMember1)
-                    add(mockMember2)
-                    add(mockMember3)
-                }
-            })
+            Observable.just(conversations.find { conversation -> conversation.id == conversationId })
 
 }

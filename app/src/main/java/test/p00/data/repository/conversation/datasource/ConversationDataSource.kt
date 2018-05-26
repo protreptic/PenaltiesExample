@@ -19,7 +19,7 @@ interface ConversationDataSource {
      */
     fun fetchById(conversationId: String): Observable<Conversation>
 
-    fun joinConversation()
+    fun joinConversation(conversationId: String)
     fun watchOnConversation(): Observable<Message>
     fun watchOnConnection(): Observable<WebSocketConnection.Status>
     fun quitConversation()

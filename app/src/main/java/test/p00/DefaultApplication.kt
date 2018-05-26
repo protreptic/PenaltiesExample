@@ -4,6 +4,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import test.p00.auxiliary.bus.BusFactory
 import test.p00.auxiliary.reactivex.bus.RxBus
 import test.p00.auxiliary.dependecies.DaggerApplicationComponent
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
@@ -18,7 +19,7 @@ class DefaultApplication : DaggerApplication() {
         DaggerApplicationComponent.builder()
                 .withContext(applicationContext)
                 .withSchedulers(Schedulers.create())
-                .withBus(RxBus)
+                .withBus(BusFactory.bus())
                 .build()
     }
 

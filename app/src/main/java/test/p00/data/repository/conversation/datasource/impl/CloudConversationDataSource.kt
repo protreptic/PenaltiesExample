@@ -17,11 +17,10 @@ import javax.inject.Inject
  */
 class CloudConversationDataSource
     @Inject constructor(
-        private val conversationId: String,
         private val connection: WebSocketConnection):
             ConversationDataSource {
 
-    override fun joinConversation() =
+    override fun joinConversation(conversationId: String) =
             connection.joinConversation(conversationId)
 
     override fun watchOnConversation(): Observable<Message> =

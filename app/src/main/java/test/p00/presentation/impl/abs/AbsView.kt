@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
-import test.p00.auxiliary.reactivex.bus.RxBus
+import test.p00.auxiliary.bus.Bus
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
 import test.p00.presentation.Router
 import test.p00.presentation.impl.DefaultRouter
@@ -17,7 +17,13 @@ import javax.inject.Inject
  */
 abstract class AbsView : DaggerFragment(), Router.Delegate {
 
-    @Inject protected lateinit var bus: RxBus
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        retainInstance = true
+    }
+
+    @Inject protected lateinit var bus: Bus
     @Inject protected lateinit var schedulers: Schedulers
 
     protected val router: Router by lazy { DefaultRouter(fragmentManager, this) }

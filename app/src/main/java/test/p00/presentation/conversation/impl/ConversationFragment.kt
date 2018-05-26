@@ -42,7 +42,7 @@ class ConversationFragment : AbsView(), ConversationView, MessagesAdapter.Delega
     }
 
     private val conversationId by lazy {
-        arguments!!.getString(FRAGMENT_ARG_CONVERSATION, "1")
+        arguments!!.getString(FRAGMENT_ARG_CONVERSATION)
     }
 
     @Inject lateinit var conversationInteractor: ConversationInteractor

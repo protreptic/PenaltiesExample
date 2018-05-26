@@ -8,10 +8,8 @@ import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.launcher.LauncherView
 import java.util.concurrent.TimeUnit.MILLISECONDS
-import javax.inject.Inject
 
-class LauncherPresenterImpl
-    @Inject constructor(
+class LauncherPresenterImpl(
         private val scheduler: Schedulers,
         private val router: LauncherRouter,
         private val launcher: LauncherInteractor):

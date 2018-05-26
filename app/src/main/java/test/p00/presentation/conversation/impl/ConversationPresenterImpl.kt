@@ -2,6 +2,8 @@ package test.p00.presentation.conversation.impl
 
 import android.net.Uri
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.data.model.conversation.message.Message
 import test.p00.domain.conversation.ConversationInteractor
 import test.p00.domain.conversations.ConversationsInteractor
@@ -11,15 +13,11 @@ import test.p00.presentation.conversation.ConversationView
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MemberModel
 import test.p00.presentation.model.conversation.message.MessageModel
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class ConversationPresenterImpl
-    @Inject constructor(
+class ConversationPresenterImpl(
         private val conversationId: String,
         private val scheduler: Schedulers,
         private val router: ConversationRouter,
@@ -37,7 +35,7 @@ class ConversationPresenterImpl
     }
 
     override fun displayConversation() {
-        conversationInteractor.joinConversation()
+        conversationInteractor.joinConversation(conversationId)
 
         disposables.add(
             conversationsInteractor
@@ -55,7 +53,7 @@ class ConversationPresenterImpl
 
         disposables.add(
             conversationInteractor
-                .watchOnConnection()
+                .watchOnConnection(conversationId)
                 .compose(ObservableTransformers.schedulers(scheduler))
                 .subscribe({ status -> attachedView?.showConnectionStatus(status) }, { }))
     }

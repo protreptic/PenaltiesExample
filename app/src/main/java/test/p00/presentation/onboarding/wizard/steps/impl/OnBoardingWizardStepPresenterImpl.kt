@@ -1,16 +1,14 @@
 package test.p00.presentation.onboarding.wizard.steps.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.domain.onboarding.OnBoardingWizardInteractor
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardRouter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
 
-class OnBoardingWizardStepPresenterImpl
-    @Inject constructor(
+class OnBoardingWizardStepPresenterImpl(
         private val scheduler: Schedulers,
         private val router: OnBoardingWizardRouter,
         private val interactor: OnBoardingWizardInteractor):

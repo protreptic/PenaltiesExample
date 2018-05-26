@@ -25,7 +25,7 @@ class DomainModule {
     fun provideConversationInteractor(
             @Named("cache") cache: ConversationDataSource,
             @Named("cloud") cloud: ConversationDataSource): ConversationInteractor =
-                    ConversationInteractor("1", cache, cloud)
+                    ConversationInteractor(cache, cloud)
 
     @Provides
     fun provideOnBoardingInteractor(

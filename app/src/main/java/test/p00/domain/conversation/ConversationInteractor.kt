@@ -14,22 +14,21 @@ import javax.inject.Inject
  */
 class ConversationInteractor
     @Inject constructor(
-        private val conversationId: String,
         private val cache: ConversationDataSource,
         private val cloud: ConversationDataSource):
             Interactor {
 
-    fun joinConversation() =
-            cloud.joinConversation()
+    fun joinConversation(conversationId: String) =
+            cloud.joinConversation(conversationId)
 
     fun watchOnConversation(): Observable<Message> =
             cloud.watchOnConversation()
 
-    fun watchOnConnection(): Observable<Status> =
+    fun watchOnConnection(conversationId: String): Observable<Status> =
             cloud.watchOnConnection()
                  .doOnNext { status ->
                      if (status == WebSocketConnection.Status.FAILURE) {
-                         cloud.joinConversation()
+                         cloud.joinConversation(conversationId)
                      }
                  }
 

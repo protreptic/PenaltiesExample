@@ -49,7 +49,7 @@ class DataModule {
     @Provides
     @Named("cloud")
     fun provideCloudConversationDataSource(connection: WebSocketConnection): ConversationDataSource =
-            CloudConversationDataSource("1", connection)
+            CloudConversationDataSource(connection)
 
     @Provides
     fun provideConversationsRepository(

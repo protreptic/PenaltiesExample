@@ -1,6 +1,10 @@
 package test.p00.presentation.signup.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.extensions.get
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.domain.signup.SignUpInteractor
 import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.model.ErrorModel.Mapper
@@ -8,22 +12,16 @@ import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpRouter
 import test.p00.presentation.signup.SignUpView
-import test.p00.auxiliary.extensions.get
-import test.p00.auxiliary.reactivex.bus.RxBus
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
+import test.p00.auxiliary.bus.Bus
 
 /**
  * Created by Peter Bukhal on 5/12/18.
  */
-class SignUpPresenterImpl
-    @Inject constructor(
+class SignUpPresenterImpl(
         private val scheduler: Schedulers,
         private val interactor: SignUpInteractor,
         private val router: SignUpRouter,
-        private val bus: RxBus):
+        private val bus: Bus):
             SignUpPresenter {
 
     override var attachedView: SignUpView? = null

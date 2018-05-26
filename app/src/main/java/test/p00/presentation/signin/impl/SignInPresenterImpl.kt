@@ -10,7 +10,7 @@ import test.p00.presentation.signin.SignInView
  */
 class SignInPresenterImpl(
         private val router: SignInRouter):
-        SignInPresenter {
+            SignInPresenter {
 
     override var attachedView: SignInView? = null
     override var disposables = CompositeDisposable()

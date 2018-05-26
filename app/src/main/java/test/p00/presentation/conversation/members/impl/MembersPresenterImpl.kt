@@ -1,21 +1,19 @@
 package test.p00.presentation.conversation.members.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.domain.conversations.ConversationsInteractor
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.members.MembersPresenter
 import test.p00.presentation.conversation.members.MembersView
 import test.p00.presentation.model.conversation.ConversationModel
 import test.p00.presentation.model.conversation.MemberModel
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-class MembersPresenterImpl
-    @Inject constructor(
+class MembersPresenterImpl(
         private val conversationId: String,
         private val scheduler: Schedulers,
         private val router: ConversationRouter,

@@ -1,17 +1,15 @@
 package test.p00.presentation.onboarding.impl
 
 import io.reactivex.disposables.CompositeDisposable
+import test.p00.auxiliary.reactivex.schedulers.Schedulers
+import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.domain.onboarding.OnBoardingInteractor
 import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingRouter
 import test.p00.presentation.onboarding.OnBoardingView
-import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
-import javax.inject.Inject
 
-class OnBoardingPresenterImpl
-    @Inject constructor(
+class OnBoardingPresenterImpl(
         private val scheduler: Schedulers,
         private val router: OnBoardingRouter,
         private val interactor: OnBoardingInteractor):

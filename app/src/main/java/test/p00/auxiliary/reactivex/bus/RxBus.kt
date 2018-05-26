@@ -2,15 +2,20 @@ package test.p00.auxiliary.reactivex.bus
 
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import test.p00.auxiliary.bus.Bus
+import test.p00.auxiliary.bus.BusEvent
 
 /**
- * Created by Peter Bukhal on 5/20/18.
+ * Created by Peter Bukhal on 5/27/18.
  */
-object RxBus {
+class RxBus : Bus {
 
-    private val bus = PublishSubject.create<Any>()
+    private val bus = PublishSubject.create<BusEvent>()
 
-    fun sendEvent(event: Any) { bus.onNext(event) }
-    fun subscribe(block: (Any) -> Unit): Disposable = bus.subscribe({ block(it) })
+    override fun sendEvent(event: BusEvent) =
+            bus.onNext(event)
+
+    override fun subscribe(block: (event: BusEvent) -> Unit): Disposable =
+            bus.subscribe({ event -> block(event) })
 
 }
