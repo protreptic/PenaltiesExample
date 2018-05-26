@@ -2,7 +2,7 @@ package test.p00.presentation.countries.impl
 
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.data.repository.countries.CountriesRepository
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesPresenter.*
 import test.p00.presentation.countries.CountriesView
@@ -18,10 +18,10 @@ import javax.inject.Inject
  */
 class CountriesPresenterImpl
     @Inject constructor(
-        private val scheduler: Schedulers,
-        private val countriesRepository: CountriesRepository,
-        private val router: Router,
-        private val bus: RxBus):
+            private val scheduler: Schedulers,
+            private val countriesRepository: CountriesRepository,
+            private val router: Router,
+            private val bus: RxBus):
             CountriesPresenter {
 
     override var attachedView: CountriesView? = null

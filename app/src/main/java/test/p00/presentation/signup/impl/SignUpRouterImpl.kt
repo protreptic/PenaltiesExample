@@ -1,7 +1,7 @@
 package test.p00.presentation.signup.impl
 
 import android.support.v4.app.FragmentManager
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 import test.p00.presentation.countries.impl.CountriesFragment
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.signup.SignUpRouter

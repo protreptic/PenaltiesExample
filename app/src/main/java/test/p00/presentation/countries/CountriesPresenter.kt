@@ -1,6 +1,6 @@
 package test.p00.presentation.countries
 
-import test.p00.presentation.abs.Presenter
+import test.p00.presentation.Presenter
 import test.p00.presentation.model.countries.CountryModel
 
 /**

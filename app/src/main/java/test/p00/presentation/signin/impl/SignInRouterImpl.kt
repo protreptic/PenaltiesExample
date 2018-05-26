@@ -1,7 +1,7 @@
 package test.p00.presentation.signin.impl
 
 import android.support.v4.app.FragmentManager
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 import test.p00.presentation.signin.SignInRouter
 
 /**

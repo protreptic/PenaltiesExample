@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryPresenter
 import test.p00.presentation.onboarding.wizard.introductory.OnBoardingWizardIntroductoryView
 import test.p00.auxiliary.glide.GlideApp
 
-class OnBoardingWizardIntroductoryFragment : AbsFragment(), OnBoardingWizardIntroductoryView {
+class OnBoardingWizardIntroductoryFragment : AbsView(), OnBoardingWizardIntroductoryView {
 
     companion object {
 

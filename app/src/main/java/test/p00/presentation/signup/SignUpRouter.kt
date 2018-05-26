@@ -1,6 +1,6 @@
 package test.p00.presentation.signup
 
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 
 /**
  * Created by Peter Bukhal on 5/12/18.

@@ -1,6 +1,6 @@
 package test.p00.presentation.conversation
 
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 import test.p00.presentation.model.conversation.MemberModel
 
 /**

@@ -11,7 +11,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.onboarding.OnBoardingWizardInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardRouterImpl
 import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepPresenter
@@ -19,7 +19,7 @@ import test.p00.presentation.onboarding.wizard.steps.OnBoardingWizardStepView
 import test.p00.presentation.onboarding.wizard.steps.impl.OnBoardingWizardStepPresenterImpl
 import javax.inject.Inject
 
-abstract class OnBoardingWizardStepFragment : AbsFragment(), OnBoardingWizardStepView {
+abstract class OnBoardingWizardStepFragment : AbsView(), OnBoardingWizardStepView {
 
     @Inject lateinit var interactor: OnBoardingWizardInteractor
 

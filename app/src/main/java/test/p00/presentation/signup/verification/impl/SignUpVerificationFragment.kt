@@ -7,7 +7,7 @@ import android.widget.EditText
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.signup.SignUpInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.signup.impl.SignUpRouterImpl
 import test.p00.presentation.signup.verification.SignUpVerificationPresenter
@@ -17,7 +17,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class SignUpVerificationFragment : AbsFragment(), SignUpVerificationView {
+class SignUpVerificationFragment : AbsView(), SignUpVerificationView {
 
     companion object {
 

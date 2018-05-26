@@ -1,4 +1,4 @@
-package test.p00.presentation.abs
+package test.p00.presentation
 
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.home.impl.HomeFragment

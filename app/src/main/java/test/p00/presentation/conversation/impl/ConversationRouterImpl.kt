@@ -1,7 +1,7 @@
 package test.p00.presentation.conversation.impl
 
 import android.support.v4.app.FragmentManager
-import test.p00.presentation.abs.Router.Delegate
+import test.p00.presentation.Router.Delegate
 import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.member.impl.MemberFragment
 import test.p00.presentation.conversation.members.impl.MembersFragment

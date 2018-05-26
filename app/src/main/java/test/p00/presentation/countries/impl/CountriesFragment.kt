@@ -10,8 +10,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.data.repository.countries.CountriesRepository
-import test.p00.presentation.DefaultRouter
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
@@ -22,7 +21,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 5/14/18.
  */
-class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegate {
+class CountriesFragment : AbsView(), CountriesView, CountriesAdapter.Delegate {
 
     companion object {
 
@@ -37,11 +36,7 @@ class CountriesFragment : AbsFragment(), CountriesView, CountriesAdapter.Delegat
     @Inject lateinit var countriesRepository: CountriesRepository
 
     private val presenter: CountriesPresenter by lazy {
-        CountriesPresenterImpl(
-                schedulers,
-                countriesRepository,
-                DefaultRouter(fragmentManager, this),
-                rxBus)
+        CountriesPresenterImpl(schedulers, countriesRepository, router, bus)
     }
 
     override val targetLayout = R.layout.view_countries

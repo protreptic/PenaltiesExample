@@ -14,8 +14,8 @@ import test.p00.R
 import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
 import test.p00.data.repository.settings.datasource.impl.SharedPreferencesSettingsDataSource
 import test.p00.domain.home.HomeInteractor
-import test.p00.presentation.activity.MainActivity
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.DefaultContainer
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.home.HomePresenter
 import test.p00.presentation.home.HomeView
 import test.p00.presentation.home.impl.adapter.DriversAdapter
@@ -23,7 +23,7 @@ import test.p00.presentation.home.impl.adapter.VehiclesAdapter
 import test.p00.presentation.model.user.UserModel
 import javax.inject.Inject
 
-class HomeFragment : AbsFragment(), HomeView {
+class HomeFragment : AbsView(), HomeView {
 
     companion object {
 
@@ -78,7 +78,7 @@ class HomeFragment : AbsFragment(), HomeView {
                     /*
                      * Повторно запускаем приложение
                      */
-                    startActivity(Intent(activity, MainActivity::class.java).apply {
+                    startActivity(Intent(activity, DefaultContainer::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     })}
                 .subscribe { presenter.displayUser() }

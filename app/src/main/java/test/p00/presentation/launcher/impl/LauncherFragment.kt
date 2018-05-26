@@ -5,12 +5,12 @@ import android.support.v4.app.Fragment
 import android.view.View
 import test.p00.R
 import test.p00.domain.launcher.LauncherInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.launcher.LauncherPresenter
 import test.p00.presentation.launcher.LauncherView
 import javax.inject.Inject
 
-class LauncherFragment : AbsFragment(), LauncherView {
+class LauncherFragment : AbsView(), LauncherView {
 
     companion object {
 

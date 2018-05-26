@@ -8,7 +8,7 @@ import android.view.View
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.conversations.ConversationsInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.conversations.ConversationsPresenter
 import test.p00.presentation.conversations.ConversationsView
 import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter
@@ -18,7 +18,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-class ConversationsFragment : AbsFragment(), ConversationsView, ConversationsAdapter.Delegate {
+class ConversationsFragment : AbsView(), ConversationsView, ConversationsAdapter.Delegate {
 
     companion object {
 

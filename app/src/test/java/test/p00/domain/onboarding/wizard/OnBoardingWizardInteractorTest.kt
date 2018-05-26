@@ -8,6 +8,7 @@ import org.junit.Test
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations.initMocks
 import test.p00.data.model.user.User
+import test.p00.data.repository.settings.SettingsRepository
 import test.p00.data.repository.user.UserRepository
 import test.p00.domain.onboarding.OnBoardingWizardInteractor
 
@@ -35,7 +36,9 @@ class OnBoardingWizardInteractorTest {
     }
 
     private val userRepository = mock(UserRepository::class.java)
-    private val sut = OnBoardingWizardInteractor(userRepository)
+    private val settingsRepository = mock(SettingsRepository::class.java)
+
+    private val sut = OnBoardingWizardInteractor(userRepository, settingsRepository)
 
     @Before
     fun setUp() {

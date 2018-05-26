@@ -1,4 +1,4 @@
-package test.p00.presentation.abs
+package test.p00.presentation
 
 import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable

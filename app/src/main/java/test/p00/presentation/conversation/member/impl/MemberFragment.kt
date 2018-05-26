@@ -7,7 +7,7 @@ import android.widget.TextView
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.conversations.ConversationsInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.conversation.impl.ConversationRouterImpl
 import test.p00.presentation.conversation.member.MemberPresenter
 import test.p00.presentation.conversation.member.MemberView
@@ -17,7 +17,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 4/28/18.
  */
-class MemberFragment : AbsFragment(), MemberView {
+class MemberFragment : AbsView(), MemberView {
 
     companion object {
 

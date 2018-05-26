@@ -1,6 +1,6 @@
 package test.p00.presentation.onboarding.wizard.introductory
 
-import test.p00.presentation.abs.Presenter
+import test.p00.presentation.Presenter
 
 /**
  * Created by Peter Bukhal on 4/23/18.

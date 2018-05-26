@@ -14,7 +14,7 @@ import test.p00.auxiliary.reactivex.transformers.CompletableTransformers
 import test.p00.data.storage.websocket.WebSocketConnection
 import test.p00.domain.conversation.ConversationInteractor
 import test.p00.domain.conversations.ConversationsInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.conversation.ConversationPresenter
 import test.p00.presentation.conversation.ConversationView
@@ -26,7 +26,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 4/27/18.
  */
-class ConversationFragment : AbsFragment(), ConversationView, MessagesAdapter.Delegate {
+class ConversationFragment : AbsView(), ConversationView, MessagesAdapter.Delegate {
 
     companion object {
 

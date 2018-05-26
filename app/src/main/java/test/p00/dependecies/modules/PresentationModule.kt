@@ -2,7 +2,7 @@ package test.p00.dependecies.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import test.p00.presentation.activity.MainActivity
+import test.p00.presentation.impl.DefaultContainer
 import test.p00.presentation.conversation.impl.ConversationFragment
 import test.p00.presentation.conversation.member.impl.MemberFragment
 import test.p00.presentation.conversation.members.impl.MembersFragment
@@ -24,7 +24,7 @@ import test.p00.presentation.signup.verification.impl.SignUpVerificationFragment
 abstract class PresentationModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeMainActivityInjector(): MainActivity
+    abstract fun contributeMainActivityInjector(): DefaultContainer
 
     @ContributesAndroidInjector
     abstract fun contributeSignUpFragmentInjector(): SignUpFragment

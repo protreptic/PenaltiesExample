@@ -1,6 +1,6 @@
 package test.p00.presentation.conversation.members
 
-import test.p00.presentation.abs.Presenter
+import test.p00.presentation.Presenter
 import test.p00.presentation.model.conversation.MemberModel
 
 /**

@@ -1,4 +1,4 @@
-package test.p00.presentation.activity.abs
+package test.p00.presentation.impl.abs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,16 +8,19 @@ import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 import test.p00.auxiliary.reactivex.bus.RxBus
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
+import test.p00.presentation.impl.DefaultRouter
 import javax.inject.Inject
 
 /**
  * Created by Peter Bukhal on 4/19/18.
  */
-abstract class AbsFragment : DaggerFragment(), Router.Delegate {
+abstract class AbsView : DaggerFragment(), Router.Delegate {
 
-    @Inject lateinit var rxBus: RxBus
-    @Inject lateinit var schedulers: Schedulers
+    @Inject protected lateinit var bus: RxBus
+    @Inject protected lateinit var schedulers: Schedulers
+
+    protected val router: Router by lazy { DefaultRouter(fragmentManager, this) }
 
     protected abstract val targetLayout: Int
 

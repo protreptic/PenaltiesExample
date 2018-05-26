@@ -1,6 +1,6 @@
 package test.p00.presentation.launcher
 
-import test.p00.presentation.abs.Presenter
+import test.p00.presentation.Presenter
 
 interface LauncherPresenter : Presenter<LauncherView> {
 

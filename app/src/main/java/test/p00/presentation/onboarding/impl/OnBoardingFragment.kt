@@ -9,14 +9,14 @@ import com.viewpagerindicator.CirclePageIndicator
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.onboarding.OnBoardingInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.model.onboarding.OnBoardingModel
 import test.p00.presentation.onboarding.OnBoardingPresenter
 import test.p00.presentation.onboarding.OnBoardingView
 import test.p00.presentation.onboarding.impl.adapter.OnBoardingAdapter
 import javax.inject.Inject
 
-class OnBoardingFragment : AbsFragment(), OnBoardingView {
+class OnBoardingFragment : AbsView(), OnBoardingView {
 
     companion object {
 

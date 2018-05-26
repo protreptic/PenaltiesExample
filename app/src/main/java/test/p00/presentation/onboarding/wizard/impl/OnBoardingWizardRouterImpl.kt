@@ -2,7 +2,7 @@ package test.p00.presentation.onboarding.wizard.impl
 
 import android.support.v4.app.FragmentManager
 import test.p00.R
-import test.p00.presentation.abs.Router.Delegate
+import test.p00.presentation.Router.Delegate
 import test.p00.presentation.launcher.impl.LauncherFragment
 import test.p00.presentation.onboarding.wizard.OnBoardingWizardRouter
 import test.p00.presentation.onboarding.wizard.introductory.impl.OnBoardingWizardIntroductoryFragment

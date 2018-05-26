@@ -1,11 +1,10 @@
-package test.p00.presentation.activity.abs
+package test.p00.presentation.impl.abs
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import dagger.android.support.DaggerAppCompatActivity
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 
-abstract class AbsActivity : DaggerAppCompatActivity(), Router.Delegate {
+abstract class AbsContainer : DaggerAppCompatActivity(), Router.Delegate {
 
     private var mIsFragmentTransactionsAllowed: Boolean = false
 

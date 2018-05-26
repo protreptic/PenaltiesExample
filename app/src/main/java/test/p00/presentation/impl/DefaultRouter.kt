@@ -1,7 +1,7 @@
-package test.p00.presentation
+package test.p00.presentation.impl
 
 import android.support.v4.app.FragmentManager
-import test.p00.presentation.abs.Router
+import test.p00.presentation.Router
 
 /**
  * Created by Peter Bukhal on 5/24/18.

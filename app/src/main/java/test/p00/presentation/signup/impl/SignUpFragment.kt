@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.signup.SignUpInteractor
-import test.p00.presentation.activity.abs.AbsFragment
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.model.ErrorModel
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.signup.SignUpPresenter
@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * Created by Peter Bukhal on 5/12/18.
  */
-class SignUpFragment : AbsFragment(), SignUpView {
+class SignUpFragment : AbsView(), SignUpView {
 
     companion object {
 
@@ -41,7 +41,7 @@ class SignUpFragment : AbsFragment(), SignUpView {
                 schedulers,
                 signUpInteractor,
                 SignUpRouterImpl(fragmentManager, this),
-                rxBus)
+                bus)
     }
 
     override val targetLayout = R.layout.view_sign_up_phone
