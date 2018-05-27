@@ -1,6 +1,5 @@
 package test.p00.presentation.countries
 
-import test.p00.auxiliary.bus.BusEvent
 import test.p00.presentation.Presenter
 import test.p00.presentation.model.countries.CountryModel
 
@@ -10,25 +9,17 @@ import test.p00.presentation.model.countries.CountryModel
 interface CountriesPresenter : Presenter<CountriesView> {
 
     /**
-     * Событие наступает когда пользователь
-     * выбирает страну из списка стран.
+     * Отображает страны в названии которых содержит
+     * переданный шаблон.
      *
-     * @param pickedCountry выбранная страна
+     * @param name шаблон названия страны
      */
-    data class CountryPickedEvent(val pickedCountry: CountryModel): BusEvent
+    fun displayCountries(name: String = "")
 
     /**
+     * Пользователь выбрал страну.
      *
-     */
-    fun displayCountries()
-
-    /**
-     *
-     */
-    fun displayCountries(name: String)
-
-    /**
-     *
+     * @param country выбранная пользователем страна
      */
     fun pickCountry(country: CountryModel)
 

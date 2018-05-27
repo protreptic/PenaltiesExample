@@ -10,7 +10,7 @@ import test.p00.auxiliary.reactivex.schedulers.TestSchedulers
 import test.p00.data.model.countries.Country
 import test.p00.data.repository.countries.CountriesRepository
 import test.p00.presentation.Router
-import test.p00.presentation.countries.CountriesPresenter.CountryPickedEvent
+import test.p00.presentation.countries.impl.events.CountryPickedEvent
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.model.countries.CountryModel
 

@@ -6,7 +6,7 @@ import test.p00.auxiliary.reactivex.transformers.ObservableTransformers
 import test.p00.data.repository.countries.CountriesRepository
 import test.p00.presentation.Router
 import test.p00.presentation.countries.CountriesPresenter
-import test.p00.presentation.countries.CountriesPresenter.CountryPickedEvent
+import test.p00.presentation.countries.impl.events.CountryPickedEvent
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.model.countries.CountryModel.Mapper
@@ -24,23 +24,6 @@ class CountriesPresenterImpl(
 
     override var attachedView: CountriesView? = null
     override var disposables = CompositeDisposable()
-
-    override fun attachView(view: CountriesView) {
-        super.attachView(view)
-
-        displayCountries()
-    }
-
-    override fun displayCountries() {
-        disposables.add(
-            countriesRepository
-                .fetchEverything()
-                .map { countries -> countries.map(Mapper::map) }
-                .compose(ObservableTransformers.schedulers(scheduler))
-                .subscribe(
-                        { countries -> attachedView?.showCountries(countries) },
-                        { /*  */ }))
-    }
 
     override fun displayCountries(name: String) {
         disposables.add(

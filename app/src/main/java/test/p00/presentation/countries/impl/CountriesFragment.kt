@@ -7,15 +7,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.EditText
 import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotterknife.bindView
 import test.p00.R
 import test.p00.data.repository.countries.CountriesRepository
 import test.p00.presentation.impl.abs.AbsView
-import test.p00.presentation.countries.CountriesPresenter
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
 import test.p00.presentation.model.countries.CountryModel
 import test.p00.presentation.auxiliary.TopPaddingItemDecoration
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -35,7 +36,7 @@ class CountriesFragment : AbsView(), CountriesView, CountriesAdapter.Delegate {
 
     @Inject lateinit var countriesRepository: CountriesRepository
 
-    private val presenter: CountriesPresenter by lazy {
+    private val presenter: CountriesPresenterImpl by lazy {
         CountriesPresenterImpl(schedulers, countriesRepository, router, bus)
     }
 
@@ -45,8 +46,8 @@ class CountriesFragment : AbsView(), CountriesView, CountriesAdapter.Delegate {
     private val countriesFilter: EditText by bindView(R.id.vCountriesFilter)
     private val countriesAdapter = CountriesAdapter(delegate = this)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(createdView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(createdView, savedInstanceState)
 
         countries.apply {
             layoutManager = LinearLayoutManager(context)
@@ -58,7 +59,7 @@ class CountriesFragment : AbsView(), CountriesView, CountriesAdapter.Delegate {
         disposables.add(
             RxTextView
                 .afterTextChangeEvents(countriesFilter)
-                .doOnSubscribe { countriesFilter.requestFocus() }
+                .debounce(200L, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .map { input -> input.editable().toString() }
                 .subscribe({ pattern -> presenter.displayCountries(pattern) }, {  }))
 

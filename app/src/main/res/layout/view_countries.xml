@@ -20,7 +20,7 @@
             android:hint="@string/search" />
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
+    <test.p00.presentation.auxiliary.widgets.StatefulRecyclerView
         android:id="@+id/vCountries"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
