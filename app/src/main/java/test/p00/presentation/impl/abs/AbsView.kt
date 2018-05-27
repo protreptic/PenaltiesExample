@@ -17,6 +17,12 @@ import javax.inject.Inject
  */
 abstract class AbsView : DaggerFragment(), Router.Delegate {
 
+    companion object {
+
+        private const val SAVED_STATE = "saved_state"
+
+    }
+
     @Inject protected lateinit var bus: Bus
     @Inject protected lateinit var schedulers: Schedulers
 
@@ -26,6 +32,8 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(targetLayout, container, false)
+
+    protected lateinit var disposables: CompositeDisposable
 
     override fun onViewCreated(createdView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(createdView, savedInstanceState)
@@ -39,7 +47,23 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
             if (activity is Router.Delegate) {
                (activity as Router.Delegate).checkIfRoutingAvailable() } else false
 
-    protected lateinit var disposables: CompositeDisposable
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putParcelable(SAVED_STATE, savedState)
+    }
+
+    protected val savedState = Bundle()
+
+    open fun restoreState(state: Bundle) {}
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        if (savedInstanceState != null) {
+            restoreState(savedInstanceState.getParcelable(SAVED_STATE))
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

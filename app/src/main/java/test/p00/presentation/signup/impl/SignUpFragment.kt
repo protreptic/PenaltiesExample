@@ -11,12 +11,11 @@ import com.bumptech.glide.Glide
 import kotterknife.bindView
 import test.p00.R
 import test.p00.domain.signup.SignUpInteractor
+import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.model.ErrorModel
 import test.p00.presentation.model.countries.CountryModel
-import test.p00.presentation.signup.SignUpPresenter
 import test.p00.presentation.signup.SignUpView
-import test.p00.presentation.auxiliary.dismissKeyboard
 import javax.inject.Inject
 
 /**
@@ -27,6 +26,7 @@ class SignUpFragment : AbsView(), SignUpView {
     companion object {
 
         const val FRAGMENT_TAG = "tag_SignUpFragment"
+        const val SAVED_STATE_COUNTRY = "saved_country"
 
         fun newInstance(): Fragment = SignUpFragment().apply {
             arguments = Bundle.EMPTY
@@ -36,7 +36,7 @@ class SignUpFragment : AbsView(), SignUpView {
 
     @Inject lateinit var signUpInteractor: SignUpInteractor
 
-    private val presenter: SignUpPresenter by lazy {
+    private val presenter: SignUpPresenterImpl by lazy {
         SignUpPresenterImpl(
                 schedulers,
                 signUpInteractor,
@@ -52,8 +52,8 @@ class SignUpFragment : AbsView(), SignUpView {
     private val vNumber: EditText by bindView(R.id.sign_up_number)
     private val vVerify: View by bindView(R.id.sign_up_verify)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(createdView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(createdView, savedInstanceState)
 
         vCountry.setOnClickListener {
             presenter.changeCountry()
@@ -72,7 +72,11 @@ class SignUpFragment : AbsView(), SignUpView {
             dismissKeyboard(activity)
         }
 
-        presenter.attachView(this)
+        presenter.attachView(this, savedInstanceState != null)
+    }
+
+    override fun restoreState(state: Bundle) {
+        showSignUpForm(state.getSerializable(SAVED_STATE_COUNTRY) as CountryModel)
     }
 
     override fun showSignUpForm(country: CountryModel) {
@@ -85,6 +89,8 @@ class SignUpFragment : AbsView(), SignUpView {
         }
 
         vNumber.requestFocus()
+
+        savedState.putSerializable(SAVED_STATE_COUNTRY, country)
     }
 
     override fun showLoading() {}
