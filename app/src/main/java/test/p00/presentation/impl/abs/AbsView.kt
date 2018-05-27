@@ -17,12 +17,6 @@ import javax.inject.Inject
  */
 abstract class AbsView : DaggerFragment(), Router.Delegate {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        retainInstance = true
-    }
-
     @Inject protected lateinit var bus: Bus
     @Inject protected lateinit var schedulers: Schedulers
 
@@ -33,10 +27,12 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(targetLayout, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(createdView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(createdView, savedInstanceState)
 
         disposables = CompositeDisposable()
+
+        view?.requestFocus()
     }
 
     override fun checkIfRoutingAvailable(): Boolean =
@@ -47,6 +43,8 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        view?.clearFocus()
 
         disposables.dispose()
     }
