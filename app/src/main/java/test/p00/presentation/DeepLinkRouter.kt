@@ -4,6 +4,6 @@ import android.net.Uri
 
 interface DeepLinkRouter : Router {
 
-    fun openDeepLink(deepLink: Uri)
+    fun openDeepLink(target: Uri)
 
 }

@@ -2,9 +2,9 @@ package test.p00.presentation.impl.router
 
 import android.net.Uri
 import android.support.v4.app.FragmentManager
+import test.p00.auxiliary.extensions.deepLink
 import test.p00.auxiliary.extensions.push
 import test.p00.auxiliary.extensions.pushRoot
-import test.p00.auxiliary.extensions.uri
 import test.p00.presentation.DeepLinkRouter
 import test.p00.presentation.Router
 import test.p00.presentation.conversation.impl.ConversationFragment
@@ -21,34 +21,32 @@ class DefaultDeepLinkRouter(
 
     companion object {
 
-        private val DEEP_LINK_CONVERSATION_FIRST = "https://fruit-chat.herokuapp.com/conversations?conversationId=1".uri()
-        private val DEEP_LINK_CONVERSATION_SECOND = "https://fruit-chat.herokuapp.com/conversations?conversationId=2".uri()
+        private val DEEP_LINK_CONVERSATION = "https://fruit-chat.herokuapp.com/conversations".deepLink()
     }
 
     private val registeredDeepLinks: MutableMap<Uri, (deepLink: Uri) -> Unit> = HashMap()
 
     init {
         registeredDeepLinks.apply {
-            put(DEEP_LINK_CONVERSATION_FIRST) {
-                val conversationId = it.getQueryParameter("conversationId")
+            put(DEEP_LINK_CONVERSATION) { deepLink ->
+                val conversationId = deepLink.getQueryParameter("conversationId") ?: ""
 
-                fragmentManager?.pushRoot(HomeFragment.newInstance())
-                fragmentManager?.push(ConversationsFragment.newInstance())
-                fragmentManager?.push(ConversationFragment.newInstance(conversationId))
-            }
-            put(DEEP_LINK_CONVERSATION_SECOND) {
-                val conversationId = it.getQueryParameter("conversationId")
-
-                fragmentManager?.pushRoot(HomeFragment.newInstance())
-                fragmentManager?.push(ConversationsFragment.newInstance())
-                fragmentManager?.push(ConversationFragment.newInstance(conversationId))
+                if (conversationId.isNotEmpty()) {
+                    fragmentManager?.pushRoot(HomeFragment.newInstance())
+                    fragmentManager?.push(ConversationsFragment.newInstance(), animate = false)
+                    fragmentManager?.push(ConversationFragment.newInstance(conversationId), animate = false)
+                } else {
+                    toHome()
+                }
             }
         }
     }
 
-    override fun openDeepLink(deepLink: Uri) {
+    override fun openDeepLink(target: Uri) {
+        val deepLink = target.deepLink()
+
         if (registeredDeepLinks.containsKey(deepLink)) {
-            registeredDeepLinks[deepLink]?.invoke(deepLink)
+            registeredDeepLinks[deepLink]?.invoke(target)
         } else {
             toHome()
         }
