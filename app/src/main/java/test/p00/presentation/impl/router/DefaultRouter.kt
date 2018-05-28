@@ -1,4 +1,4 @@
-package test.p00.presentation.impl
+package test.p00.presentation.impl.router
 
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.Router

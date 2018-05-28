@@ -11,11 +11,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotterknife.bindView
 import test.p00.R
 import test.p00.data.repository.countries.CountriesRepository
-import test.p00.presentation.impl.abs.AbsView
+import test.p00.presentation.auxiliary.TopPaddingItemDecoration
 import test.p00.presentation.countries.CountriesView
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter
+import test.p00.presentation.impl.abs.AbsView
 import test.p00.presentation.model.countries.CountryModel
-import test.p00.presentation.auxiliary.TopPaddingItemDecoration
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

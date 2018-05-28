@@ -26,6 +26,7 @@ interface ApplicationComponent : AndroidInjector<DefaultApplication> {
         fun withBus(bus: Bus): Builder
 
         fun build(): ApplicationComponent
+
     }
 
 }

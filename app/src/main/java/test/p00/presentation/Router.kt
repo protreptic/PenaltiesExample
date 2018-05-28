@@ -25,7 +25,7 @@ interface Router {
     fun purifyRoute() {
         if (delegate.checkIfRoutingAvailable()) {
             while (checkIfBackStackNotEmpty()) {
-                fragmentManager?.popBackStackImmediate()
+                fragmentManager?.pop(immediate = true)
             }
         }
     }

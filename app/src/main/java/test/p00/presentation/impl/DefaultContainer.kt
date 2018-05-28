@@ -11,8 +11,9 @@ class DefaultContainer : AbsContainer() {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.pushRoot(SignUpFragment.newInstance())
-            //supportFragmentManager.pushRoot(LauncherFragment.newInstance())
+            if (handleDeepLinkIntent(intent)) {
+                supportFragmentManager.pushRoot(SignUpFragment.newInstance())
+            }
         }
     }
 
