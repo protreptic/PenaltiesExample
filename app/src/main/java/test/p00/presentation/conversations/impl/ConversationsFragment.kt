@@ -22,7 +22,7 @@ class ConversationsFragment : AbsView(), ConversationsView, ConversationsAdapter
 
     companion object {
 
-        const val FRAGMENT_TAG = "tag_ConversationsFragment"
+        const val FRAGMENT_TAG = "fragment_tag_conversations"
 
         fun newInstance(): Fragment = ConversationsFragment().apply {
             arguments = Bundle.EMPTY
@@ -34,9 +34,8 @@ class ConversationsFragment : AbsView(), ConversationsView, ConversationsAdapter
 
     private val presenter: ConversationsPresenter by lazy {
         ConversationsPresenterImpl(
-                schedulers,
-                ConversationsRouterImpl(fragmentManager, this),
-                conversationsInteractor)
+                schedulers, ConversationsRouterImpl(fragmentManager, this),
+                        conversationsInteractor)
     }
 
     override val targetLayout: Int = R.layout.view_conversations

@@ -5,7 +5,7 @@ import test.p00.auxiliary.reactivex.schedulers.Schedulers
 
 object CompletableTransformers {
 
-    fun schedulers(scheduler: Schedulers = Schedulers.create()) =
+    fun schedulers(scheduler: Schedulers) =
             CompletableTransformer {
                 it.observeOn(scheduler.ui())
                   .subscribeOn(scheduler.background()) }

@@ -5,7 +5,7 @@ import test.p00.auxiliary.reactivex.schedulers.Schedulers
 
 object ObservableTransformers {
 
-    fun <Any> schedulers(scheduler: Schedulers = Schedulers.create()) =
+    fun <Any> schedulers(scheduler: Schedulers) =
             ObservableTransformer<Any, Any> {
                 it.observeOn(scheduler.ui())
                   .subscribeOn(scheduler.background()) }

@@ -60,7 +60,7 @@ class HomeFragment : AbsView(), HomeView {
         vWipe.setOnClickListener {
             Completable
                 .complete()
-                .compose(CompletableTransformers.schedulers())
+                .compose(CompletableTransformers.schedulers(schedulers))
                 .doOnSubscribe {
                     /*
                      * Очищаем Realm хранилище

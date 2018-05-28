@@ -99,7 +99,7 @@ class ConversationFragment : AbsView(), ConversationView, MessagesAdapter.Delega
         disposables.add(
             messagesAdapter
                 .changeData(conversation)
-                .compose(CompletableTransformers.schedulers())
+                .compose(CompletableTransformers.schedulers(schedulers))
                 .subscribe { messagesAdapter.notifyDataSetChanged() })
     }
 
