@@ -29,13 +29,14 @@ class CountriesPresenterImplTest {
 
     @Test
     fun displayCountries() {
-        Mockito.`when`(countriesRepository.fetchEverything())
+        Mockito.`when`(countriesRepository.fetchByName(""))
                 .thenReturn(Observable.just(listOf(Country(), Country(), Country())))
 
         countriesPresenter.attachView(view)
+        countriesPresenter.displayCountries()
 
         inOrder(countriesRepository, view).apply {
-            this.verify(countriesRepository, times(1)).fetchEverything()
+            this.verify(countriesRepository, times(1)).fetchByName("")
             this.verify(view, times(1)).showCountries(ArgumentMatchers.anyList())
             this.verifyNoMoreInteractions()
         }
