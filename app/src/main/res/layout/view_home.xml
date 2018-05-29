@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wipe" />
 
-    <android.support.v7.widget.RecyclerView
+    <test.p00.presentation.auxiliary.widgets.StatefulRecyclerView
         android:id="@+id/vDrivers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vDrivers" />
 
-    <android.support.v7.widget.RecyclerView
+    <test.p00.presentation.auxiliary.widgets.StatefulRecyclerView
         android:id="@+id/vVehicles"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
