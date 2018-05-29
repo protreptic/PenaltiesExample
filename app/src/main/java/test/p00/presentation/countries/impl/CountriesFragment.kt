@@ -46,8 +46,8 @@ class CountriesFragment : AbsView(), CountriesView, CountriesAdapter.Delegate {
     private val countriesFilter: EditText by bindView(R.id.vCountriesFilter)
     private val countriesAdapter = CountriesAdapter(delegate = this)
 
-    override fun onViewCreated(createdView: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(createdView, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         countries.apply {
             layoutManager = LinearLayoutManager(context)
