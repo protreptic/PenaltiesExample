@@ -40,7 +40,8 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
 
         disposables = CompositeDisposable()
 
-        this.view?.requestFocus()
+        view.setOnClickListener {  }
+        view.requestFocus()
     }
 
     override fun checkIfRoutingAvailable(): Boolean =
