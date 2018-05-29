@@ -16,6 +16,6 @@ class RxBus : Bus {
             bus.onNext(event)
 
     override fun subscribe(block: (event: BusEvent) -> Unit): Disposable =
-            bus.subscribe({ event -> block(event) })
+            bus.subscribe({ event -> block(event) }, { /* игнорируем */ })
 
 }
