@@ -4,7 +4,6 @@ import android.net.Uri
 import android.support.v4.app.FragmentManager
 import test.p00.auxiliary.extensions.deepLink
 import test.p00.auxiliary.extensions.push
-import test.p00.auxiliary.extensions.pushRoot
 import test.p00.presentation.DeepLinkRouter
 import test.p00.presentation.Router
 import test.p00.presentation.conversation.impl.ConversationFragment
@@ -32,7 +31,8 @@ class DefaultDeepLinkRouter(
                 val conversationId = deepLink.getQueryParameter("conversationId") ?: ""
 
                 if (conversationId.isNotEmpty()) {
-                    fragmentManager?.pushRoot(HomeFragment.newInstance())
+                    push(HomeFragment.newInstance(), root = true)
+
                     fragmentManager?.push(ConversationsFragment.newInstance(), animate = false)
                     fragmentManager?.push(ConversationFragment.newInstance(conversationId), animate = false)
                 } else {

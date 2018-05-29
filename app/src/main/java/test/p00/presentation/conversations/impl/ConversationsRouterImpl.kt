@@ -15,9 +15,7 @@ class ConversationsRouterImpl(
         override val delegate: Delegate) : ConversationsRouter {
 
     override fun toConversation(conversation: ConversationModel) {
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.push(ConversationFragment.newInstance(conversation.id))
-        }
+        push(ConversationFragment.newInstance(conversation.id))
     }
 
 }

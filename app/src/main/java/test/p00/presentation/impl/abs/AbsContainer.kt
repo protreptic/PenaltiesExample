@@ -12,7 +12,7 @@ abstract class AbsContainer : DaggerAppCompatActivity(), Router.Delegate {
 
     private var mIsFragmentTransactionsAllowed: Boolean = false
 
-    override fun isFragmentTransactionAllowed(): Boolean {
+    override fun transactionAllowed(): Boolean {
         return mIsFragmentTransactionsAllowed
     }
 

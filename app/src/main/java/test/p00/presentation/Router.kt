@@ -1,8 +1,10 @@
 package test.p00.presentation
 
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import test.p00.presentation.home.impl.HomeFragment
 import test.p00.auxiliary.extensions.pop
+import test.p00.auxiliary.extensions.push
 import test.p00.auxiliary.extensions.pushRoot
 
 /**
@@ -12,19 +14,19 @@ interface Router {
 
     interface Delegate {
 
-        fun isFragmentTransactionAllowed(): Boolean
+        fun transactionAllowed(): Boolean
 
     }
 
     val fragmentManager: FragmentManager?
     val delegate: Delegate
 
-    fun checkIfBackStackNotEmpty() =
+    fun backStackNotEmpty() =
             fragmentManager?.backStackEntryCount != 0
 
     fun purifyRoute() {
-        if (delegate.isFragmentTransactionAllowed()) {
-            while (checkIfBackStackNotEmpty()) {
+        while (backStackNotEmpty()) {
+            transaction {
                 fragmentManager?.pop(immediate = true)
             }
         }
@@ -33,14 +35,30 @@ interface Router {
     fun toHome() {
         purifyRoute()
 
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.pushRoot(HomeFragment.newInstance())
+        push(HomeFragment.newInstance(), root = true)
+    }
+
+    fun push(fragment: Fragment, root: Boolean = false) {
+        transaction {
+            if (root) {
+                fragmentManager?.pushRoot(fragment)
+            } else {
+                fragmentManager?.push(fragment)
+            }
         }
     }
 
     fun back() {
-        if (delegate.isFragmentTransactionAllowed() && checkIfBackStackNotEmpty()) {
-            fragmentManager?.pop()
+        transaction {
+            if (backStackNotEmpty()) {
+                fragmentManager?.pop()
+            }
+        }
+    }
+
+    fun transaction(transaction: () -> Unit) {
+        if (delegate.transactionAllowed()) {
+            transaction()
         }
     }
 

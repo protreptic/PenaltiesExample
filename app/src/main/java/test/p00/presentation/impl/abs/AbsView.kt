@@ -44,9 +44,9 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
         view.requestFocus()
     }
 
-    override fun isFragmentTransactionAllowed(): Boolean =
+    override fun transactionAllowed(): Boolean =
             if (activity is Router.Delegate) {
-               (activity as Router.Delegate).isFragmentTransactionAllowed() } else false
+               (activity as Router.Delegate).transactionAllowed() } else false
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

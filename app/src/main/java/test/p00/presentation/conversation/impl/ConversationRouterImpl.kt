@@ -6,7 +6,6 @@ import test.p00.presentation.conversation.ConversationRouter
 import test.p00.presentation.conversation.member.impl.MemberFragment
 import test.p00.presentation.conversation.members.impl.MembersFragment
 import test.p00.presentation.model.conversation.MemberModel
-import test.p00.auxiliary.extensions.push
 
 /**
  * Created by Peter Bukhal on 4/27/18.
@@ -17,15 +16,11 @@ class ConversationRouterImpl(
         override val delegate: Delegate) : ConversationRouter {
 
     override fun toMember(member: MemberModel) {
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.push(MemberFragment.newInstance(conversationId, member.id))
-        }
+        push(MemberFragment.newInstance(conversationId, member.id))
     }
 
     override fun toMembers() {
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.push(MembersFragment.newInstance(conversationId))
-        }
+        push(MembersFragment.newInstance(conversationId))
     }
 
 }

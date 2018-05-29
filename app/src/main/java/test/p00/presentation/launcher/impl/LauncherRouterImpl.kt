@@ -6,7 +6,6 @@ import test.p00.presentation.launcher.LauncherRouter
 import test.p00.presentation.onboarding.impl.OnBoardingFragment
 import test.p00.presentation.onboarding.wizard.impl.OnBoardingWizardFragment
 import test.p00.presentation.signup.impl.SignUpFragment
-import test.p00.auxiliary.extensions.pushRoot
 
 /**
  * Created by Peter Bukhal on 4/23/18.
@@ -18,7 +17,7 @@ class LauncherRouterImpl(
 //    override fun toHome() {
 //        super.toHome()
 //
-//        if (delegate.isFragmentTransactionAllowed()) {
+//        if (delegate.transactionAllowed()) {
 //            fragmentManager
 //                    ?.beginTransaction()
 //                    ?.setCustomAnimations(
@@ -68,25 +67,19 @@ class LauncherRouterImpl(
     override fun toOnBoardingWizard() {
         purifyRoute()
 
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.pushRoot(OnBoardingWizardFragment.newInstance())
-        }
+        push(OnBoardingWizardFragment.newInstance(), root = true)
     }
 
     override fun toOnBoarding() {
         purifyRoute()
 
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.pushRoot(OnBoardingFragment.newInstance())
-        }
+        push(OnBoardingFragment.newInstance(), root = true)
     }
 
     override fun toSignUp() {
         purifyRoute()
 
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.pushRoot(SignUpFragment.newInstance())
-        }
+        push(SignUpFragment.newInstance(), root = true)
     }
 
 }

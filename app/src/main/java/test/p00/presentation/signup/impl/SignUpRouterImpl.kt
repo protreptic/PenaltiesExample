@@ -18,13 +18,13 @@ class SignUpRouterImpl(
         override val delegate: Router.Delegate): SignUpRouter {
 
     override fun toPhone() {
-        if (delegate.isFragmentTransactionAllowed()) {
+        if (delegate.transactionAllowed()) {
             fragmentManager?.pop(SignUpVerificationFragment.FRAGMENT_TAG)
         }
     }
 
     override fun toVerification() {
-        if (delegate.isFragmentTransactionAllowed()) {
+        if (delegate.transactionAllowed()) {
             fragmentManager?.push(SignUpVerificationFragment.newInstance())
         }
     }
@@ -32,13 +32,13 @@ class SignUpRouterImpl(
     override fun toLauncher() {
         purifyRoute()
 
-        if (delegate.isFragmentTransactionAllowed()) {
+        if (delegate.transactionAllowed()) {
             fragmentManager?.pushRoot(LauncherFragment.newInstance())
         }
     }
 
     override fun toCountries() {
-        if (delegate.isFragmentTransactionAllowed()) {
+        if (delegate.transactionAllowed()) {
             fragmentManager?.push(CountriesFragment.newInstance())
         }
     }

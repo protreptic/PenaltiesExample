@@ -23,8 +23,7 @@ class SignInFragment : AbsView(), SignInView {
     }
 
     private val presenter: SignInPresenter by lazy {
-        SignInPresenterImpl(
-                SignInRouterImpl(fragmentManager, this))
+        SignInPresenterImpl()
     }
 
     override val targetLayout = R.layout.view_sign_in

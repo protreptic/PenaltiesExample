@@ -14,9 +14,7 @@ class HomeRouterImpl(
         override val delegate: Delegate) : HomeRouter {
 
     override fun toConversations() {
-        if (delegate.isFragmentTransactionAllowed()) {
-            fragmentManager?.push(ConversationsFragment.newInstance())
-        }
+        push(ConversationsFragment.newInstance())
     }
 
 }
