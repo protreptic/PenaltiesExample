@@ -5,9 +5,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.RequestOptions.circleCropTransform
 import kotterknife.bindView
 import test.p00.R
+import test.p00.auxiliary.extensions.setDebouncingOnClickListener
 import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter.Delegate
 import test.p00.presentation.model.conversation.ConversationModel
 
@@ -19,12 +20,12 @@ class ConversationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     fun bind(conversation: ConversationModel, delegate: Delegate?) {
         Glide.with(itemView.context)
                 .load("http://via.placeholder.com/56x56")
-                .apply(RequestOptions.circleCropTransform())
+                .apply(circleCropTransform())
                 .into(vPhoto)
 
         vName.text = conversation.name
 
-        itemView.setOnClickListener {
+        itemView.setDebouncingOnClickListener {
             delegate?.onConversationPicked(conversation)
         }
     }

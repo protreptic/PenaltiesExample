@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotterknife.bindView
 import test.p00.R
+import test.p00.auxiliary.extensions.setDebouncingOnClickListener
 import test.p00.presentation.conversation.members.impl.adapter.MembersAdapter.Delegate
 import test.p00.presentation.model.conversation.MemberModel
 
@@ -24,7 +25,7 @@ class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         vName.text = member.name
 
-        itemView.setOnClickListener {
+        itemView.setDebouncingOnClickListener {
             delegate?.onMemberPicked(member)
         }
     }

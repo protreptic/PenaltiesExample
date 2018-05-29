@@ -13,6 +13,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import kotterknife.bindView
 import test.p00.R
+import test.p00.auxiliary.extensions.setDebouncingOnClickListener
 import test.p00.presentation.countries.impl.adapter.CountriesAdapter.CountryViewHolder
 import test.p00.presentation.model.countries.CountryModel
 
@@ -73,10 +74,7 @@ class CountriesAdapter(
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = data[position]
 
-        holder.bindCountry(country)
-        holder.itemView.setOnClickListener {
-            delegate?.onCountryPicked(country)
-        }
+        holder.bind(country, delegate)
     }
 
     class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -85,13 +83,17 @@ class CountriesAdapter(
         private val vName: TextView by bindView(R.id.vName)
         private val vPhoneCode: TextView by bindView(R.id.vPhoneCode)
 
-        fun bindCountry(country: CountryModel) {
+        fun bind(country: CountryModel, delegate: Delegate?) {
             Glide.with(itemView.context)
                     .load(country.flag)
                     .into(vFlag)
 
             vName.text = country.name
             vPhoneCode.text = country.callingCode
+
+            itemView.setDebouncingOnClickListener {
+                delegate?.onCountryPicked(country)
+            }
         }
 
     }
