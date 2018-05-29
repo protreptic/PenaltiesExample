@@ -14,7 +14,7 @@ class OnBoardingRouterImpl(
         override val delegate: Delegate) : OnBoardingRouter {
 
     override fun toLauncher() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(LauncherFragment.newInstance())
         }
     }

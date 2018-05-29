@@ -17,13 +17,13 @@ class ConversationRouterImpl(
         override val delegate: Delegate) : ConversationRouter {
 
     override fun toMember(member: MemberModel) {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.push(MemberFragment.newInstance(conversationId, member.id))
         }
     }
 
     override fun toMembers() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.push(MembersFragment.newInstance(conversationId))
         }
     }

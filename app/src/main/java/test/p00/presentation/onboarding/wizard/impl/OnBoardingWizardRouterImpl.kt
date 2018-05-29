@@ -20,13 +20,13 @@ class OnBoardingWizardRouterImpl(
         override val delegate: Delegate) : OnBoardingWizardRouter {
 
     override fun toLauncher() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(LauncherFragment.newInstance())
         }
     }
 
     override fun toIntroductory() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(
                     OnBoardingWizardIntroductoryFragment.newInstance(),
                     containerId = R.id.wizard_content)
@@ -36,7 +36,7 @@ class OnBoardingWizardRouterImpl(
     override fun toBeginning() { toAddVehicleStep() }
 
     override fun toAddVehicleStep() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager
                     ?.beginTransaction()
                     ?.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -48,7 +48,7 @@ class OnBoardingWizardRouterImpl(
     }
 
     override fun toAddVehicleLicenseStep() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.push(
                     OnBoardingWizardAddVehicleLicenseStepFragment.newInstance(),
                     containerId = R.id.wizard_content)
@@ -56,7 +56,7 @@ class OnBoardingWizardRouterImpl(
     }
 
     override fun toAddDriverStep() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.push(
                     OnBoardingWizardAddDriverStepFragment.newInstance(),
                     containerId = R.id.wizard_content)

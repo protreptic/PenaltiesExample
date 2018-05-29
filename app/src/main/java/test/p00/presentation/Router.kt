@@ -12,7 +12,7 @@ interface Router {
 
     interface Delegate {
 
-        fun checkIfRoutingAvailable(): Boolean
+        fun isFragmentTransactionAllowed(): Boolean
 
     }
 
@@ -23,7 +23,7 @@ interface Router {
             fragmentManager?.backStackEntryCount != 0
 
     fun purifyRoute() {
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             while (checkIfBackStackNotEmpty()) {
                 fragmentManager?.pop(immediate = true)
             }
@@ -33,13 +33,13 @@ interface Router {
     fun toHome() {
         purifyRoute()
 
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(HomeFragment.newInstance())
         }
     }
 
     fun back() {
-        if (delegate.checkIfRoutingAvailable() && checkIfBackStackNotEmpty()) {
+        if (delegate.isFragmentTransactionAllowed() && checkIfBackStackNotEmpty()) {
             fragmentManager?.pop()
         }
     }

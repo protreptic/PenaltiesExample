@@ -18,7 +18,7 @@ class LauncherRouterImpl(
 //    override fun toHome() {
 //        super.toHome()
 //
-//        if (delegate.checkIfRoutingAvailable()) {
+//        if (delegate.isFragmentTransactionAllowed()) {
 //            fragmentManager
 //                    ?.beginTransaction()
 //                    ?.setCustomAnimations(
@@ -68,7 +68,7 @@ class LauncherRouterImpl(
     override fun toOnBoardingWizard() {
         purifyRoute()
 
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(OnBoardingWizardFragment.newInstance())
         }
     }
@@ -76,7 +76,7 @@ class LauncherRouterImpl(
     override fun toOnBoarding() {
         purifyRoute()
 
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(OnBoardingFragment.newInstance())
         }
     }
@@ -84,7 +84,7 @@ class LauncherRouterImpl(
     override fun toSignUp() {
         purifyRoute()
 
-        if (delegate.checkIfRoutingAvailable()) {
+        if (delegate.isFragmentTransactionAllowed()) {
             fragmentManager?.pushRoot(SignUpFragment.newInstance())
         }
     }
