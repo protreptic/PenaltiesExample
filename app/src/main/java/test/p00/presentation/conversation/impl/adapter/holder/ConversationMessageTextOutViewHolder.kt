@@ -11,7 +11,7 @@ class ConversationMessageTextOutViewHolder(itemView: View): ConversationMessageV
     private val vText: TextView by bindView(R.id.vText)
     private val vDate: TextView by bindView(R.id.vDate)
 
-    override fun bindMessage(model: MessageModel) {
+    override fun bind(model: MessageModel) {
         vText.text = model.text
         vDate.text = "22:13"
     }

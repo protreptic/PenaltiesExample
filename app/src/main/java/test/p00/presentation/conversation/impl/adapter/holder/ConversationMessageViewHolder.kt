@@ -6,6 +6,6 @@ import test.p00.presentation.model.conversation.message.MessageModel
 
 open class ConversationMessageViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    open fun bindMessage(model: MessageModel) {}
+    open fun bind(model: MessageModel) {}
 
 }

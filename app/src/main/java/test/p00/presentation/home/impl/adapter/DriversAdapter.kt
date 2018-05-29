@@ -4,18 +4,16 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.*
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater.from
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.home.impl.adapter.DriversAdapter.DriverViewHolder
 import test.p00.presentation.model.user.DriverModel
 
-class DriversAdapter(private var data: List<DriverModel> = listOf()) : RecyclerView.Adapter<DriverViewHolder>() {
+class DriversAdapter(
+        private var data: List<DriverModel> = listOf()):
+            RecyclerView.Adapter<DriverViewHolder>() {
 
     class Diff(private val old: List<DriverModel>,
                private val new: List<DriverModel>) : DiffUtil.Callback() {
@@ -56,19 +54,7 @@ class DriversAdapter(private var data: List<DriverModel> = listOf()) : RecyclerV
     override fun onBindViewHolder(holder: DriverViewHolder, position: Int) {
         val driver = data[position]
 
-        holder.bindDriver(driver)
-    }
-
-    class DriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val vDriver: TextView by bindView(R.id.textView4)
-        private val vDriverLicense: TextView by bindView(R.id.textView5)
-
-        fun bindDriver(model: DriverModel) {
-            vDriver.text = model.name
-            vDriverLicense.text = model.number
-        }
-
+        holder.bind(driver)
     }
 
 }

@@ -21,7 +21,8 @@ import test.p00.presentation.model.countries.CountryModel
  */
 class CountriesAdapter(
         private var data: List<CountryModel> = listOf(),
-        private var delegate: Delegate? = null) : RecyclerView.Adapter<CountryViewHolder>() {
+        private var delegate: Delegate? = null):
+            RecyclerView.Adapter<CountryViewHolder>() {
 
     class Diff(private val old: List<CountryModel>, private val new: List<CountryModel>) : DiffUtil.Callback() {
 

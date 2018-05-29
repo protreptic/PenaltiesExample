@@ -4,18 +4,16 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.*
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.home.impl.adapter.VehiclesAdapter.VehicleViewHolder
 import test.p00.presentation.model.user.VehicleModel
 
-class VehiclesAdapter(private var data: List<VehicleModel> = listOf()) : RecyclerView.Adapter<VehicleViewHolder>() {
+class VehiclesAdapter(
+        private var data: List<VehicleModel> = listOf()):
+            RecyclerView.Adapter<VehicleViewHolder>() {
 
     class Diff(private val old: List<VehicleModel>,
                private val new: List<VehicleModel>) : DiffUtil.Callback() {
@@ -56,19 +54,7 @@ class VehiclesAdapter(private var data: List<VehicleModel> = listOf()) : Recycle
     override fun onBindViewHolder(holder: VehicleViewHolder, position: Int) {
         val vehicle = data[position]
 
-        holder.bindVehicle(vehicle)
-    }
-
-    class VehicleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val vVehicleName: TextView by bindView(R.id.textView4)
-        private val vVehicleNumberAndLicense: TextView by bindView(R.id.textView5)
-
-        fun bindVehicle(model: VehicleModel) {
-            vVehicleName.text = model.name
-            vVehicleNumberAndLicense.text = String.format("РЕГ. НОМЕР ТС: %s\nСВИД. РЕГ. ТС: %s", model.number, model.registrationNumber)
-        }
-
+        holder.bind(vehicle)
     }
 
 }

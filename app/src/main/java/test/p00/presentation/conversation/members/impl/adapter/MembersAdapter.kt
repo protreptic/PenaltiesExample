@@ -4,18 +4,11 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.calculateDiff
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.conversation.members.impl.adapter.MembersAdapter.MemberViewHolder
 import test.p00.presentation.model.conversation.MemberModel
 
 /**
@@ -23,7 +16,8 @@ import test.p00.presentation.model.conversation.MemberModel
  */
 class MembersAdapter(
         private var data: List<MemberModel> = listOf(),
-        private var delegate: Delegate? = null) : RecyclerView.Adapter<MemberViewHolder>() {
+        private var delegate: Delegate? = null):
+            RecyclerView.Adapter<MemberViewHolder>() {
 
     class Diff(private val old: List<MemberModel>, private val new: List<MemberModel>) : DiffUtil.Callback() {
 
@@ -76,26 +70,7 @@ class MembersAdapter(
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
         val member = data[position]
 
-        holder.bindMember(member)
-        holder.itemView.setOnClickListener {
-            delegate?.onMemberPicked(member)
-        }
-    }
-
-    class MemberViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val vPhoto: ImageView by bindView(R.id.vPhoto)
-        private val vName: TextView by bindView(R.id.vName)
-
-        fun bindMember(member: MemberModel) {
-            Glide.with(itemView.context)
-                    .load("http://via.placeholder.com/56x56")
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(vPhoto)
-
-            vName.text = member.name
-        }
-
+        holder.bind(member, delegate)
     }
 
 }

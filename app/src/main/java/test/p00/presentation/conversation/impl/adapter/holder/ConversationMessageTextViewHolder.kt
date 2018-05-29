@@ -16,7 +16,7 @@ class ConversationMessageTextViewHolder(itemView: View): ConversationMessageView
     private val vText: TextView by bindView(R.id.vText)
     private val vDate: TextView by bindView(R.id.vDate)
 
-    override fun bindMessage(model: MessageModel) {
+    override fun bind(model: MessageModel) {
         Glide.with(itemView.context)
                 .load("http://via.placeholder.com/36x36")
                 .apply(circleCropTransform())

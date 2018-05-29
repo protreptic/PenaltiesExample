@@ -4,18 +4,11 @@ import android.support.v7.util.DiffUtil
 import android.support.v7.util.DiffUtil.calculateDiff
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotterknife.bindView
 import test.p00.R
-import test.p00.presentation.conversations.impl.adapter.ConversationsAdapter.ConversationViewHolder
 import test.p00.presentation.model.conversation.ConversationModel
 
 /**
@@ -23,7 +16,8 @@ import test.p00.presentation.model.conversation.ConversationModel
  */
 class ConversationsAdapter(
         private var data: List<ConversationModel> = listOf(),
-        private var delegate: Delegate? = null) : RecyclerView.Adapter<ConversationViewHolder>() {
+        private var delegate: Delegate? = null):
+            RecyclerView.Adapter<ConversationViewHolder>() {
 
     class Diff(private val old: List<ConversationModel>,
                private val new: List<ConversationModel>) : DiffUtil.Callback() {
@@ -76,26 +70,7 @@ class ConversationsAdapter(
     override fun onBindViewHolder(holder: ConversationViewHolder, position: Int) {
         val conversation = data[position]
 
-        holder.bindConversation(conversation)
-        holder.itemView.setOnClickListener {
-            delegate?.onConversationPicked(conversation)
-        }
-    }
-
-    class ConversationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val vPhoto: ImageView by bindView(R.id.vPhoto)
-        private val vName: TextView by bindView(R.id.vName)
-
-        fun bindConversation(conversation: ConversationModel) {
-            Glide.with(itemView.context)
-                    .load("http://via.placeholder.com/56x56")
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(vPhoto)
-
-            vName.text = conversation.name
-        }
-
+        holder.bind(conversation, delegate)
     }
 
 }

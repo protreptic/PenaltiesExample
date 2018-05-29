@@ -5,7 +5,7 @@ import test.p00.presentation.model.conversation.message.MessageModel
 
 class ConversationMessageWebViewHolder(itemView: View): ConversationMessageViewHolder(itemView) {
 
-    override fun bindMessage(model: MessageModel) {
+    override fun bind(model: MessageModel) {
 
     }
 

@@ -16,7 +16,7 @@ import java.util.*
  */
 class MessagesAdapter(
         private var delegate: Delegate? = null):
-        RecyclerView.Adapter<ConversationMessageViewHolder>() {
+            RecyclerView.Adapter<ConversationMessageViewHolder>() {
 
     interface Delegate {
 
@@ -32,11 +32,11 @@ class MessagesAdapter(
     private lateinit var conversation: ConversationModel
     private var data: LinkedList<MessageModel> = LinkedList()
 
-    fun changeData(conversation: ConversationModel): Completable =
-            Observable.just(conversation)
+    fun changeData(newConversation: ConversationModel): Completable =
+            Observable.just(newConversation)
                       .doOnNext {
-                          this.conversation = conversation
-                          this.data = LinkedList(conversation.messages) }
+                          conversation = newConversation
+                          data = LinkedList(newConversation.messages) }
                       .ignoreElements()
 
     fun addMessage(message: MessageModel): Completable =
@@ -104,11 +104,7 @@ class MessagesAdapter(
     override fun onBindViewHolder(holder: ConversationMessageViewHolder, position: Int) {
         val message = data[position]
 
-        holder.bindMessage(message).also {
-            if (!message.isRead) {
-                delegate?.onMessageRead(message)
-            }
-        }
+        holder.bind(message)
     }
 
 }
