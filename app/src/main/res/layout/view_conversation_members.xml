@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test.p00.presentation.auxiliary.widgets.StatefulRecyclerView
+<test.p00.presentation.auxiliary.widget.StatefulRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vMembers"
     android:layout_width="match_parent"

@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Name" />
 
-    <test.p00.presentation.auxiliary.widgets.StatefulRecyclerView
+    <test.p00.presentation.auxiliary.widget.StatefulRecyclerView
         android:id="@+id/vConversationMessages"
         android:layout_width="0dp"
         android:layout_height="0dp"

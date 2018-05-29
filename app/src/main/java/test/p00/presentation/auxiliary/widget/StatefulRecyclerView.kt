@@ -1,4 +1,4 @@
-package test.p00.presentation.auxiliary.widgets
+package test.p00.presentation.auxiliary.widget
 
 import android.content.Context
 import android.os.Bundle
