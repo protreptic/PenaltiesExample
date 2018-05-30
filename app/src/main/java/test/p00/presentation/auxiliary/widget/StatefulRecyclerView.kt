@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import android.view.View
 
 /**
  * Created by Peter Bukhal on 5/27/18.
@@ -20,6 +21,14 @@ class StatefulRecyclerView : RecyclerView {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
+
+    init {
+        /* OverScroll отключен */
+        overScrollMode = View.OVER_SCROLL_NEVER
+
+        /* MultiTouch отключен */
+        isMotionEventSplittingEnabled = false
+    }
 
     private var mLayoutManagerSavedState: Parcelable? = null
 

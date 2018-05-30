@@ -14,7 +14,7 @@
         app:cardBackgroundColor="@color/white"
         app:cardElevation="2dp"
         app:cardCornerRadius="4dp"
-        app:layout_behavior="test.p00.presentation.auxiliary.TopViewScrollBehavior">
+        app:layout_behavior="test.p00.presentation.auxiliary.SearchBarBehavior">
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/vCountriesFilter"
@@ -30,7 +30,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/confirm_background"
-        android:scrollbars="none"
-        android:overScrollMode="never"
-        android:splitMotionEvents="false" />
+        android:scrollbars="none" />
 </android.support.design.widget.CoordinatorLayout>
