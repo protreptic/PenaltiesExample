@@ -23,7 +23,7 @@ class SignUpVerificationPresenterImpl(
     override fun verifyCode(confirmationCode: String) {
         disposables.add(
             interactor
-                .confirmCode(confirmationCode.toInt())
+                .confirmCode(confirmationCode)
                 .compose(ObservableTransformers.schedulers(schedulers))
                 .subscribe(
                     { router.toLauncher() },

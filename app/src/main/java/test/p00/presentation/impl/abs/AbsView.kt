@@ -40,6 +40,7 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
 
         disposables = CompositeDisposable()
 
+        /* предотвратить "прокликивание view" */
         view.setOnClickListener {  }
         view.requestFocus()
     }

@@ -34,7 +34,6 @@ interface Router {
 
     fun toHome() {
         purifyRoute()
-
         push(HomeFragment.newInstance(), root = true)
     }
 

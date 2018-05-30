@@ -10,20 +10,18 @@ import test.p00.presentation.impl.router.DefaultRouter
 
 abstract class AbsContainer : DaggerAppCompatActivity(), Router.Delegate {
 
-    private var mIsFragmentTransactionsAllowed: Boolean = false
+    private var transactionAllowed: Boolean = false
 
-    override fun transactionAllowed(): Boolean {
-        return mIsFragmentTransactionsAllowed
-    }
+    override fun transactionAllowed() = transactionAllowed
 
     override fun onResumeFragments() {
-        mIsFragmentTransactionsAllowed = true
+        transactionAllowed = true
 
         super.onResumeFragments()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        mIsFragmentTransactionsAllowed = false
+        transactionAllowed = false
 
         super.onSaveInstanceState(outState)
     }
@@ -49,7 +47,7 @@ abstract class AbsContainer : DaggerAppCompatActivity(), Router.Delegate {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mIsFragmentTransactionsAllowed = true
+        transactionAllowed = true
     }
 
     protected val router: Router by lazy { DefaultRouter(supportFragmentManager, this) }

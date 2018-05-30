@@ -36,7 +36,7 @@ class SignUpInteractor
     /**
      *
      */
-    fun confirmCode(confirmationCode: Int): Observable<String> =
+    fun confirmCode(confirmationCode: String): Observable<String> =
             authorize.authorizeConfirmation(AuthorizeConfirmationRequest(confirmationCode))
                      .map { response -> response.accessToken }
                      .doOnNext { accessToken -> saveAccessToken(accessToken) }
