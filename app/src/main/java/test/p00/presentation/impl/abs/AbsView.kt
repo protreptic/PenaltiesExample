@@ -9,6 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import test.p00.auxiliary.bus.Bus
 import test.p00.auxiliary.reactivex.schedulers.Schedulers
 import test.p00.presentation.Router
+import test.p00.presentation.auxiliary.dismissKeyboard
 import test.p00.presentation.impl.router.DefaultRouter
 import javax.inject.Inject
 
@@ -43,6 +44,9 @@ abstract class AbsView : DaggerFragment(), Router.Delegate {
         /* предотвратить "прокликивание view" */
         view.setOnClickListener {  }
         view.requestFocus()
+
+        /* скрывать клавиатуру */
+        dismissKeyboard(activity)
     }
 
     override fun transactionAllowed(): Boolean =
