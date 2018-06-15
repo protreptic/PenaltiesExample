@@ -1,6 +1,7 @@
 package test.p00.presentation.countries
 
 import test.p00.presentation.Presenter
+import test.p00.presentation.countries.CountriesView.SortBy
 import test.p00.presentation.model.countries.CountryModel
 
 /**
@@ -14,7 +15,7 @@ interface CountriesPresenter : Presenter<CountriesView> {
      *
      * @param name шаблон названия страны
      */
-    fun displayCountries(name: String = "")
+    fun displayCountries(name: String, sortBy: SortBy)
 
     /**
      * Пользователь выбрал страну.

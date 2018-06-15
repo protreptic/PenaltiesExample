@@ -1,6 +1,7 @@
 package test.p00.presentation.countries
 
 import test.p00.presentation.View
+import test.p00.presentation.countries.impl.SortByModel
 import test.p00.presentation.model.countries.CountryModel
 
 /**
@@ -8,9 +9,11 @@ import test.p00.presentation.model.countries.CountryModel
  */
 interface CountriesView : View {
 
+    enum class SortBy { NAME, PHONE }
+
     /**
      *
      */
-    fun showCountries(countries: List<CountryModel>)
+    fun showCountries(countries: List<CountryModel>, sortBy: List<SortByModel>)
 
 }
