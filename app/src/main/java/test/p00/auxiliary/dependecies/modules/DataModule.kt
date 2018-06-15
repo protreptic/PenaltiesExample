@@ -3,6 +3,7 @@ package test.p00.auxiliary.dependecies.modules
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import test.p00.data.repository.PrimaryDatabase
 import test.p00.data.repository.conversation.ConversationRepository
 import test.p00.data.repository.conversation.datasource.ConversationDataSource
 import test.p00.data.repository.conversation.datasource.impl.CloudConversationDataSource
@@ -16,6 +17,7 @@ import test.p00.data.repository.conversations.impl.ConversationsRepositoryImpl
 import test.p00.data.repository.countries.CountriesRepository
 import test.p00.data.repository.countries.datasource.CountriesDataSource
 import test.p00.data.repository.countries.datasource.impl.CountriesDataSourceImpl
+import test.p00.data.repository.countries.datasource.impl.RoomCountryDataSource
 import test.p00.data.repository.countries.impl.CountriesRepositoryImpl
 import test.p00.data.repository.onboarding.OnBoardingRepository
 import test.p00.data.repository.onboarding.datasource.OnBoardingDataSource
@@ -34,6 +36,9 @@ import javax.inject.Named
 
 @Module(includes = [ NetworkModule::class ])
 class DataModule {
+
+    @Provides
+    fun providePrimaryDatabase(context: Context) = PrimaryDatabase.instance(context)
 
     @Provides
     fun provideConversationRepository(
@@ -73,8 +78,8 @@ class DataModule {
                     CountriesRepositoryImpl(countriesDataSource)
 
     @Provides
-    fun provideCountriesDataSource(context: Context): CountriesDataSource =
-            CountriesDataSourceImpl(context)
+    fun provideCountriesDataSource(context: Context, database: PrimaryDatabase): CountriesDataSource =
+            RoomCountryDataSource(database)
 
     @Provides
     fun provideUserRepository(userDataSource: UserDataSource): UserRepository =

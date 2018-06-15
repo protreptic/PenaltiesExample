@@ -28,16 +28,10 @@ class CountriesDataSourceImpl
         val iso2 = cursor.getString(cursor.getColumnIndexOrThrow("ISO2")).toLowerCase()
         val iso3 = cursor.getString(cursor.getColumnIndexOrThrow("ISO3")).toLowerCase()
         val name = cursor.getString(cursor.getColumnIndexOrThrow("NAME"))
+        val flag = "file:///android_asset/storage/countries/flags/$iso2.png"
         val callingCode = cursor.getInt(cursor.getColumnIndexOrThrow("CALLING_CODE"))
 
-        return Country().apply {
-            this.code = code
-            this.iso2 = iso2
-            this.iso3 = iso3
-            this.name = name
-            this.flag = "file:///android_asset/storage/countries/flags/$iso2.png"
-            this.callingCode = callingCode
-        }
+        return Country(code, iso2, iso3, name, flag, callingCode)
     }
 
     private fun countries(cursor: Cursor) =

@@ -88,7 +88,7 @@ class CountriesFragment : AbsView(), CountriesView,
             countriesAdapter
                 .changeData(countries)
                 .doOnSubscribe { countriesSortByAdapter.changeData(sortBy) }
-                .subscribe())
+                .subscribe({ this.countries.smoothScrollToPosition(0) }))
     }
 
     override fun onSortByChanged(sortBy: SortBy) {
