@@ -3,6 +3,7 @@ package test.p00.presentation.countries.impl
 import io.reactivex.Observable
 import org.junit.Test
 import org.mockito.ArgumentMatchers
+import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito
 import org.mockito.Mockito.*
 import test.p00.auxiliary.bus.Bus
@@ -12,6 +13,7 @@ import test.p00.data.repository.countries.CountriesRepository
 import test.p00.presentation.Router
 import test.p00.presentation.countries.impl.events.CountryPickedEvent
 import test.p00.presentation.countries.CountriesView
+import test.p00.presentation.countries.CountriesView.*
 import test.p00.presentation.model.countries.CountryModel
 
 /**
@@ -33,11 +35,11 @@ class CountriesPresenterImplTest {
                 .thenReturn(Observable.just(listOf(Country(), Country(), Country())))
 
         countriesPresenter.attachView(view)
-        countriesPresenter.displayCountries()
+        countriesPresenter.displayCountries("", SortBy.NAME)
 
         inOrder(countriesRepository, view).apply {
             this.verify(countriesRepository, times(1)).fetchByName("")
-            this.verify(view, times(1)).showCountries(ArgumentMatchers.anyList())
+            this.verify(view, times(1)).showCountries(ArgumentMatchers.anyList(), ArgumentMatchers.anyList())
             this.verifyNoMoreInteractions()
         }
     }
